@@ -1,13 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-class PortfolioContainer extends Component {
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
+
+const PortfolioContainer =(props) => {
+  return (
+    <div>
+      {/* {props.items} */}
+   
+    </div>
+  )
 }
 
-export default PortfolioContainer
+
+let mapStateToProps = (state) => ({
+  items: state.stock.items
+})
+
+// let connectorFunction = connect(mapStateToProps)
+// let connectedPortfolioContainer= connectorFunction(PortfolioContainer)
+
+// export default connectedPortfolioContainer
+
+export default connect(mapStateToProps,null)(PortfolioContainer)
