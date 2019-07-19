@@ -4,9 +4,9 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
 class NavBar extends Component{
 
-  handleLogout=()=>{
+  handleLogout=(e)=>{
     localStorage.removeItem('token')
-    window.history.pushState({url: "/"},"", "/")
+    window.history.pushState({url: "/login"},"", "/login")
     this.forceUpdate()
   }
   
@@ -30,15 +30,16 @@ class NavBar extends Component{
            
           }
           </Nav.Item>
+
+
           {localStorage.getItem('token')===null ?
           <Nav.Item>
-
-            <Button name='signup' href="/signup">Sign Up</Button></Nav.Item>
+                <Button name='signup' href="/signup">Sign Up</Button>
+          </Nav.Item>
             :
             null
         }
 
-            <span> - </span>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />

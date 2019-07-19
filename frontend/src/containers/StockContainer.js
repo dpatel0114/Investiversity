@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Card } from 'react-bootstrap';
+// import { Container, Card } from 'react-bootstrap';
 import { getStocks } from '../actions/stockActions';
 import StockCard from '../components/StockCard';
 

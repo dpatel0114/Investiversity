@@ -3,6 +3,9 @@ let initialState ={
   user:{
     username:'',
     password:'',
+    firstname:'',
+    lastname:'',
+    email: ''
   },
   remaining_balance: '',
   invested_balance:'',

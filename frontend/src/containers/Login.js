@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, Button, Form, Link } from 'react-bootstrap';
+import { Container, Col, Row, Button, Form} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Redirect, withRouter } from "react-router-dom";
 
 
 class Login extends Component {
@@ -18,27 +19,29 @@ class Login extends Component {
   //       errors: ''
   //       }
   //   }
+
   handleChange = (e) => {
-    e.target.name =='username'?
+    // console.log(e.target.name)
+    e.target.name ==='username'?
     this.props.dispatch(
       { type: 'CHANGE_USER', 'username': e.target.value}
     ) 
     : 
      this.props.dispatch(
       { type: 'CHANGE_PASS', 'password': e.target.value}
-    )
+    ) 
   }
 
 
 
  handleLogin=(e)=>{
     e.preventDefault()
-  
+  // console.log(this.props.user)
     let userObject = {username: this.props.user.username, 
                       password: this.props.user.password}
       
-      console.log(userObject)
-      console.log('state',this.props)
+      // console.log(userObject)
+      // console.log('state',this.props)
 
     fetch('http://localhost:3000/login', {
       method: 'POST',
@@ -49,7 +52,7 @@ class Login extends Component {
     })
     .then(res => res.json())
     .then(data => { 
-      console.log(data)
+      // console.log(data)
       if(data.errors){
         console.log("incorrect password")
         this.props.dispatch({
@@ -66,9 +69,9 @@ class Login extends Component {
           remaining_balance: data.user.remaining_balance,
           invested_balance: data.user.invested_balance
         })
-        console.log(data)
+        // console.log(data)
         localStorage.setItem('token', data.token)
-        window.history.pushState({url: "/"},"", "/")
+        window.history.pushState({url: "/home"},"", "/home")
         this.forceUpdate()
       }
     })
@@ -119,5 +122,5 @@ const mapStateToProps =(state)=>{
   return state.stock
 
 }
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login));
 

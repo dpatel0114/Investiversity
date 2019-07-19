@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Card, Col } from 'react-bootstrap';
+import { Container, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
