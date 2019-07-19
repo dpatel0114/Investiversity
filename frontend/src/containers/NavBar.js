@@ -1,14 +1,44 @@
-import React from 'react';
+import React, { Component }from 'react';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
-function NavBar() {
+
+class NavBar extends Component{
+
+  handleLogout=()=>{
+    localStorage.removeItem('token')
+    window.history.pushState({url: "/"},"", "/")
+    this.forceUpdate()
+  }
+  
+  render(){
   return (
     <div>
        <Navbar bg="primary" variant="dark">
         {/* <Navbar.Brand href="#home">Navbar</Navbar.Brand> */}
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#features">About</Nav.Link>
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/about">About</Nav.Link>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Item>
+          {
+            localStorage.getItem('token')===null ?
+            <Button name='login' href="/login" >Login</Button>
+            :
+            <Button name='logout' onClick={this.handleLogout} >Logout</Button>
+            
+           
+          }
+          </Nav.Item>
+          {localStorage.getItem('token')===null ?
+          <Nav.Item>
+
+            <Button name='signup' href="/signup">Sign Up</Button></Nav.Item>
+            :
+            null
+        }
+
+            <span> - </span>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -17,7 +47,7 @@ function NavBar() {
       </Navbar>
     </div>
   )
-}
+}}
 
 export default NavBar
 

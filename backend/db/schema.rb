@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(version: 2019_07_16_162923) do
     t.string "lastname"
     t.string "username"
     t.string "email"
-    t.float "remaining_balance"
-    t.float "invested_balance"
+    t.float "remaining_balance", default: 1000.0
+    t.float "invested_balance", default: 0.0
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

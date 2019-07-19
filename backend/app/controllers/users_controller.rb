@@ -14,6 +14,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    user = User.find(params[:id])
+    render json: { user: UserSerializer.new(user) }, status: :ok
+  end
+
+  def profile
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  end
+
   # def edit 
   #   render json: {message: "You have edited successfully"}
   # end
