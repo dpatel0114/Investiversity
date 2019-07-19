@@ -4,10 +4,10 @@ let initialState ={
     username:'',
     password:'',
   },
+  remaining_balance: '',
+  invested_balance:'',
   error:'',
   logged: false
-
-
 
 }
 
@@ -30,7 +30,8 @@ export default (state = initialState, action) => {
     }
 
     case "LOGIN_SUCCESS":{
-      return { ...state, logged: action.logged}
+      return { ...state, logged: action.logged, remaining_balance: action.remaining_balance, 
+        invested_balance: action.invested_balance}
     }
 
     default: {

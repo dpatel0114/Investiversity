@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Card, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 
 export class BalanceContainer extends Component {
@@ -9,13 +10,13 @@ export class BalanceContainer extends Component {
         <Container>
       <Card margin='5rem'>
         <Card.Body>
-           <h5>Remaining Balance: $1000</h5>
+           <h5>Remaining Balance: {this.props.remaining_balance}</h5>
         </Card.Body>
       </Card>
      
       <Card Padding='5rem'>
         <Card.Body>        
-            <h5>Invested Balance: $1000</h5>          
+            <h5>Invested Balance: {this.props.invested_balance}</h5>          
         </Card.Body>
       </Card>
       
@@ -26,5 +27,10 @@ export class BalanceContainer extends Component {
 }
 
 
-export default BalanceContainer
+function mapStateToProps(state){
+
+  return state.stock
+}
+
+export default connect(mapStateToProps)(BalanceContainer)
  

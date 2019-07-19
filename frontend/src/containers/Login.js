@@ -62,8 +62,11 @@ class Login extends Component {
         // this.setState({...this.state, logged: true})
         this.props.dispatch({
           type: 'LOGIN_SUCCESS',
-          logged: true
+          logged: true,
+          remaining_balance: data.user.remaining_balance,
+          invested_balance: data.user.invested_balance
         })
+        console.log(data)
         localStorage.setItem('token', data.token)
         window.history.pushState({url: "/"},"", "/")
         this.forceUpdate()

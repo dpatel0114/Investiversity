@@ -2,11 +2,16 @@ Rails.application.routes.draw do
   resources :users
   resources :protfolios, only: [:index, :create]
 
-  post '/login', to: "sessions#authenticate"
-  get '/profile', to: 'users#profile'
-  get '/profile', to: 'auth#profile'
+post '/login', to: "sessions#authenticate" 
 
-  patch './profile/edit', to: "profiles#edit"
+post '/profile/edit', to: "profiles#edit"
+get '/profile/edit', to: "profiles#edit"
+
+  # post '/login', to: "sessions#authenticate"
+  # get '/profile', to: 'users#profile'
+  # get '/profile', to: 'application#current_user'
+
+  # patch './profile/edit', to: "profiles#edit"
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
