@@ -1,5 +1,14 @@
 let initialState ={
-  items: []
+  items: [],
+  user:{
+    username:'',
+    password:'',
+  },
+  remaining_balance: '',
+  invested_balance:'',
+  error:'',
+  logged: false
+
 }
 
 export default (state = initialState, action) => {
@@ -7,6 +16,24 @@ export default (state = initialState, action) => {
     case "GET_STOCKS": {
       return { ...state, items: [...state.items, action.data]}
     }
+
+    case "CHANGE_USER":{
+      return { ...state, user: {...state.user,['username']: action.username}}
+    }
+
+    case "CHANGE_PASS":{
+      return { ...state, user: {...state.user,['password']: action.password}}
+    }
+
+    case "LOGIN_ERROR":{
+      return { ...state, error: action.error}
+    }
+
+    case "LOGIN_SUCCESS":{
+      return { ...state, logged: action.logged, remaining_balance: action.remaining_balance, 
+        invested_balance: action.invested_balance}
+    }
+
     default: {
       return state
     }
