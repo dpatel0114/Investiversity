@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from "react-router-dom";
+import {handleSignUp} from '../actions/stockActions'
 
 
 
@@ -27,6 +28,13 @@ class SignUp extends Component {
     this.setState({user: {...this.state.user, [e.target.name]: e.target.value}})
   }
 
+  handleTest =(e)=>{
+    this.props.handleSignUp(e)
+    window.history.pushState({url: "/login"},"", "/login")
+    this.props.history.push('/login')
+    this.forceUpdate()
+  }
+
 
   // handleChange =(e) => {
   //   console.log(e.target.name)
@@ -42,42 +50,43 @@ class SignUp extends Component {
   // }
 
 
-  handleSignUp=(e)=>{
+  // handleSignUp=(e)=>{
     
-    e.preventDefault()
-    // console.log(e.target.firstname.value)
+  //   e.preventDefault()
+  //   // console.log(e.target.firstname.value)
 
-    let newUserObject ={
-      firstname: e.target.firstname.value,
-      lastname: e.target.lastname.value,
-      username: e.target.username.value,
-      password: e.target.password.value,
-      email: e.target.email.value
-    }
+  //   let newUserObject ={
+  //     firstname: e.target.firstname.value,
+  //     lastname: e.target.lastname.value,
+  //     username: e.target.username.value,
+  //     password: e.target.password.value,
+  //     email: e.target.email.value
+  //   }
    
-    fetch('http://localhost:3000/users',{
-      method:'POST',
-      headers:{
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-    },
-      body:JSON.stringify({ user: newUserObject})
-      })
-      .then(res=> res.json())
-      .then(data => {
-        console.log(data)
-        if (data.errors) {
-          alert("Sorry, your username or password is incorrect.")
-          this.setState({ errors: data.message }, () => console.log("errors", this.state.errors))
-        }
-        else {
-          this.setState({ user: data.user, signUpForm: false, redirect: <Redirect to='/login' /> })
-          localStorage.setItem('token', data.token)
-          this.props.history.push('/login')
-          this.forceUpdate()
-        }
-      })
-  }
+  //   fetch('http://localhost:3000/users',{
+  //     method:'POST',
+  //     headers:{
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //   },
+  //     body:JSON.stringify({ user: newUserObject})
+  //     })
+  //     .then(res=> res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       if (data.errors) {
+  //         alert("Sorry, your username or password is incorrect.")
+  //         this.setState({ errors: data.message }, () => console.log("errors", this.state.errors))
+  //       }
+  //       else {
+  //         this.setState({ user: data.user, signUpForm: false, redirect: <Redirect to='/login' /> })
+  //         localStorage.setItem('token', data.token)
+  //         // this.props.history.push('/login')
+  //         window.history.pushState({url: "/login"},"", "/login")
+  //         this.forceUpdate()
+  //       }
+  //     })
+  // }
 
 
   render() {
@@ -86,7 +95,7 @@ class SignUp extends Component {
          <Container>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
-              <Form onSubmit={this.handleSignUp}>
+              <Form onSubmit={this.props.handleSignUp}>
               <Form.Group>
                   <Form.Label>First Name:</Form.Label>
                   <Form.Control
@@ -140,10 +149,10 @@ class SignUp extends Component {
   }
 }
 
-// const mapStateToProps =(state)=> {
-//   return state.stock
+const mapStateToProps =(state)=> {
+  return state.stock
 
-// }
+}
 
-// export default connect(mapStateToProps)(SignUp)
-export default withRouter(SignUp)
+export default connect(mapStateToProps,{handleSignUp})(SignUp)
+// export default withRouter(SignUp)

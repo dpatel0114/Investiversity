@@ -5,7 +5,8 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 class NavBar extends Component{
 
   handleLogout=(e)=>{
-    localStorage.removeItem('token')
+    // localStorage.removeItem('token')
+    localStorage.clear()
     window.history.pushState({url: "/login"},"", "/login")
     this.forceUpdate()
   }

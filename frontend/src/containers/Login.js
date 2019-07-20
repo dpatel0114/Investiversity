@@ -66,11 +66,17 @@ class Login extends Component {
         this.props.dispatch({
           type: 'LOGIN_SUCCESS',
           logged: true,
+          current_user: data.user,
           remaining_balance: data.user.remaining_balance,
           invested_balance: data.user.invested_balance
         })
         // console.log(data)
         localStorage.setItem('token', data.token)
+        localStorage.setItem('uid',data.user.id)
+        localStorage.setItem('investedBalance', data.user.remaining_balance)
+        localStorage.setItem('remainingBalance', data.user.invested_balance)
+
+        localStorage.setItem('portfolio',JSON.stringify(data.user))
         window.history.pushState({url: "/home"},"", "/home")
         this.forceUpdate()
       }
