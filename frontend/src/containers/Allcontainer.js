@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, Switch, Route} from 'react-router-dom';
+import { withRouter, Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 import  NavBar  from './NavBar';
 import Login from './Login';
 import SignUp from './SignUp'
@@ -14,9 +14,11 @@ class Allcontainer extends Component {
     return (
       <div>
        
-        <NavBar /> 
-        <Container>
-          {/* <Router history={history}> */}
+        {/* <NavBar />  */}
+       
+          <Router>
+            <Route path='/' component={NavBar}/> 
+            <Container>
               <Row>
                 <Switch>
                 <Route exact path='/login' component={Login}/> 
@@ -25,8 +27,9 @@ class Allcontainer extends Component {
 
                   </Switch>
               </Row>     
-          {/* </Router> */}
-        </Container>
+              </Container>
+          </Router>
+        
 
       </div>
     )
@@ -37,4 +40,4 @@ function mapStateToProps(state){
 
   return state.stock
 }
-export default withRouter(connect(mapStateToProps)(Allcontainer))
+export default connect(mapStateToProps)(Allcontainer)

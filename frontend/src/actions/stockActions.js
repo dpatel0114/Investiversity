@@ -1,3 +1,4 @@
+// import PortfolioContainer from "../containers/PortfolioContainer";
 
 // import history from './history'
 // import {b} from 'react-router';
@@ -16,6 +17,20 @@ export const  getStocks = () => dispatch => {
       
 }
 
+
+export const handleChange = (e) => dispatch=>{
+  // console.log(e.target.name)
+  e.target.name ==='username'?
+  dispatch(
+    { type: 'CHANGE_USER', 'username': e.target.value}
+  ) 
+  : 
+dispatch(
+    { type: 'CHANGE_PASS', 'password': e.target.value}
+  ) 
+}
+
+
 export const getPortfolio =()=> dispatch => {
   fetch(`http://localhost:3000/portfolio/user?id=${id}`)
   .then(res => res.json())
@@ -24,6 +39,14 @@ export const getPortfolio =()=> dispatch => {
     )
 }
 
+
+export const getUserWithId=()=> dispatch => {
+  fetch(`http://localhost:3000/users/${id}`)
+  .then(res => res.json())
+  .then(data => {
+    localStorage.setItem('portfolio', JSON.stringify(data.portfolio))
+  })
+}
 
 
 export const handleSignUp=(e)=> disptach => {
@@ -68,35 +91,42 @@ export const handleSignUp=(e)=> disptach => {
 }
 
 
-//  export function handleLogin(e){
-//   e.preventDefault()
+ export const  handleLogin =(e,history) => dispatch=> {
+  e.preventDefault()
 
-//   let userObject = {username: this.state.user.username, 
-//                     password: this.state.user.password}
+  let userObject = {username: e.target.username.value, 
+                    password: e.target.password.value}
 
-//   fetch('http://localhost:3000/login', {
-//     method: 'POST',
-//     headers:{
-//       'Content-Type': 'application/json', 
-//     }, 
-//     body: JSON.stringify(userObject)
-//   })
-//   .then(res => res.json())
-//   .then(data => { 
-//     console.log(data)
-//     if(data.errors){
-//       console.log("incorrect password")
-//       this.setState({errors: data.errors}, ()=> console.log('errors', this.state.errors))
-//     }
-//     else {
-//       this.setState({...this.state, logged: true})
-//       localStorage.setItem('token', data.token)
-//       // window.history.pushState()
-//       // this.forceUpdate()
-//     }
-//   })
-//   e.target.parentElement.reset()
-// }
+  fetch('http://localhost:3000/login', {
+    method: 'POST',
+    headers:{
+      'Content-Type': 'application/json', 
+    }, 
+    body: JSON.stringify(userObject)
+  })
+  .then(res => res.json())
+  .then(data => { 
+    console.log(data)
+    if(data.errors){
+      dispatch({type: 'LOGIN_ERROR', error: data.errors})
+      localStorage.setItem('logged',false)
+      alert(' Incorrect Username or Password! ')
+    }
+    else {
+
+      dispatch({type:'LOGIN_SUCCESS', user: data.user})
+      localStorage.setItem('logged',true)
+      localStorage.setItem('token', data.token)
+      localStorage.setItem('uid', data.user.id)
+      localStorage.setItem('remainingBalance', data.user.remaining_balance)
+      localStorage.setItem('investedBalance',data.user.invested_balance)
+      history.push('/')
+
+
+    }
+  })
+
+}
 
 
 

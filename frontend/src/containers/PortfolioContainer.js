@@ -2,45 +2,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Card } from 'react-bootstrap';
 import StockCard from '../components/StockCard';
+import {getUserWithId} from '../actions/stockActions'
+import PortfolioCard from '../components/PortfolioCard';
 
 
+class  PortfolioContainer extends Component {
 
-const PortfolioContainer =(props) => {
+  constructor(props){
+    super(props)
 
-  // const allStocks = JSON.parse(localStorage.my_portfolio)['port_array'].map( s=> <StockCard eachStock={s}/>)
+  }
 
+  //WARNING! To be deprecated in React v17. Use componentDidMount instead.
+  componentDidMount(){
+        this.props.getUserWithId()
+  }
+
+render(){
   return (
     <div>
-      {/* {allStocks} */}
-      
-      {/* <Container>
-      <Card>
-        <Card.Body> */}
-        {/* console.log(props.items[0]) */}
-          {/* <h5>{}</h5>
-          <h6>{}     
-            <input type="number" step="1"></input>          
-            </h6>
-          <button class="btn btn-primary"data-toggle="button"> Sell </button> */}
-         
-      {/* //  </div> */}
-      {/* // </div> */}
-      {/* </Card.Body>
-      </Card>
-      </Container>
-    */}
+    
+      {JSON.parse(localStorage.getItem('portfolio')).map(s => <PortfolioCard eachStock={s}/> )}
+    
     </div>
   )
+}}
+
+
+const  mapStateToProps = (state) => {
+    return state.stock
 }
-
-
-let mapStateToProps = (state) => ({
-  items: state.stock.items
-})
 
 // let connectorFunction = connect(mapStateToProps)
 // let connectedPortfolioContainer= connectorFunction(PortfolioContainer)
 
 // export default connectedPortfolioContainer
 
-export default connect(mapStateToProps,null)(PortfolioContainer)
+
+export default connect(mapStateToProps,{getUserWithId})(PortfolioContainer)

@@ -8,8 +8,10 @@ import {handleSignUp} from '../actions/stockActions'
 
 class SignUp extends Component {
 
-    state = {
-
+    constructor(props){
+      super(props)
+      this.state= {}
+      
     }
   // constructor(){
   //   super()
@@ -28,11 +30,9 @@ class SignUp extends Component {
     this.setState({user: {...this.state.user, [e.target.name]: e.target.value}})
   }
 
-  handleTest =(e)=>{
+  handleClick =(e)=>{
     this.props.handleSignUp(e)
-    window.history.pushState({url: "/login"},"", "/login")
     this.props.history.push('/login')
-    this.forceUpdate()
   }
 
 
@@ -95,7 +95,7 @@ class SignUp extends Component {
          <Container>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
-              <Form onSubmit={this.props.handleSignUp}>
+              <Form onSubmit={this.handleClick}>
               <Form.Group>
                   <Form.Label>First Name:</Form.Label>
                   <Form.Control

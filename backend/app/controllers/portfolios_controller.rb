@@ -10,4 +10,20 @@ class PortfoliosController < ApplicationController
     render json: {port_array: [@portfolio]}
   end
 
+  def create 
+    @portfolio = Portfolio.new(portfolio_params)
+    if @portfolio.save 
+      render json: {Portfolio: @portfolio }, status: :ok
+    else 
+      render json: {errors: @portfolio.errors.full_messages}, status: :unprocessable_entity
+    end
+
+  end
+
+  private 
+
+  def portfolio_params 
+    params.require(:portfolio).permit(:price, :ticker, :quantity, :total_price, :user_id)
+  end
+
 end

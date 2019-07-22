@@ -35,8 +35,7 @@ export default (state = initialState, action) => {
     
 
     case "LOGIN_SUCCESS":{
-      return { ...state, logged: action.logged, remaining_balance: action.remaining_balance, 
-        invested_balance: action.invested_balance}
+      return { ...state}
     }
 
     case "SIGNUP_ERROR":{

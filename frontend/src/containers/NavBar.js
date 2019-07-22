@@ -3,12 +3,18 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
 
 class NavBar extends Component{
+  constructor(props){
+    super(props)
+    this.state={}
+  }
 
   handleLogout=(e)=>{
+    console.log(this.props)
     // localStorage.removeItem('token')
     localStorage.clear()
-    window.history.pushState({url: "/login"},"", "/login")
-    this.forceUpdate()
+    this.props.history.push('/login')
+
+
   }
   
   render(){

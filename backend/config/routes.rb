@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :users
-  resources :protfolios, only: [:index, :create]
+  resources :portfolios
 
 post '/login', to: "sessions#authenticate" 
 
