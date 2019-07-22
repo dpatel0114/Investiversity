@@ -3,11 +3,18 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap'
 
 
 class NavBar extends Component{
+  constructor(props){
+    super(props)
+    this.state={}
+  }
 
-  handleLogout=()=>{
-    localStorage.removeItem('token')
-    window.history.pushState({url: "/"},"", "/")
-    this.forceUpdate()
+  handleLogout=(e)=>{
+    console.log(this.props)
+    // localStorage.removeItem('token')
+    localStorage.clear()
+    this.props.history.push('/login')
+
+
   }
   
   render(){
@@ -30,15 +37,16 @@ class NavBar extends Component{
            
           }
           </Nav.Item>
+
+
           {localStorage.getItem('token')===null ?
           <Nav.Item>
-
-            <Button name='signup' href="/signup">Sign Up</Button></Nav.Item>
+                <Button name='signup' href="/signup">Sign Up</Button>
+          </Nav.Item>
             :
             null
         }
 
-            <span> - </span>
         </Nav>
         <Form inline>
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />

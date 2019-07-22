@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_07_16_162923) do
   create_table "portfolios", force: :cascade do |t|
     t.integer "price"
     t.string "ticker"
+    t.integer "quantity"
+    t.float "total_price"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

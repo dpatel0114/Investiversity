@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   resources :users
-  resources :protfolios, only: [:index, :create]
+  resources :portfolios
 
 post '/login', to: "sessions#authenticate" 
 
 post '/profile/edit', to: "profiles#edit"
 get '/profile/edit', to: "profiles#edit"
+get '/portfolio/user/', to:"portfolios#my_portfolio"
 
   # post '/login', to: "sessions#authenticate"
   # get '/profile', to: 'users#profile'
