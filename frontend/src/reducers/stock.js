@@ -12,7 +12,9 @@ let initialState ={
   remaining_balance: '',
   invested_balance:'',
   error:'',
-  logged: false
+  logged: false,
+  bestMatches:[],
+  portfolio: []
 
 }
 
@@ -35,11 +37,58 @@ export default (state = initialState, action) => {
     
 
     case "LOGIN_SUCCESS":{
-      return { ...state}
+      return { ...state, logged: action.logged, remaining_balance: action.user.remaining_balance,
+        invested_balance: action.user.invested_balance  }
     }
 
     case "SIGNUP_ERROR":{
       return { ...state, error:action.error}
+    }
+
+    case "SEARCH_STOCK":{
+      return { ...state, bestMatches: action.payload}
+    }
+    case "GET_PORTFOLIO":{
+      return { ...state, portfolio:action.portfolio}
+    }
+
+    case "BUY_STOCK":{
+
+      // if (action.payload.total_price <= state.remaining_balance){
+      //   let stockIndex = state.portfolio.findIndex(s => s.ticker === action.payload.ticker)
+      //   let new_portfolio = state.portfolio
+      //   if (stockIndex !== -1) {
+      //     new_portfolio[stockIndex].quantity += action.payload.quantity
+      //     new_portfolio[stockIndex].total_price += action.payload.total_price
+      //   }else{
+      //     new_portfolio.push(action.payload)
+      //   }
+  
+  
+      //   return { ...state, portfolio: new_portfolio}
+      // }else{
+      //   alert('Not Enough Balance')
+      // }
+      if (state.remaining_balance >= action.payload.total_price){
+        let flag = false
+        state.portfolio.map(s => {
+          if(s.ticker === action.payload.ticker){
+            s.quantity += action.payload.quantity
+            s.total_price += action.payload.total_price
+            flag= true
+          }})
+        return {
+          ...state,
+          remaining_balance: state.remaining_balance - action.payload.total_price,
+          invested_balance: state.invested_balance + action.payload.total_price,
+          portfolio: flag? state.portfolio : [...state.portfolio,action.payload]
+        }
+
+      }else{
+        alert('Not Enough Balance')
+      }
+
+   
     }
 
     default: 

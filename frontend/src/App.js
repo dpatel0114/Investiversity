@@ -8,7 +8,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <Allcontainer />
+         <Allcontainer />
+         
       </BrowserRouter>
       
     </div>
