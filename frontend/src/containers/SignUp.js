@@ -13,18 +13,7 @@ class SignUp extends Component {
       this.state= {}
       
     }
-  // constructor(){
-  //   super()
-  //   this.state={
-  //     user:{username:'',
-  //           password:'',
-  //           firstname:'',
-  //           lastname:'',
-  //           email: ''},
-  //           errors:'',
-  //           signUpForm: false
-  //   }
-  // }
+  
 
   handleChange=(e)=> {
     this.setState({user: {...this.state.user, [e.target.name]: e.target.value}})
@@ -34,60 +23,6 @@ class SignUp extends Component {
     this.props.handleSignUp(e)
     this.props.history.push('/login')
   }
-
-
-  // handleChange =(e) => {
-  //   console.log(e.target.name)
-  //   e.target.name === 'username'?
-  //   this.props.dispatch({
-  //     type: 'SIGN_FIRSTNAME', 'firstname':e.target.firstname
-  //   })
-  //   : 
-  //   this.props.dispatch({
-  //     type: 'SIGN_LASTNAME', 'lastname': e.target.lastname
-  //   })
-
-  // }
-
-
-  // handleSignUp=(e)=>{
-    
-  //   e.preventDefault()
-  //   // console.log(e.target.firstname.value)
-
-  //   let newUserObject ={
-  //     firstname: e.target.firstname.value,
-  //     lastname: e.target.lastname.value,
-  //     username: e.target.username.value,
-  //     password: e.target.password.value,
-  //     email: e.target.email.value
-  //   }
-   
-  //   fetch('http://localhost:3000/users',{
-  //     method:'POST',
-  //     headers:{
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //   },
-  //     body:JSON.stringify({ user: newUserObject})
-  //     })
-  //     .then(res=> res.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       if (data.errors) {
-  //         alert("Sorry, your username or password is incorrect.")
-  //         this.setState({ errors: data.message }, () => console.log("errors", this.state.errors))
-  //       }
-  //       else {
-  //         this.setState({ user: data.user, signUpForm: false, redirect: <Redirect to='/login' /> })
-  //         localStorage.setItem('token', data.token)
-  //         // this.props.history.push('/login')
-  //         window.history.pushState({url: "/login"},"", "/login")
-  //         this.forceUpdate()
-  //       }
-  //     })
-  // }
-
 
   render() {
     return (

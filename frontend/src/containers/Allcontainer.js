@@ -6,6 +6,8 @@ import SignUp from './SignUp'
 import { connect } from 'react-redux'
 import { Container, Row } from 'react-bootstrap';
 import DashboardContainer from './DashboardContainer';
+import Welcome from '../components/Welcome';
+import Profile from './Profile';
 // import history from '../actions/history'
 class Allcontainer extends Component {
  
@@ -18,12 +20,23 @@ class Allcontainer extends Component {
        
           <Router>
             <Route path='/' component={NavBar}/> 
+           <Container margin-top='50px' float="center" position="absolute" center="50px">
+             
+          </Container>
             <Container>
               <Row>
                 <Switch>
+                  <Route exact path='/profile' component={Profile}/>
                 <Route exact path='/login' component={Login}/> 
-                  <Route exact path='/' component={DashboardContainer}/>
-                  {localStorage.getItem('token') !== null ? null : <Route exact path='/signup' component={SignUp}/>    }
+                  {this.props.logged? 
+                   <Route exact path='/' component={DashboardContainer}/>
+                  :
+                   <Route exact path='/'><Welcome/></Route>}
+
+                  {localStorage.getItem('token') !== null ? null :
+                   <Route exact path='/signup' component={SignUp}/>    }
+                  
+                
 
                   </Switch>
               </Row>     

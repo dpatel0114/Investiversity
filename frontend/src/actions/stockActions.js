@@ -31,25 +31,30 @@ dispatch(
 }
 
 
-export const getPortfolio =()=> dispatch => {
-  fetch(`http://localhost:3000/portfolio/user?id=${id}`)
-  .then(res => res.json())
-  .then(data => 
-    localStorage.setItem('my_portfolio',JSON.stringify(data))
-    )
-}
+// export const getPortfolio =()=> dispatch => {
+//   fetch(`http://localhost:3000/portfolio/user?id=${id}`)
+//   .then(res => res.json())
+//   .then(data =>   
+//     {       localStorage.setItem('my_portfolio',JSON.stringify(data.portfolio))
+
+//       // console.log(data)
+//       // dispatch({ type: 'sGET_PORTFOLIO',portfolio: data.portfolio })
+//     }
+//     )
+// }
 
 
 export const getUserWithId=()=> dispatch => {
   fetch(`http://localhost:3000/users/${id}`)
   .then(res => res.json())
-  .then(data => {
+  .then(data => { 
     localStorage.setItem('portfolio', JSON.stringify(data.portfolio))
+    dispatch({ type: 'GET_PORTFOLIO',portfolio: data.portfolio })
   })
 }
 
 
-export const handleSignUp=(e)=> disptach => {
+export const handleSignUp=(e)=> dispatch => {
     
   e.preventDefault()
   // console.log(e.target.firstname.value)
@@ -75,21 +80,32 @@ export const handleSignUp=(e)=> disptach => {
       console.log(data)
       if (data.errors) {
         alert("Sorry, your username or password is incorrect.")
-        disptach({ type: 'SIGNUP_ERROR',errors: data.message })
+        dispatch({ type: 'SIGNUP_ERROR',errors: data.message })
       }
       else {
 
-        disptach({ type: 'SIGNUP_ERROR', error:'no'})
+        dispatch({ type: 'SIGNUP_ERROR', error:'no'})
 
         localStorage.setItem('token', data.token)
         // browserHistory.push('/login')
         // this.props.history.push('/login')
+       
         // history.push('/login')
 
       }
     })
 }
 
+ export const searchStock =(e) => dispatch => {
+  e.preventDefault()
+  console.log(e.target)
+  fetch("https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo")
+  .then(res => res.json())
+  .then(data => dispatch({
+    type: 'SEARCH_STOCK',
+    payload: data["bestMatches"]
+  }))
+ }
 
  export const  handleLogin =(e,history) => dispatch=> {
   e.preventDefault()
@@ -106,21 +122,20 @@ export const handleSignUp=(e)=> disptach => {
   })
   .then(res => res.json())
   .then(data => { 
-    console.log(data)
+    // console.log(data)
     if(data.errors){
       dispatch({type: 'LOGIN_ERROR', error: data.errors})
       localStorage.setItem('logged',false)
       alert(' Incorrect Username or Password! ')
     }
     else {
-
-      dispatch({type:'LOGIN_SUCCESS', user: data.user})
+      history.push('/')
+      dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true})
       localStorage.setItem('logged',true)
       localStorage.setItem('token', data.token)
       localStorage.setItem('uid', data.user.id)
       localStorage.setItem('remainingBalance', data.user.remaining_balance)
       localStorage.setItem('investedBalance',data.user.invested_balance)
-      history.push('/')
 
 
     }
@@ -129,5 +144,33 @@ export const handleSignUp=(e)=> disptach => {
 }
 
 
+// BUY STOCK
+export const  buyStock =(e, eachStock)=> dispatch=> {
+  e.preventDefault()
+  // console.log(e.target)
+  let stock ={
+    price: parseInt(eachStock['05. price']),
+    ticker: eachStock['01. symbol'],
+    quantity: parseInt(e.target.quantity.value),
+    total_price: parseInt(eachStock['05. price'] * e.target.quantity.value),
+    user_id: parseInt(localStorage.uid)
+  }
 
+  dispatch({type: 'BUY_STOCK', payload: stock})
 
+  }
+
+  /// PATCH REQUEST
+
+  // export const patchRequest= (e,allStock)=>{
+  //    fetch(`http://localhost:3000/users/${id}`,{
+  //     method: 'PATCH', 
+  //     headers:{
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //     },
+  //       body:JSON.stringify({portfolio: allStock })
+  //     })
+  //     .then(res => res.json())
+  //     .then(data => console.log(data))
+  // }

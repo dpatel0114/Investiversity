@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Button, Form, Alert} from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Redirect, withRouter, BrowserRouter as Router } from "react-router-dom";
+// import { Redirect, withRouter, BrowserRouter as Router } from "react-router-dom";
 import {handleLogin, handleChange} from '../actions/stockActions';
 
 
@@ -17,7 +17,7 @@ class Login extends Component {
   
   
   render() {
-    // console.log(this.props)
+    
     return (
       <div>
         <Container>

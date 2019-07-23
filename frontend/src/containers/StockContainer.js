@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 // import { Container, Card } from 'react-bootstrap';
-import  {getStocks, getPortfolio}  from '../actions/stockActions';
+import  {getStocks}  from '../actions/stockActions';
 import StockCard from '../components/StockCard';
 
 // const API = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo'
@@ -37,4 +37,4 @@ StockContainer.propTypes = {
 
 // export default connectedPortfolioContainer
 
-export default connect(mapStateToProps,{getStocks, getPortfolio})(StockContainer);
+export default connect(mapStateToProps,{getStocks})(StockContainer);
