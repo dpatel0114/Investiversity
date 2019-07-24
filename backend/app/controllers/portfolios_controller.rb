@@ -20,6 +20,13 @@ class PortfoliosController < ApplicationController
 
   end
 
+  def update
+    @portfolio = Portfolio.find(params[:id])
+    @portfolio.update(portfolio_params)
+    render json: {portfolio: @portfolio}
+
+  end
+
   private 
 
   def portfolio_params 

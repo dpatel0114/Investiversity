@@ -18,5 +18,5 @@ kris = User.create(firstname: 'Kris', lastname: 'shah', username: 'kriss', passw
 # stock1 = Stock.create(name: 'apple', ticker: 'AAPL', price: 200)
 # stock2 = Stock.create(name: 'visa', ticker: 'V', price: 170)
 
-portfolio1 = Portfolio.create(user_id: krunal.id, price: 200, ticker: 'MSFT', quantity: 1, total_price: 200)
+portfolio1 = Portfolio.create(user_id: krunal.id, price: 200, ticker: 'AAPL', quantity: 1, total_price: 200)
 portfolio2 = Portfolio.create(user_id: kris.id, price: 170, ticker: 'V', quantity: 2, total_price: 340)

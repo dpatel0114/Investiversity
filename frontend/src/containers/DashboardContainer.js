@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import StockContainer from './StockContainer'
 import  PortfolioContainer from './PortfolioContainer'
 import BalanceContainer from './BalanceContainer';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import NavBar from '../containers/NavBar';
 import SearchContainer from './SearchContainer'
 import { connect } from 'react-redux';
@@ -27,14 +27,11 @@ componentDidMount(){
  
     return (
       <div>
-        <div>
-          <SearchContainer/>
-        </div>
+        
         <Row>
-
-          <StockContainer/>
-          <PortfolioContainer/>
-          <BalanceContainer/>
+          <Col><StockContainer/></Col>
+          <Col><PortfolioContainer/></Col>
+          <Col><BalanceContainer/></Col>
         </Row>
       </div>
     )

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { Container, Card } from 'react-bootstrap';
 import  {getStocks}  from '../actions/stockActions';
 import StockCard from '../components/StockCard';
@@ -18,7 +18,7 @@ class StockContainer extends Component {
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
       <div>
-          {this.props.items.map(s=> <StockCard eachStock={s['Global Quote']} key={s.key}/>)}   
+          {this.props.items.map(s=> <StockCard eachStock={s['Global Quote']}/>)}   
       </div>
     )
   }
@@ -28,9 +28,9 @@ let mapStateToProps = (state) => {
    return state.stock
 }
 
-StockContainer.propTypes = {
-  getStocks: PropTypes.func.isRequired
-}
+// StockContainer.propTypes = {
+//   getStocks: PropTypes.func.isRequired
+// }
 
 // let connectorFunction = connect(mapStateToProps)
 // let connectedPortfolioContainer= connectorFunction(PortfolioContainer)
