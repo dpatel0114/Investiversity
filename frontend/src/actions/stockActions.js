@@ -2,20 +2,26 @@
 
 // import history from './history'
 // import {b} from 'react-router';
-
-
-const API = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo'
+// let symbl;
+// const real_api = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`
+// const API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo`
 const id = localStorage.uid
+const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
+// const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN'],
+// const all_symbols = ['MSFT']
+
 
 export const  getStocks = () => dispatch => {
-    fetch(API)
+    
+   all_symbols.map(symbl => 
+    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`)
     .then(res => res.json())
     .then(data => 
       dispatch({ type: "GET_STOCKS", data: data })
       )
-    
-      
+    )
 }
+
 
 
 export const handleChange = (e) => dispatch=>{
@@ -164,6 +170,7 @@ export const  buyStock =(e, eachStock)=> dispatch=> {
   }
 
   dispatch({type: 'BUY_STOCK', payload: stock})
+  e.target.reset()
 
   }
 
@@ -180,21 +187,6 @@ export const persistData =()=> dispatch=>{
   )
 }
 
-  /// PATCH REQUEST
-
-  // export const patchRequest= (e,allStock)=>{
-  //    fetch(`http://localhost:3000/users/${id}`,{
-  //     method: 'PATCH', 
-  //     headers:{
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //     },
-  //       body:JSON.stringify({portfolio: allStock })
-  //     })
-  //     .then(res => res.json())
-  //     .then(data => console.log(data))
-  // }
-
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
   localStorage.clear()
@@ -204,3 +196,19 @@ export const handleLogout=(e, history)=> dispatch=>{
     logged: false
   })
 }
+
+
+export const  sellStock = (e, eachStock)=> dispatch=> {
+  e.preventDefault()
+  // console.log(e.target)
+  let stock ={
+    price: parseInt(eachStock.price),
+    ticker: eachStock.ticker,
+    quantity: parseInt(e.target.quantity.value),
+    sell_price: parseInt(eachStock.price * e.target.quantity.value),
+  }
+
+  dispatch({type: 'SELL_STOCK', payload: stock})
+  e.target.reset()
+
+  }

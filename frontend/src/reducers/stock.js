@@ -57,7 +57,17 @@ export default (state = initialState, action) => {
       return { ...state, portfolio: action.portfolio }
     }
     case "SELL_STOCK":{
-      return { ...state, sell_stock:action.sell_stock}
+
+      let new_portfolio = state.portfolio
+        new_portfolio.map(s => {
+          if(s.ticker === action.payload.ticker){
+            s.quantity -= action.payload.quantity
+            s.total_price -= action.payload.sell_price
+          }})
+      
+      return { ...state, portfolio:new_portfolio,
+        remaining_balance: state.remaining_balance + action.payload.sell_price,
+        invested_balance: state.invested_balance - action.payload.sell_price,}
     }
 
     case "PERSIST_DATA":{
@@ -69,21 +79,7 @@ export default (state = initialState, action) => {
 
     case "BUY_STOCK":{
 
-      // if (action.payload.total_price <= state.remaining_balance){
-      //   let stockIndex = state.portfolio.findIndex(s => s.ticker === action.payload.ticker)
-      //   let new_portfolio = state.portfolio
-      //   if (stockIndex !== -1) {
-      //     new_portfolio[stockIndex].quantity += action.payload.quantity
-      //     new_portfolio[stockIndex].total_price += action.payload.total_price
-      //   }else{
-      //     new_portfolio.push(action.payload)
-      //   }
-  
-  
-      //   return { ...state, portfolio: new_portfolio}
-      // }else{
-      //   alert('Not Enough Balance')
-      // }
+      
       if (state.remaining_balance >= action.payload.total_price){
 
         let flag = false
@@ -92,7 +88,7 @@ export default (state = initialState, action) => {
           if(s.ticker === action.payload.ticker){
             s.quantity += action.payload.quantity
             s.total_price += action.payload.total_price
-            flag= true
+            flag = true
           }})
         return {
           ...state,
@@ -114,3 +110,20 @@ export default (state = initialState, action) => {
   }
 
 }
+
+// ** buystock **
+// if (action.payload.total_price <= state.remaining_balance){
+  //   let stockIndex = state.portfolio.findIndex(s => s.ticker === action.payload.ticker)
+  //   let new_portfolio = state.portfolio
+  //   if (stockIndex !== -1) {
+  //     new_portfolio[stockIndex].quantity += action.payload.quantity
+  //     new_portfolio[stockIndex].total_price += action.payload.total_price
+  //   }else{
+  //     new_portfolio.push(action.payload)
+  //   }
+
+
+  //   return { ...state, portfolio: new_portfolio}
+  // }else{
+  //   alert('Not Enough Balance')
+  // }

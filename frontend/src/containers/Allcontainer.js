@@ -20,27 +20,26 @@ class Allcontainer extends Component {
        
           <Router>
             <Route path='/' component={NavBar}/> 
-           <Container margin-top='50px' float="center" position="absolute" center="50px">
-             
-          </Container>
+          
             <Container>
-              <Row>
-                <Switch>
-                  <Route exact path='/profile' component={Profile}/>
-                <Route exact path='/login' component={Login}/> 
+            <Switch>
                   {this.props.logged || localStorage.getItem("token") !== null? 
                    <Route exact path='/' component={DashboardContainer}/>
                   :
                    <Route exact path='/'><Welcome/></Route>}
+            
+           
+
+                  <Route exact path='/login' component={Login}/> 
+                  <Route exact path='/profile' component={Profile}/>
 
                   {localStorage.getItem('token') !== null ? null :
                    <Route exact path='/signup' component={SignUp}/>    }
                   
-                
+ 
+            </Switch>
+            </Container>
 
-                  </Switch>
-              </Row>     
-              </Container>
           </Router>
         
 

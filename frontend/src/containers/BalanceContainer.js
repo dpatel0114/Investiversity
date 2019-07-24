@@ -8,18 +8,18 @@ export class BalanceContainer extends Component {
     return (
       <div>
         <Container>
-      <Card bg='light' margin='5rem'>
+      <Card bg='info' text='white' style={{width: '80%', height:'20%', margin:'5px'}}>
         <Card.Body>
            {/* <h5>Remaining Balance: {this.props.remaining_balance}</h5> */}
-           <h5>Remaining Balance: $ {this.props.remaining_balance}</h5>
+           <h5>Remaining Balance</h5> $ {this.props.remaining_balance}
 
         </Card.Body>
       </Card>
      
-      <Card bg='success' text='black' Padding='5rem'>
+      <Card bg='success' text='white' style={{width: '80%', height:'20%', margin:'5px'}}>
         <Card.Body>        
             {/* <h5>Invested Balance: {this.props.invested_balance}</h5 >  */}
-            <h5>Invested Balance: $ {this.props.invested_balance}</h5>          
+            <h5>Invested Balance</h5>  $ {this.props.invested_balance}         
 
         </Card.Body>
       </Card>

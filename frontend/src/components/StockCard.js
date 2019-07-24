@@ -3,58 +3,81 @@ import { Container, Card, Form } from 'react-bootstrap';
 import {connect} from 'react-redux'
 import {buyStock} from '../actions/stockActions'
 
+
 function StockCard(props) {
 
 
 function dispatchAndUpdate(e,eachStock){
-  props.buyStock(e, eachStock)
+    
+    props.buyStock(e, eachStock)
   // export const patchRequest= (e,allStock)=>{
-    fetch(`http://localhost:3000/portfolios/user_id=${localStorage.uid}`,{
-     method: 'PATCH', 
-     headers:{
-       'Content-Type': 'application/json',
-       'Accept': 'application/json'
-     },
-       body:JSON.stringify({ portfolio: props.portfolio })
-     })
-     .then(res => res.json())
-     .then(data => console.log(data))
-     
-//  }
 
+    if(props.portfolio.length === 0) {
+      let stock ={
+        price: parseInt(eachStock['05. price']),
+        ticker: eachStock['01. symbol'],
+        quantity: parseInt(e.target.quantity.value),
+        total_price: parseInt(eachStock['05. price'] * e.target.quantity.value),
+        user_id: parseInt(localStorage.uid)
+      }
+      postRequest(stock)
+    } 
+
+    props.portfolio.map( stock=> {
+      if(stock.id !== null){
+        fetch(`http://localhost:3000/portfolios/${stock.id}`,{
+          method: 'PATCH', 
+          headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+            body:JSON.stringify(stock)
+          })
+
+          fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`,{
+          method: 'PATCH', 
+          headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+            body:JSON.stringify({'remaining_balance':props.remaining_balance, 'invested_balance': props.invested_balance})
+          })
+
+      }else{   
+        console.log('checking')
+        postRequest(stock)
+    }
+  })
 }
 
-  // console.log(props.eachStock)
+      
+function postRequest(stock){
+  fetch(`http://localhost:3000/portfolios`,{
+    method: 'POST', 
+    headers:{
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+      body:JSON.stringify(stock)
+    })
+
+
+    fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`,{
+      method: 'PATCH', 
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body:JSON.stringify({'remaining_balance':props.remaining_balance, 'invested_balance': props.invested_balance})
+    })
+}
   
-// const buyStock =(e)=> {
-//   e.preventDefault()
-//   // console.log(e.target)
-//   let stock ={
-//     price: parseInt(props.eachStock['05. price']),
-//     ticker: props.eachStock['01. symbol'],
-//     quantity: parseInt(e.target.quantity.value),
-//     total_price: parseInt(props.eachStock['05. price'] * e.target.quantity.value),
-//     user_id: parseInt(localStorage.uid)
-//   }
-//   console.log(stock)
 
-//     fetch('http://localhost:3000/portfolios',{
-//       method: 'POST', 
-//       headers:{
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json'
-//       },
-//         body:JSON.stringify(stock)
-//       })
-//       .then(res => res.json())
-//       .then(data => data)
-
-//   }
 
 
   return (
     <Container>
-      <Card bg='info' text='white' style={{width: '14rem', margin:'5px'}}>
+      <Card bg='light'  style={{width: '50%', margin:'5px'}}>
         <Card.Body>
     
           <h5> Ticker: {props.eachStock['01. symbol']}</h5>
@@ -73,6 +96,7 @@ function dispatchAndUpdate(e,eachStock){
      
   )
 }
+
 
 const mapStateToProps =(state)=>{
   return state.stock

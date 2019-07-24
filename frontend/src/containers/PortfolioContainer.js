@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
 // import StockCard from '../components/StockCard';
 
 import PortfolioCard from '../components/PortfolioCard';
@@ -12,14 +12,19 @@ class  PortfolioContainer extends Component {
 
 
 render(){
-  console.log("port props: ", this.props.portfolio )
+  const cards = this.props.portfolio ?
+    this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
+     : null
   return (
+
+    // <CardDeck>
     <div>
-      {this.props.portfolio ?
-      this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
-       : null}
+
+      {cards}
 
     </div>
+
+
   )
 }}
 
