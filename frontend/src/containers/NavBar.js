@@ -1,24 +1,18 @@
 import React, { Component }from 'react';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { searchStock } from '../actions/stockActions'
+import { searchStock, handleLogout} from '../actions/stockActions'
 import Suggestions from '../components/Suggestions';
 
 
 class NavBar extends Component{
+
+
   constructor(props){
     super(props)
-    this.state={}
-  }
-
-  handleLogout=(e)=>{
-    console.log(this.props)
-    // localStorage.removeItem('token')
-    localStorage.clear()
-    this.props.history.push('/login') 
   }
   
-  suggestions=() => { return <li>First suggestions </li>}
+
 
   render(){
   return (
@@ -33,9 +27,9 @@ class NavBar extends Component{
         <Nav className="ml-auto">
           <Nav.Item>
           {
-            localStorage.token ?
-           <Nav.Link name='logout' onClick={this.handleLogout} >Logout</Nav.Link>  :  null          
-           
+            this.props.logged || localStorage.getItem("token") !== null ?
+           <Nav.Link name='logout' onClick={(e)=>this.props.handleLogout(e, this.props.history)} >Logout</Nav.Link>  :  null          
+          //  onSubmit={(e) => this.prsops.handleLogin(e,this.props.history)}
           }
           </Nav.Item>
          
@@ -64,5 +58,5 @@ function mapStateToProps(state){
 
 }
 
-export default connect(mapStateToProps, {searchStock})(NavBar);
+export default connect(mapStateToProps, {searchStock, handleLogout})(NavBar);
 

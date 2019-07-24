@@ -14,7 +14,8 @@ let initialState ={
   error:'',
   logged: false,
   bestMatches:[],
-  portfolio: []
+  portfolio: [], 
+  sell_stock: []
 
 }
 
@@ -30,6 +31,10 @@ export default (state = initialState, action) => {
 
     case "CHANGE_PASS":
       return { ...state, user: {...state.user,['password']: action.password}}
+
+    case "LOGOUT":{
+      return {...state, logged: action.logged}
+    }
     
 
     case "LOGIN_ERROR":
@@ -38,7 +43,7 @@ export default (state = initialState, action) => {
 
     case "LOGIN_SUCCESS":{
       return { ...state, logged: action.logged, remaining_balance: action.user.remaining_balance,
-        invested_balance: action.user.invested_balance  }
+        invested_balance: action.user.invested_balance , portfolio: action.portfolio }
     }
 
     case "SIGNUP_ERROR":{
@@ -49,7 +54,17 @@ export default (state = initialState, action) => {
       return { ...state, bestMatches: action.payload}
     }
     case "GET_PORTFOLIO":{
-      return { ...state, portfolio:action.portfolio}
+      return { ...state, portfolio: action.portfolio }
+    }
+    case "SELL_STOCK":{
+      return { ...state, sell_stock:action.sell_stock}
+    }
+
+    case "PERSIST_DATA":{
+      return {...state,
+      portfolio: action.portfolio,
+      remaining_balance: action.remaining_balance,
+      invested_balance: action.invested_balance}
     }
 
     case "BUY_STOCK":{
@@ -70,8 +85,10 @@ export default (state = initialState, action) => {
       //   alert('Not Enough Balance')
       // }
       if (state.remaining_balance >= action.payload.total_price){
+
         let flag = false
-        state.portfolio.map(s => {
+        let new_portfolio = state.portfolio
+        new_portfolio.map(s => {
           if(s.ticker === action.payload.ticker){
             s.quantity += action.payload.quantity
             s.total_price += action.payload.total_price
@@ -81,7 +98,7 @@ export default (state = initialState, action) => {
           ...state,
           remaining_balance: state.remaining_balance - action.payload.total_price,
           invested_balance: state.invested_balance + action.payload.total_price,
-          portfolio: flag? state.portfolio : [...state.portfolio,action.payload]
+          portfolio: flag? new_portfolio : [...state.portfolio,action.payload]
         }
 
       }else{
