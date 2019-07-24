@@ -16,9 +16,10 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: { user: UserSerializer.new(user), portfolio: user.portfolios }, status: :ok
+    render json: { user: UserSerializer.new(user) }, status: :ok
   end
 
+  # , portfolio: user.portfolios 
   # def profile
   #   render json: { user: UserSerializer.new(current_user) }, status: :accepted
   # end
@@ -33,6 +34,6 @@ class UsersController < ApplicationController
   def user_params 
     params.require(:user).permit(:username, :password, :firstname, :lastname, :remaining_balance, :invested_balance,:email)
   end
-  
+
 end
 

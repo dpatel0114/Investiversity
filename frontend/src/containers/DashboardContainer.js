@@ -5,9 +5,26 @@ import BalanceContainer from './BalanceContainer';
 import { Row } from 'react-bootstrap';
 import NavBar from '../containers/NavBar';
 import SearchContainer from './SearchContainer'
+import { connect } from 'react-redux';
+import {persistData} from '../actions/stockActions'
+
+
 
 export class DashboardContainer extends Component {
+
+componentDidMount(){
+  if(localStorage.getItem('token')!==null){
+    this.props.persistData()
+  }
+}
+ 
+
   render() {
+
+  //   if (localStorage.token !== null){
+  //     this.props.persistData()
+  // }
+ 
     return (
       <div>
         <div>
@@ -24,4 +41,9 @@ export class DashboardContainer extends Component {
   }
 }
 
-export default DashboardContainer
+const  mapStateToProps = (state) => {
+  return state.stock
+}
+
+export default connect(mapStateToProps,{persistData})(DashboardContainer)
+// export default connect()(DashboardContainer)

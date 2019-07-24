@@ -28,7 +28,7 @@ class Allcontainer extends Component {
                 <Switch>
                   <Route exact path='/profile' component={Profile}/>
                 <Route exact path='/login' component={Login}/> 
-                  {this.props.logged? 
+                  {this.props.logged || localStorage.getItem("token") !== null? 
                    <Route exact path='/' component={DashboardContainer}/>
                   :
                    <Route exact path='/'><Welcome/></Route>}

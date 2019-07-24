@@ -44,10 +44,11 @@ dispatch(
 // }
 
 
-export const getUserWithId=()=> dispatch => {
+export const getUserWithId =()=> dispatch => {
   fetch(`http://localhost:3000/users/${id}`)
   .then(res => res.json())
   .then(data => { 
+    console.log('user', data)
     localStorage.setItem('portfolio', JSON.stringify(data.portfolio))
     dispatch({ type: 'GET_PORTFOLIO',portfolio: data.portfolio })
   })
@@ -77,7 +78,7 @@ export const handleSignUp=(e)=> dispatch => {
     })
     .then(res=> res.json())
     .then(data => {
-      console.log(data)
+
       if (data.errors) {
         alert("Sorry, your username or password is incorrect.")
         dispatch({ type: 'SIGNUP_ERROR',errors: data.message })
@@ -122,21 +123,27 @@ export const handleSignUp=(e)=> dispatch => {
   })
   .then(res => res.json())
   .then(data => { 
-    // console.log(data)
+    // console.log("After user logs in: ", data)
+    console.log(data.user)
+    console.log(data.user.portfolios)
+
+
     if(data.errors){
       dispatch({type: 'LOGIN_ERROR', error: data.errors})
       localStorage.setItem('logged',false)
       alert(' Incorrect Username or Password! ')
     }
     else {
+
       history.push('/')
-      dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true})
+      dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
+      // debugger
       localStorage.setItem('logged',true)
       localStorage.setItem('token', data.token)
       localStorage.setItem('uid', data.user.id)
-      localStorage.setItem('remainingBalance', data.user.remaining_balance)
-      localStorage.setItem('investedBalance',data.user.invested_balance)
-
+      localStorage.setItem('portfolio',JSON.stringify(data.user.portfolios))
+      localStorage.setItem('reamining_balance', data.user.remaining_balance)
+      localStorage.setItem('invested_balance', data.user.invested_balance)
 
     }
   })
@@ -160,6 +167,19 @@ export const  buyStock =(e, eachStock)=> dispatch=> {
 
   }
 
+
+// Persist portfolio and balance
+export const persistData =()=> dispatch=>{
+  console.log('running')
+
+  fetch(`http://localhost:3000/users/${id}`)
+  .then(res => res.json())
+  .then(data=> 
+  dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
+
+  )
+}
+
   /// PATCH REQUEST
 
   // export const patchRequest= (e,allStock)=>{
@@ -174,3 +194,13 @@ export const  buyStock =(e, eachStock)=> dispatch=> {
   //     .then(res => res.json())
   //     .then(data => console.log(data))
   // }
+
+// logout
+export const handleLogout=(e, history)=> dispatch=>{
+  localStorage.clear()
+  history.push('/') 
+  dispatch({
+    type: 'LOGOUT',
+    logged: false
+  })
+}
