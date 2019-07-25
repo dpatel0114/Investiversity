@@ -7,9 +7,9 @@ import {connect} from 'react-redux'
 
 function PortfolioCard(props) {
     
-function sellAndUpdate(e,eachStock) {
-  if(e.target.quantity.value <= eachStock.quantity){
-    props.sellStock(e, eachStock)
+function sellAndUpdate(e,eachStock,balance) {
+  if(e.target.quantity.value <= eachStock.quantity &&  eachStock.quantity > 0 ){
+    props.sellStock(e, eachStock, balance)
     // export const patchRequest= (e,allStock)=>{
   //   props.portfolio.map( stock=> {
   //     fetch(`http://localhost:3000/portfolios/${stock.id})}`,{
@@ -30,7 +30,9 @@ function sellAndUpdate(e,eachStock) {
    
   }
   
-}
+}  
+console.log(props.eachStock)
+
 
   return (
 
@@ -41,7 +43,7 @@ function sellAndUpdate(e,eachStock) {
           <h6> Quantity: {props.eachStock.quantity} </h6>
           <h6> Amount Invested: {props.eachStock.total_price} </h6>
           {/* <button onClick={() => props.dispatch({type: "SELL_STOCK"})} class="btn btn-primary"data-toggle="button"> SELL </button> */}
-          <Form onSubmit={(e) => sellAndUpdate(e,props.eachStock)}>
+          <Form onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
             <Form.Control type='number' step='1' name='quantity' min='1'/>
           <Button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </Button>
           </Form>
