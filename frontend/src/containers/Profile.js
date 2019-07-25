@@ -17,25 +17,50 @@ export class Profile extends Component {
   //      {} )
   // }
 
+constructor(props){
+  super(props)
+  this.state = {
+    editUser: {
+
+    }
+   }
+}
+
+  handleChange = (e) => {
+    this.setState({
+      editUser: {...this.state.editUser, [e.target.name]: e.target.value}
+      // [e.target.name]: e.target.value
+    })
+  }
 
 // *** updating profile****
  //! profile 
 
   updateProfile(e){
       e.preventDefault()
-    // console.log(e.target.user.value)
-    // fetch('http://localhost:3000/profile/edit', {
-    //   method: 'POST', 
-    //   body: JSON.stringify({data: 'action to authorize'}),
-    //   headers: {
-    //     'Access-Token': localStorage.getItem('token'),
-    //     'Content-Type': 'application/json'
-    //   }
-    // }).then(res => res.json())
-    // .then(data => console.log(data))
+      let newUser = {
+        firstname: e.target.firstname.value,
+        lastename: e.target.lastname.value,
+        password: e.target.password.value,
+        email: e.target.email.value,
+        username: e.target.username.value
+      }
+
+
+    // console.log(e.target.firstname.value)
+
+    fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`, { 
+      method: 'PATCH', 
+      body: JSON.stringify({user: newUser}),
+      headers: {
+        'Access-Token': localStorage.getItem('token'),
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .then(data => console.log(data))
   }
 
-//! ----------------------
+
 
   render() {
     // console.log("Profile: ", this.props.user.firstname)
@@ -46,35 +71,37 @@ export class Profile extends Component {
 
                   <Form.Label>First Name:</Form.Label>
                   <Form.Control 
-                  onChange={(e) => this.handleChange(console.log(e.target.value))}
+                  onChange={(e) => this.handleChange}
                     name="firstname"
-                    placeholder='First Name'
-                    value={this.props.user ? this.props.user.username : ''}
+                    placeholder='Firstname'
+                    defaultValue={this.props.user.firstname}
                     />
                     
                   <Form.Label>Last Name:</Form.Label>
 
                   <Form.Control
-                  onChange={this.handleChange}
+                   onChange={(e) => this.handleChange}
+                  // onChange={this.handleChange}
                     name="lastname"
-                    value={this.props.user.lastname} 
+                    placeholder='Lastname'
+                    defaultValue={this.props.user.lastname} 
                     />
-
-                
 
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
-                  onChange={this.handleChange}
+                  // onChange={this.handleChange}
+                  onChange={(e) => this.handleChange}
                     name="username"
                     placeholder="username" 
-                    value={this.props.user.username}
+                    defaultValue={this.props.user.username}
                     />
 
 
 
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
-                  onChange={this.handleChange}
+                  onChange={(e) => this.handleChange}
+                  // onChange={this.handleChange}
                     name="password"
                     placeholder="password" />
 
@@ -82,10 +109,11 @@ export class Profile extends Component {
 
                   <Form.Label>Email</Form.Label>
                   <Form.Control
-                  onChange={this.handleChange}
+                  onChange={(e) => this.handleChange}
+                  // onChange={this.handleChange}
                     name="email"
                     placeholder="Email" 
-                    value={this.props.user.email}
+                    defaultValue={this.props.user.email}
                     />
 
 

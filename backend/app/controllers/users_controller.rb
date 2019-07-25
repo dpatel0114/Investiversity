@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+
+
   def index 
     @users = User.all
     render json: UserSerializer.new(users)
@@ -28,6 +30,15 @@ class UsersController < ApplicationController
   #   render json: {message: "You have edited successfully"}
   # end
 
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors.full_messages 
+    end
+  end
 
   private 
 
