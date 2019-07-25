@@ -8,11 +8,9 @@ import {handleSignUp} from '../actions/stockActions'
 
 class SignUp extends Component {
 
-    constructor(props){
-      super(props)
-      this.state= {}
-      
-    }
+   state ={
+     
+   } 
   
 
   handleChange=(e)=> {

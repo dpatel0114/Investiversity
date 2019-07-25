@@ -12,8 +12,8 @@ class  PortfolioContainer extends Component {
 
 
 render(){
-  const cards = this.props.portfolio ?
-    this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
+  const cards = this.props.stock.portfolio ?
+    this.props.stock.portfolio.map(s => <PortfolioCard eachStock={s}/> )
      : null
   return (
 
@@ -29,8 +29,10 @@ render(){
 }}
 
 const  mapStateToProps = (state) => {
-    return state.stock
+    return {stock: state.stock }
 }
+
+
 // let connectorFunction = connect(mapStateToProps)
 // let connectedPortfolioContainer= connectorFunction(PortfolioContainer)
 

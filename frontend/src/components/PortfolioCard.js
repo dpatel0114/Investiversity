@@ -34,7 +34,7 @@ function sellAndUpdate(e,eachStock) {
 
   return (
 
-      <Card bg='light' style={{width:'55%'}}>
+      <Card bg='light' style={{width:'60%', margin: '5px'}}>
         <Card.Body>
           <h5> Ticker: {props.eachStock.ticker}</h5>
           <h6> Price: {props.eachStock.price} </h6>
@@ -43,7 +43,7 @@ function sellAndUpdate(e,eachStock) {
           {/* <button onClick={() => props.dispatch({type: "SELL_STOCK"})} class="btn btn-primary"data-toggle="button"> SELL </button> */}
           <Form onSubmit={(e) => sellAndUpdate(e,props.eachStock)}>
             <Form.Control type='number' step='1' name='quantity'/>
-          <Button  class="btn btn-primary"data-toggle="button" type="submit"> SELL </Button>
+          <Button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </Button>
           </Form>
         </Card.Body>
      </Card>

@@ -1,5 +1,6 @@
 import React, { Component }from 'react';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { searchStock, handleLogout} from '../actions/stockActions'
 import Suggestions from '../components/Suggestions';
@@ -28,7 +29,7 @@ class NavBar extends Component{
           <Nav.Item>
           {
             this.props.logged || localStorage.getItem("token") !== null ?
-           <Nav.Link name='logout' onClick={(e)=>this.props.handleLogout(e, this.props.history)} >Logout</Nav.Link>  :  null          
+           <Button name='logout' onClick={(e)=>this.props.handleLogout(e, this.props.history)} >Logout</Button>  :  null          
           //  onSubmit={(e) => this.prsops.handleLogin(e,this.props.history)}
           }
           </Nav.Item>
@@ -36,7 +37,7 @@ class NavBar extends Component{
 
           {localStorage.token ?
           <Nav.Item>
-                <Nav.Link name='profile' href="/profile" >Profile</Nav.Link>
+            <Link to='/profile'>Profile</Link>
           </Nav.Item>
             :
             null

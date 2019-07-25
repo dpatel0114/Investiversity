@@ -2,19 +2,22 @@
 
 // import history from './history'
 // import {b} from 'react-router';
+// **import Popup from 'reactjs-popup'
 // let symbl;
 // const real_api = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`
-// const API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo`
+const API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo`
 const id = localStorage.uid
-const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
-// const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN'],
-// const all_symbols = ['MSFT']
+// const all_symbols = ['AAPL','MSFT','V',' GOOGL', 'AMZN']
+// const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
+const all_symbols = ['MSFT']
 
 
-export const  getStocks = () => dispatch => {
+
+export const getStocks = () => dispatch => {
     
    all_symbols.map(symbl => 
-    fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`)
+    fetch(API)
+    // fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`)
     .then(res => res.json())
     .then(data => 
       dispatch({ type: "GET_STOCKS", data: data })
@@ -31,11 +34,19 @@ export const handleChange = (e) => dispatch=>{
     { type: 'CHANGE_USER', 'username': e.target.value}
   ) 
   : 
-dispatch(
-    { type: 'CHANGE_PASS', 'password': e.target.value}
-  ) 
+  dispatch(
+      { type: 'CHANGE_PASS', 'password': e.target.value}
+    ) 
+  
 }
 
+// **export const popup =()=> dispatch=> {
+//       <Popup trigger={<button> Trigger </button>} position="right center">
+//         <div>
+//           Popup here
+//         </div>
+//       </Popup>
+//     }
 
 // export const getPortfolio =()=> dispatch => {
 //   fetch(`http://localhost:3000/portfolio/user?id=${id}`)
@@ -91,14 +102,13 @@ export const handleSignUp=(e)=> dispatch => {
       }
       else {
 
-        dispatch({ type: 'SIGNUP_ERROR', error:'no'})
+        // dispatch({ type: 'SIGNUP_ERROR', error:'no'})
 
         localStorage.setItem('token', data.token)
         // browserHistory.push('/login')
         // this.props.history.push('/login')
        
         // history.push('/login')
-
       }
     })
 }
@@ -114,24 +124,26 @@ export const handleSignUp=(e)=> dispatch => {
   }))
  }
 
- export const  handleLogin =(e,history) => dispatch=> {
+ export const  handleLogin =(e, user,history) => dispatch=> {
   e.preventDefault()
 
-  let userObject = {username: e.target.username.value, 
-                    password: e.target.password.value}
+  console.log("User info: ", user)
+
+  // let userObject = {username: e.target.username.value, 
+  //                   password: e.target.password.value}
 
   fetch('http://localhost:3000/login', {
     method: 'POST',
     headers:{
       'Content-Type': 'application/json', 
     }, 
-    body: JSON.stringify(userObject)
+    body: JSON.stringify(user)
   })
   .then(res => res.json())
   .then(data => { 
     // console.log("After user logs in: ", data)
-    console.log(data.user)
-    console.log(data.user.portfolios)
+    // console.log(data.user)
+    // console.log(data.user.portfolios)
 
 
     if(data.errors){
@@ -141,7 +153,7 @@ export const handleSignUp=(e)=> dispatch => {
     }
     else {
 
-      history.push('/')
+      history.push('/dashboard')
       dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
       // debugger
       localStorage.setItem('logged',true)
@@ -158,7 +170,7 @@ export const handleSignUp=(e)=> dispatch => {
 
 
 // BUY STOCK
-export const  buyStock =(e, eachStock)=> dispatch=> {
+export const buyStock = (e, eachStock)=> dispatch=> {
   e.preventDefault()
   // console.log(e.target)
   let stock ={
@@ -176,20 +188,22 @@ export const  buyStock =(e, eachStock)=> dispatch=> {
 
 
 // Persist portfolio and balance
-export const persistData =()=> dispatch=>{
-  console.log('running')
+// export const persistData =()=> dispatch=>{
+//   console.log('running')
 
-  fetch(`http://localhost:3000/users/${id}`)
-  .then(res => res.json())
-  .then(data=> 
-  dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
+//   fetch(`http://localhost:3000/users/${id}`)
+//   .then(res => res.json())
+//   .then(data=> 
+//     {console.log(data)
+//   dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})}
 
-  )
-}
+//   )
+// }
 
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
   localStorage.clear()
+  // console.log(history)
   history.push('/') 
   dispatch({
     type: 'LOGOUT',

@@ -18,14 +18,14 @@ class StockContainer extends Component {
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
       <div>
-          {this.props.items.map(s=> <StockCard eachStock={s['Global Quote']}/>)}   
+          {this.props.stock.items.map(s=> <StockCard eachStock={s['Global Quote']}/>)}   
       </div>
     )
   }
 }
 
-let mapStateToProps = (state) => {
-   return state.stock
+const mapStateToProps = (state) => {
+   return {stock: state.stock }
 }
 
 // StockContainer.propTypes = {

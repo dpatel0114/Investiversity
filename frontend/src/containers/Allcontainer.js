@@ -8,25 +8,41 @@ import { Container, Row } from 'react-bootstrap';
 import DashboardContainer from './DashboardContainer';
 import Welcome from '../components/Welcome';
 import Profile from './Profile';
-// import history from '../actions/history'
+import Popup from '../components/Popup'
 class Allcontainer extends Component {
  
-  render() {
+//  componentDidMount(){
+//   if(localStorage.getItem('token')!==null){
+//     this.props.persistData()
+//   }
+//  }
+
+    constructor(props){  
+      super(props);  
+      this.state = { showPopup: false };  
+      }  
+      
+      //   togglePopup() {  
+      // this.setState({  
+      //      showPopup: !this.state.showPopup  
+      // })
     // console.log(this.props)
+    render() {
+      // console.log(this.props)
     return (
       <div>
        
         {/* <NavBar />  */}
        
           <Router>
-            <Route path='/' component={NavBar}/> 
+            <NavBar/> 
           
             <Container>
             <Switch>
                   {this.props.logged || localStorage.getItem("token") !== null? 
-                   <Route exact path='/' component={DashboardContainer}/>
+                   <Route exact path='/dashboard' component={DashboardContainer}/>
                   :
-                   <Route exact path='/'><Welcome/></Route>}
+                   <Route exact path='/' component={Welcome} />}
             
            
 

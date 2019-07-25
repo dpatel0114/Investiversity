@@ -1,12 +1,9 @@
 
 
-let initialState ={
+const initialState = {
   items: [],
-  user:{
+  user: {
     username:'',
-    password:'',
-    firstname:'',
-    lastname:'',
     email: ''
   },
   remaining_balance: '',
@@ -25,12 +22,11 @@ export default (state = initialState, action) => {
       return { ...state, items: [...state.items, action.data]}
     
 
-    case "CHANGE_USER":
-      return { ...state, user: {...state.user,['username']: action.username}}
-    
+    // case "CHANGE_USER":
+    //   return { ...state, user: {...state.user, username: action.username}}
 
-    case "CHANGE_PASS":
-      return { ...state, user: {...state.user,['password']: action.password}}
+    // case "CHANGE_PASS":
+    //   return { ...state, user: {...state.user, password: action.password}}
 
     case "LOGOUT":{
       return {...state, logged: action.logged}
@@ -41,11 +37,12 @@ export default (state = initialState, action) => {
       return { ...state, error: action.error}
     
 
-    case "LOGIN_SUCCESS":{
+    case "LOGIN_SUCCESS":
+      // debugger
       return { ...state, logged: action.logged, remaining_balance: action.user.remaining_balance,
-        invested_balance: action.user.invested_balance , portfolio: action.portfolio }
-    }
-
+        invested_balance: action.user.invested_balance , portfolio: action.portfolio, user: {...state.user, username: action.user.username, email: action.user.email, firstname: action.user.firstname, lastname: action.user.lastname}
+      }
+    
     case "SIGNUP_ERROR":{
       return { ...state, error:action.error}
     }
@@ -86,8 +83,13 @@ export default (state = initialState, action) => {
         let new_portfolio = state.portfolio
         new_portfolio.map(s => {
           if(s.ticker === action.payload.ticker){
+            console.log(s.total_price)
+            console.log(action.payload)
+            // console.log(s.quantity)
             s.quantity += action.payload.quantity
-            s.total_price += action.payload.total_price
+            console.log(s.quantity)
+            s.total_price = action.payload.price * s.quantity
+            console.log(s.total_price)
             flag = true
           }})
         return {
