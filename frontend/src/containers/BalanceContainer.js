@@ -11,7 +11,7 @@ export class BalanceContainer extends Component {
       <Card bg='info' text='white' style={{width: '80%', height:'20%', margin:'5px'}}>
         <Card.Body>
            {/* <h5>Remaining Balance: {this.props.remaining_balance}</h5> */}
-           <h5>Remaining Balance</h5> $ {this.props.remaining_balance}
+           <h5>Remaining Balance</h5> $ {this.props.stock.remaining_balance}
 
         </Card.Body>
       </Card>
@@ -19,7 +19,7 @@ export class BalanceContainer extends Component {
       <Card bg='success' text='white' style={{width: '80%', height:'20%', margin:'5px'}}>
         <Card.Body>        
             {/* <h5>Invested Balance: {this.props.invested_balance}</h5 >  */}
-            <h5>Invested Balance</h5>  $ {this.props.invested_balance}         
+            <h5>Invested Balance</h5>  $ {this.props.stock.invested_balance}         
 
         </Card.Body>
       </Card>
@@ -31,9 +31,8 @@ export class BalanceContainer extends Component {
 }
 
 
-function mapStateToProps(state){
-
-  return state.stock
+const mapStateToProps = (state) => {
+  return {stock: state.stock }
 }
 
 export default connect(mapStateToProps)(BalanceContainer)

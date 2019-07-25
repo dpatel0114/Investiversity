@@ -1,6 +1,6 @@
 # module 5 Final Project #
 
-# Stock App #
+# Stock App 
 - User 
 
 My portfolio

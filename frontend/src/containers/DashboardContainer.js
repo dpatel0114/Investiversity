@@ -3,20 +3,16 @@ import StockContainer from './StockContainer'
 import  PortfolioContainer from './PortfolioContainer'
 import BalanceContainer from './BalanceContainer';
 import { Row, Col } from 'react-bootstrap';
-import NavBar from '../containers/NavBar';
-import SearchContainer from './SearchContainer'
+// import NavBar from '../containers/NavBar';
+// import SearchContainer from './SearchContainer'
 import { connect } from 'react-redux';
-import {persistData} from '../actions/stockActions'
+// import {persistData} from '../actions/stockActions'
 
 
 
 export class DashboardContainer extends Component {
 
-componentDidMount(){
-  if(localStorage.getItem('token')!==null){
-    this.props.persistData()
-  }
-}
+  
  
 
   render() {
@@ -24,6 +20,8 @@ componentDidMount(){
   //   if (localStorage.token !== null){
   //     this.props.persistData()
   // }
+
+  // console.log(this.props)
  
     return (
       <div>
@@ -38,9 +36,9 @@ componentDidMount(){
   }
 }
 
-const  mapStateToProps = (state) => {
-  return state.stock
-}
+// const  mapStateToProps = (state) => {
+//   return state.stock
+// }
 
-export default connect(mapStateToProps,{persistData})(DashboardContainer)
+export default connect()(DashboardContainer)
 // export default connect()(DashboardContainer)

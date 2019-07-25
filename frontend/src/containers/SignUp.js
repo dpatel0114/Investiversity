@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from "react-router-dom";
+// import { Redirect, withRouter } from "react-router-dom";
 import {handleSignUp} from '../actions/stockActions'
 
 
 
 class SignUp extends Component {
 
-    constructor(props){
-      super(props)
-      this.state= {}
-      
-    }
+   state ={
+     
+   } 
   
 
   handleChange=(e)=> {
@@ -27,7 +25,7 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-         <Container>
+         <Container style={{width:"50%"}}>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
               <Form onSubmit={this.handleClick}>

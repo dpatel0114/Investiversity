@@ -1,41 +1,44 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, Button, Form, Alert} from 'react-bootstrap';
+import { Container, Col, Row, Button, Form} from 'react-bootstrap';
 import { connect } from 'react-redux';
 // import { Redirect, withRouter, BrowserRouter as Router } from "react-router-dom";
-import {handleLogin, handleChange} from '../actions/stockActions';
+import {handleLogin} from '../actions/stockActions';
 
 
 class Login extends Component {
 
-  constructor(props){
+ state = {
+   username: '',
+   password: ''
+ }
 
-    super(props)
-    this.state ={}
-
-    }
-
+ handleChange = (e) => {
+   this.setState({
+     [e.target.name]: e.target.value
+   })
+ }
   
   
   render() {
     
     return (
       <div>
-        <Container>
+        <Container style={{width: "30%"}}>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
-              <Form onSubmit={(e) => this.props.handleLogin(e,this.props.history)} >
+              <Form onSubmit={(e) => this.props.handleLogin(e, this.state,this.props.history)} >
                 <Form.Group>
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
                     name="username"  
                     placeholder="username"
-                    onChange={this.props.handleChange} />
+                    onChange={this.handleChange} />
                 </Form.Group>
 
                 <Form.Group>
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
-                    onChange={this.props.handleChange}
+                    onChange={this.handleChange}
                     name="password"
                     placeholder="password" />
                 </Form.Group>
@@ -59,4 +62,4 @@ const mapStateToProps =(state)=>{
   return state.stock
 
 }
-export default connect(mapStateToProps,{handleLogin, handleChange})(Login);
+export default connect(mapStateToProps,{handleLogin})(Login);
