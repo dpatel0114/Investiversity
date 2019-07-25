@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { withRouter, Switch, Route, BrowserRouter as Router} from 'react-router-dom';
+import {  Switch, Route, BrowserRouter as Router} from 'react-router-dom';
 import  NavBar  from './NavBar';
 import Login from './Login';
 import SignUp from './SignUp'
 import { connect } from 'react-redux'
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import DashboardContainer from './DashboardContainer';
 import Welcome from '../components/Welcome';
 import Profile from './Profile';
-import Popup from '../components/Popup'
+// import Popup from '../components/Popup'
 class Allcontainer extends Component {
  
 //  componentDidMount(){
@@ -35,7 +35,8 @@ class Allcontainer extends Component {
         {/* <NavBar />  */}
        
           <Router>
-            <NavBar/> 
+            {/* <NavBar/>  */}
+            <Route path='/' component={NavBar}/> 
           
             <Container>
             <Switch>

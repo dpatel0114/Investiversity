@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Form, Row } from 'react-bootstrap';
+import { Container, Card, Form} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 // import Popover from './Popup';

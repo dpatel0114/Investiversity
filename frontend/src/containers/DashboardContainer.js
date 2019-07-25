@@ -3,8 +3,8 @@ import StockContainer from './StockContainer'
 import  PortfolioContainer from './PortfolioContainer'
 import BalanceContainer from './BalanceContainer';
 import { Row, Col } from 'react-bootstrap';
-import NavBar from '../containers/NavBar';
-import SearchContainer from './SearchContainer'
+// import NavBar from '../containers/NavBar';
+// import SearchContainer from './SearchContainer'
 import { connect } from 'react-redux';
 // import {persistData} from '../actions/stockActions'
 

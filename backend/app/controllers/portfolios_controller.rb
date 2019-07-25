@@ -33,4 +33,6 @@ class PortfoliosController < ApplicationController
     params.require(:portfolio).permit(:price, :ticker, :quantity, :total_price, :user_id)
   end
 
+  
+
 end

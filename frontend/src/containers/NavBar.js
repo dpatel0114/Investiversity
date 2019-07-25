@@ -3,7 +3,7 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { searchStock, handleLogout} from '../actions/stockActions'
-import Suggestions from '../components/Suggestions';
+// import Suggestions from '../components/Suggestions';
 
 
 class NavBar extends Component{

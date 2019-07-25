@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from "react-router-dom";
+// import { Redirect, withRouter } from "react-router-dom";
 import {handleSignUp} from '../actions/stockActions'
 
 

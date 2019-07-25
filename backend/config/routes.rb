@@ -2,10 +2,16 @@ Rails.application.routes.draw do
   resources :users
   resources :portfolios
 
+
 post '/login', to: "sessions#authenticate" 
 
 post '/profile/edit', to: "profiles#edit"
 get '/profile/edit', to: "profiles#edit"
+post '/profile/update', to: "profile#update"
+patch '/profile/update', to: "profile#update"
+get '/profile/update', to: "profile#update"
+
+
 get '/portfolio/user/', to:"portfolios#my_portfolio"
 
   # post '/login', to: "sessions#authenticate"
