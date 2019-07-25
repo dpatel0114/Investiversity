@@ -11,6 +11,7 @@ class StockContainer extends Component {
 
   componentDidMount(){ 
     this.props.getStocks() 
+    
   }
 
   render() {

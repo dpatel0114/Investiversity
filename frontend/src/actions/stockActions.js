@@ -127,7 +127,7 @@ export const handleSignUp=(e)=> dispatch => {
  export const  handleLogin =(e, user,history) => dispatch=> {
   e.preventDefault()
 
-  console.log("User info: ", user)
+  // console.log("User info: ", user)
 
   // let userObject = {username: e.target.username.value, 
   //                   password: e.target.password.value}
@@ -150,14 +150,16 @@ export const handleSignUp=(e)=> dispatch => {
     else {
 
       history.push('/dashboard')
-      dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
-      // debugger
       localStorage.setItem('logged',true)
       localStorage.setItem('token', data.token)
       localStorage.setItem('uid', data.user.id)
       localStorage.setItem('portfolio',JSON.stringify(data.user.portfolios))
       localStorage.setItem('reamining_balance', data.user.remaining_balance)
       localStorage.setItem('invested_balance', data.user.invested_balance)
+      
+      dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
+      // debugger
+     
 
     }
   })

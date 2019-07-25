@@ -21,7 +21,7 @@ componentDidMount(){
   fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`)
   .then(res=> res.json())
   .then(data => {
-    console.log(data.user.portfolios)
+    console.log(data)
     // this.setState({
     //   portfolio: data.user.portfolios
     // })
