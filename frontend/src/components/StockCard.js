@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Form} from 'react-bootstrap';
+import { Container, Card, Form, Fade, Modal ,Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 // import Popover from './Popup';
@@ -7,11 +7,17 @@ import {buyStock} from '../actions/stockActions';
 
 function StockCard(props) {
 
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
 
   return (
-    <Container>
-      <Card bg='light'  style={{width: '100%', margin:'5px'}}>
+
+<>
+      <Card border='dark' bg='light'  style={{width: '50%', margin:'5px'}}>
         <Card.Body>
     
           <h5> Ticker: {props.eachStock['01. symbol']}</h5>
@@ -22,9 +28,7 @@ function StockCard(props) {
            {/* <Row> */}
            <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}}> Buy </button>
 
-           <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}} 
-          //  onClick={e=> this.props.popUpBox(this.props)}
-           > Info </button>
+           <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}} onClick={handleShow}> Info </button>
            {/* </Row> */}
            </Form>
            
@@ -32,8 +36,21 @@ function StockCard(props) {
             
       </Card.Body>
       </Card>
-      </Container>
-     
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{props.eachStock['01. symbol']} Weekly Summary </Modal.Title>
+        </Modal.Header>
+        <Modal.Body></Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+     </>
   )
 }
 

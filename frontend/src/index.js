@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store';
-import 'materialize-css'; // It installs the JS asset only
-import 'materialize-css/dist/css/materialize.min.css';
+// import 'materialize-css'; // It installs the JS asset only
+// import 'materialize-css/dist/css/materialize.min.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 
