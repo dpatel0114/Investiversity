@@ -25,7 +25,7 @@ class SignUp extends Component {
   render() {
     return (
       <div>
-         <Container>
+         <Container style={{width:"50%"}}>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
               <Form onSubmit={this.handleClick}>

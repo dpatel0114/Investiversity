@@ -141,11 +141,11 @@ export const handleSignUp=(e)=> dispatch => {
   })
   .then(res => res.json())
   .then(data => { 
-    
+
     if(data.errors){
       dispatch({type: 'LOGIN_ERROR', error: data.errors})
       localStorage.setItem('logged',false)
-      alert(' Incorrect Username or Password! ')
+      alert('Incorrect Username or Password! ')
     }
     else {
 

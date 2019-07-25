@@ -11,26 +11,26 @@ function sellAndUpdate(e,eachStock) {
   if(e.target.quantity.value <= eachStock.quantity){
     props.sellStock(e, eachStock)
     // export const patchRequest= (e,allStock)=>{
-    props.portfolio.map( stock=> {
-      fetch(`http://localhost:3000/portfolios/${stock.id})}`,{
-        method: 'PATCH', 
-        headers:{
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-          body:JSON.stringify(stock)
-        })
-        .then(res => res.json())
-        .then(data => 
-          {})
-    })
-  }else{
-    alert("Don't be greedy")
-  }
+  //   props.portfolio.map( stock=> {
+  //     fetch(`http://localhost:3000/portfolios/${stock.id})}`,{
+  //       method: 'PATCH', 
+  //       headers:{
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       },
+  //         body:JSON.stringify(stock)
+  //       })
+  //       .then(res => res.json())
+  //       .then(data => 
+  //         {})
+  //   })
+  // }else{
+  //   alert("Don't be greedy")
+  // }
    
   }
   
-
+}
 
   return (
 
@@ -42,7 +42,7 @@ function sellAndUpdate(e,eachStock) {
           <h6> Amount Invested: {props.eachStock.total_price} </h6>
           {/* <button onClick={() => props.dispatch({type: "SELL_STOCK"})} class="btn btn-primary"data-toggle="button"> SELL </button> */}
           <Form onSubmit={(e) => sellAndUpdate(e,props.eachStock)}>
-            <Form.Control type='number' step='1' name='quantity'/>
+            <Form.Control type='number' step='1' name='quantity' min='1'/>
           <Button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </Button>
           </Form>
         </Card.Body>

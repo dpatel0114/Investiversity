@@ -21,6 +21,10 @@ export default (state = initialState, action) => {
     case 'GET_STOCKS': 
       return { ...state, items: [...state.items, action.data]}
     
+      case 'TEST':
+        console.log('hey')
+      return {...state}
+    
 
     // case "CHANGE_USER":
     //   return { ...state, user: {...state.user, username: action.username}}
@@ -35,6 +39,10 @@ export default (state = initialState, action) => {
 
     case "LOGIN_ERROR":
       return { ...state, error: action.error}
+
+    case "UPDATE_BALANCE":
+      return {...state, remaining_balance: action.payload.remaining_balance, invested_balance: action.payload.invested_balance,
+             logged: true, portfolio: action.payload.portfolios}
     
 
     case "LOGIN_SUCCESS":
@@ -88,7 +96,7 @@ export default (state = initialState, action) => {
             // console.log(s.quantity)
             s.quantity += action.payload.quantity
             console.log(s.quantity)
-            s.total_price = action.payload.price * s.quantity
+            s.total_price += action.payload.total_price
             console.log(s.total_price)
             flag = true
           }})
