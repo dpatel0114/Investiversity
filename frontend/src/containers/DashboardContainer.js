@@ -12,11 +12,7 @@ import { connect } from 'react-redux';
 
 export class DashboardContainer extends Component {
 
-// componentDidMount(){
-//   if(localStorage.getItem('token')!==null){
-//     this.props.persistData()
-//   }
-// }
+  
  
 
   render() {

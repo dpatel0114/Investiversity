@@ -10,10 +10,33 @@ import PortfolioCard from '../components/PortfolioCard';
 class  PortfolioContainer extends Component {
 
 
+  constructor(props){
+    super(props)
+    this.state ={
+      // portfolio:[]
+    }
+  }
+
+componentDidMount(){
+  fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`)
+  .then(res=> res.json())
+  .then(data => {
+    console.log(data.user.portfolios)
+    // this.setState({
+    //   portfolio: data.user.portfolios
+    // })
+    this.props.dispatch({
+      type: 'UPDATE_BALANCE',
+      payload: data.user
+    })
+
+  })
+}
+
 
 render(){
-  const cards = this.props.stock.portfolio ?
-    this.props.stock.portfolio.map(s => <PortfolioCard eachStock={s}/> )
+  const cards = this.props.portfolio ?
+    this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
      : null
   return (
 
@@ -29,7 +52,7 @@ render(){
 }}
 
 const  mapStateToProps = (state) => {
-    return {stock: state.stock }
+    return  state.stock 
 }
 
 

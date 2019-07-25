@@ -28,11 +28,18 @@ class UsersController < ApplicationController
   #   render json: {message: "You have edited successfully"}
   # end
 
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    render json: {user: @user}
+
+  end
+
 
   private 
 
   def user_params 
-    params.require(:user).permit(:username, :password, :firstname, :lastname, :remaining_balance, :invested_balance,:email)
+    params.require(:user).permit(:username, :password, :firstname, :lastname, :remaining_balance, :invested_balance,:email, :portfolios)
   end
 
 end

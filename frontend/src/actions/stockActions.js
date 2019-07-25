@@ -144,8 +144,6 @@ export const handleSignUp=(e)=> dispatch => {
     // console.log("After user logs in: ", data)
     // console.log(data.user)
     // console.log(data.user.portfolios)
-
-
     if(data.errors){
       dispatch({type: 'LOGIN_ERROR', error: data.errors})
       localStorage.setItem('logged',false)

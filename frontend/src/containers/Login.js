@@ -23,7 +23,7 @@ class Login extends Component {
     
     return (
       <div>
-        <Container>
+        <Container style={{width: "30%"}}>
           <Row className="pt-3 pb-5 justify-content-md-center">
             <Col>
               <Form onSubmit={(e) => this.props.handleLogin(e, this.state,this.props.history)} >
