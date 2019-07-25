@@ -120,7 +120,7 @@ function dispatchAndUpdate(e,eachStock){
           <h6> Price: {props.eachStock['05. price']} </h6>
        
            <Form onSubmit={(e)=>dispatchAndUpdate(e,props.eachStock)}> <label> Quantity: </label>
-           <input name="quantity" type="number" step="1" style={{width:'3rem'}} min=''></input><br/>
+           <input name="quantity" type="number" step="1" style={{width:'3rem'}} min='1'></input><br/>
            {/* <Row> */}
            <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}}> Buy </button>
 
