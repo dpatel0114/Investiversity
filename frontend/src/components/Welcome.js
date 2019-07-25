@@ -7,7 +7,7 @@ export class Welcome extends Component {
       <div style ={{position: "relative"}}>
        
           <div>
-                  <Button name='login' href='/login' style={{position:"absolute", top: "50%", left:"50%"}}> Login </Button>                   
+              <Button name='login' href='/login' style={{position:"absolute", top: "50%", left:"50%"}}> Login </Button>                   
                   <Button name='signup' href='/signup' style={{position:"absolute", top: "50%", left:"30%"}}> Sign Up </Button> 
                   <Image
               src="https://amppob.com/wp-content/uploads/2018/11/investment-stock.jpg"
