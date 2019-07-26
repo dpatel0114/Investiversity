@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Card, Form} from 'react-bootstrap';
+import { Container, Card, Form, Fade, Modal ,Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 // import Popover from './Popup';
@@ -8,134 +8,65 @@ import {buyStock} from '../actions/stockActions';
 function StockCard(props) {
 
 
-// export default()=> (
-//     <Popup trigger={<button> Trigger </button>} position="right center">
-//       <div>
-//         Popup here
-//       </div>
-//     </Popup>
-//   )
+  const [show, setShow] = React.useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
 
-// handlePopup(e){
-// consolelog(e)
+  
 
-// }
-
-
-function dispatchAndUpdate(e,eachStock){
-    props.buyStock(e, eachStock)
-    // setTimeout(()=> console.log(props.portfolio),2000)
-}
-
-    // let portfolio = {'portfolios': props.portfolio}
-
-    // fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`,{
-    //   method:'PATCH',
-    //   headers:{
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json'
-    //             },
-    //             body:JSON.stringify({'user': portfolio})
-    //       })
-    //       .then(res=> res.json())
-    //       .then(data=> console.log(data))
-    // }
-
-  // export const patchRequest= (e,allStock)=>{
-
-  //   if(props.portfolio.length === 0) {
-  //     let stock ={
-  //       price: parseInt(eachStock['05. price']),
-  //       ticker: eachStock['01. symbol'],
-  //       quantity: parseInt(e.target.quantity.value),
-  //       total_price: parseInt(eachStock['05. price'] * e.target.quantity.value),
-  //       user_id: parseInt(localStorage.uid)
-  //     }
-  //     postRequest(stock)
-  //   } 
-
-    //  props.portfolio.map( stock=> {
-    //   if(stock.id !== null){
-    //     console.log('not working')
-    //     fetch(`http://localhost:3000/portfolios/${stock.id}`,{
-    //       method: 'PATCH', 
-    //       headers:{
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //       },
-    //         body:JSON.stringify(stock)
-    //       })
-          
-          // fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`,{
-          // method: 'PATCH', 
-          // headers:{
-          //   'Content-Type': 'application/json',
-          //   'Accept': 'application/json'
-          // },
-          //   body:JSON.stringify({'remaining_balance':props.remaining_balance, 'invested_balance': props.invested_balance})
-          // })
-
-//       }else{   
-
-//         console.log(stock)
-//         // postRequest(stock)
-//     }
-//   })
-// }
-
-      
-// function postRequest(stock){
-//   fetch(`http://localhost:3000/portfolios`,{
-//     method: 'POST', 
-//     headers:{
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//     },
-//       body:JSON.stringify(stock)
-//     })
-
-
-    // fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`,{
-    //   method: 'PATCH', 
-    //   headers:{
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json'
-    //   },
-    //   body:JSON.stringify({'remaining_balance':props.remaining_balance, 'invested_balance': props.invested_balance})
-    // })
-// }
-
-// function popUpBox(e){
-//   console.log("popup", e.target)
-
-// }
 
   return (
-    <Container>
-      <Card bg='light'  style={{width: '60%', margin:'5px'}}>
-        <Card.Body>
-    
-          <h5> Ticker: {props.eachStock['01. symbol']}</h5>
-          <h6> Price: {props.eachStock['05. price']} </h6>
-       
-           <Form onSubmit={(e)=>dispatchAndUpdate(e,props.eachStock)}> <label> Quantity: </label>
-           <input name="quantity" type="number" step="1" style={{width:'3rem'}} min='1'></input><br/>
-           {/* <Row> */}
-           <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}}> Buy </button>
 
-           <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}} 
-          //  onClick={e=> this.props.popUpBox(this.props)}
-           > Info </button>
-           {/* </Row> */}
+
+
+    <>
+      <Card border='dark' bg='light'  style={{width: '50%', margin:'5px'}}>
+        <Card.Body>
+
+    
+          <h5>  {props.eachStock['01. symbol']}</h5>
+          <h6> Price: {props.eachStock['05. price']} </h6>
+  
+           <Form onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}> <label style={{fontSize: '1rem'}}> Quantity: </label>
+           <Form.Control name="quantity" type="number" step="1" style={{width:'9rem'}} min='1' required="required"/>
+         
+           <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> Buy </Button>
+         
+           <Button  data-toggle="button" style={{margin: '3px'}} onClick={handleShow}> Info </Button>
            </Form>
            
             
             
       </Card.Body>
       </Card>
-      </Container>
-     
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          {/* {console.log(props.eachStock)} */}
+          <Modal.Title>{props.eachStock['01. symbol']} Weekly Summary </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <img style={{width:"40%", height:"20%"}}src="https://static.seekingalpha.com/uploads/2016/4/7/17225882-14600640903610125_origin.png"/>
+          <h6>Price: {props.eachStock['05. price']}</h6>
+          <h6>High Price: {props.eachStock['03. high']}</h6>
+          <h6>Low Price: {props.eachStock['04. low']}</h6>
+          <h6>Volume: {props.eachStock['06. volume']}</h6>
+          <h6>Change: {props.eachStock['09. change']}</h6>
+          <h6>Change Percentage: {props.eachStock['10. change percent']}</h6>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
+    </>
+
   )
 }
 

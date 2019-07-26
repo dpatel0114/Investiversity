@@ -13,6 +13,9 @@ const all_symbols = ['MSFT']
 
 
 
+
+
+
 export const getStocks = () => dispatch => {
     
    all_symbols.map(symbl => 
@@ -48,28 +51,26 @@ export const handleChange = (e) => dispatch=>{
 //       </Popup>
 //     }
 
-// export const getPortfolio =()=> dispatch => {
-//   fetch(`http://localhost:3000/portfolio/user?id=${id}`)
-//   .then(res => res.json())
-//   .then(data =>   
-//     {       localStorage.setItem('my_portfolio',JSON.stringify(data.portfolio))
-
-//       // console.log(data)
-//       // dispatch({ type: 'sGET_PORTFOLIO',portfolio: data.portfolio })
-//     }
-//     )
-// }
-
-
-export const getUserWithId =()=> dispatch => {
-  fetch(`http://localhost:3000/users/${id}`)
-  .then(res => res.json())
-  .then(data => { 
-    console.log('user', data)
-    localStorage.setItem('portfolio', JSON.stringify(data.portfolio))
-    dispatch({ type: 'GET_PORTFOLIO',portfolio: data.portfolio })
-  })
+export const getPortfolio =(e)=> dispatch => {
+  // e.preventDefault()
+  fetch(`http://localhost:3000/portfolio/show_all?user_id=${id}`)
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data)
+      dispatch({ type: "PORT_HISTORY", data: data.portfolio })
+    })
 }
+
+
+// export const getUserWithId =()=> dispatch => {
+//   fetch(`http://localhost:3000/users/${id}`)
+//   .then(res => res.json())
+//   .then(data => { 
+//     console.log('user', data)
+//     localStorage.setItem('portfolio', JSON.stringify(data.portfolio))
+//     dispatch({ type: 'GET_PORTFOLIO',portfolio: data.portfolio })
+//   })
+// }
 
 
 export const handleSignUp=(e)=> dispatch => {
@@ -115,7 +116,7 @@ export const handleSignUp=(e)=> dispatch => {
 
  export const searchStock =(e) => dispatch => {
   e.preventDefault()
-  console.log(e.target)
+  // console.log(e.target)
   fetch("https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=BA&apikey=demo")
   .then(res => res.json())
   .then(data => dispatch({
@@ -168,16 +169,50 @@ export const handleSignUp=(e)=> dispatch => {
 
 
 // BUY STOCK
-export const buyStock = (e, eachStock)=> dispatch=> {
+export const buyStock = (e, eachStock, balance)=> dispatch=> {
   e.preventDefault()
   // console.log(e.target)
+  
   let stock ={
-    price: parseInt(eachStock['05. price']),
+    price: parseFloat(eachStock['05. price']),
     ticker: eachStock['01. symbol'],
-    quantity: parseInt(e.target.quantity.value),
-    total_price: parseInt(eachStock['05. price'] * e.target.quantity.value),
-    user_id: parseInt(localStorage.uid)
+    quantity: parseFloat(e.target.quantity.value),
+    total_price: parseFloat(eachStock['05. price'] * e.target.quantity.value),
+    user_id: parseFloat(localStorage.uid)
   }
+
+if(balance.remaining_balance < stock.total_price){
+  alert('Not Enough Balance')
+  return 
+}
+
+  let user ={
+    remaining_balance: balance.remaining_balance - stock.total_price,
+    invested_balance: balance.invested_balance + stock.total_price
+  }
+  
+  fetch(`http://localhost:3000/portfolios`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+      body: JSON.stringify({portfolio: stock})
+    })
+  
+    fetch(`http://localhost:3000/users/${id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Token":localStorage.getItem('token')
+      },
+        body: JSON.stringify({user: user})
+      })
+      .then(res=> res.json()
+    .then(data=> console.log(data)))
+    
+
 
   dispatch({type: 'BUY_STOCK', payload: stock})
   e.target.reset()
@@ -200,25 +235,63 @@ export const buyStock = (e, eachStock)=> dispatch=> {
 
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
+  e.preventDefault()
+  
   localStorage.clear()
-  // console.log(history)
-  history.push('/') 
-  dispatch({
+  
+  console.log(history.push)
+   dispatch({
     type: 'LOGOUT',
     logged: false
   })
+
+  history.push('/')
+  
+
 }
 
 
-export const  sellStock = (e, eachStock)=> dispatch=> {
+export const  sellStock = (e, eachStock,balance)=> dispatch=> {
   e.preventDefault()
   // console.log(e.target)
   let stock ={
-    price: parseInt(eachStock.price),
+    price: parseFloat(eachStock.price),
     ticker: eachStock.ticker,
-    quantity: parseInt(e.target.quantity.value),
-    sell_price: parseInt(eachStock.price * e.target.quantity.value),
+    quantity: -parseFloat(e.target.quantity.value),
+    total_price: -parseFloat(eachStock.price * e.target.quantity.value),
+    user_id: parseFloat(localStorage.uid)
+
   }
+
+
+  let user ={
+    remaining_balance: balance.remaining_balance - stock.total_price,
+    invested_balance: balance.invested_balance + stock.total_price
+  }
+  
+
+  
+  fetch(`http://localhost:3000/portfolios`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+      body: JSON.stringify({portfolio: stock})
+    })
+
+    fetch(`http://localhost:3000/users/${id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Token":localStorage.getItem('token')
+      },
+        body: JSON.stringify({user: user})
+      })
+      .then(res=> res.json()
+    .then(data=> console.log(data)))
+
 
   dispatch({type: 'SELL_STOCK', payload: stock})
   e.target.reset()

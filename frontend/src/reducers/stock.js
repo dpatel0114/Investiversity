@@ -12,7 +12,10 @@ const initialState = {
   logged: false,
   bestMatches:[],
   portfolio: [], 
-  sell_stock: []
+  sell_stock: [],
+  // showModal: false,
+  // infoId: 0,
+  porthistory: []
 
 }
 
@@ -32,10 +35,19 @@ export default (state = initialState, action) => {
     // case "CHANGE_PASS":
     //   return { ...state, user: {...state.user, password: action.password}}
 
-    case "LOGOUT":{
+    case "LOGOUT":
       return {...state, logged: action.logged}
-    }
-    
+
+    case "PORT_HISTORY":
+      return {...state, porthistory: action.data}
+
+    // case "OPEN_MODAL": {
+    //   return {...state, showModal: action.showModal, infoId: action.infoId}
+    // }
+
+    // case "CLOSE_MODAL": {
+    //   return { ...state, showModal: false, infoId: 0 }
+    // }
 
     case "LOGIN_ERROR":
       return { ...state, error: action.error}
@@ -59,20 +71,28 @@ export default (state = initialState, action) => {
       return { ...state, bestMatches: action.payload}
     }
     case "GET_PORTFOLIO":{
-      return { ...state, portfolio: action.portfolio }
+    
+      if(action.payload.portfolio.length===0){
+        return {...state,remaining_balance: 1000,
+          invested_balance: 0}
+      }else{
+      return { ...state, portfolio: action.payload.portfolio,
+         remaining_balance: action.payload.user.remaining_balance,
+        invested_balance: action.payload.user.invested_balance }
+      }
     }
     case "SELL_STOCK":{
 
       let new_portfolio = state.portfolio
         new_portfolio.map(s => {
           if(s.ticker === action.payload.ticker){
-            s.quantity -= action.payload.quantity
-            s.total_price -= action.payload.sell_price
+            s.quantity += action.payload.quantity
+            s.total_price += action.payload.total_price
           }})
       
       return { ...state, portfolio:new_portfolio,
-        remaining_balance: state.remaining_balance + action.payload.sell_price,
-        invested_balance: state.invested_balance - action.payload.sell_price,}
+        remaining_balance: state.remaining_balance - action.payload.total_price,
+        invested_balance: state.invested_balance + action.payload.total_price,}
     }
 
     case "PERSIST_DATA":{
@@ -82,22 +102,15 @@ export default (state = initialState, action) => {
       invested_balance: action.invested_balance}
     }
 
-    case "BUY_STOCK":{
-
-      
+    case "BUY_STOCK":{     
       if (state.remaining_balance >= action.payload.total_price){
 
         let flag = false
         let new_portfolio = state.portfolio
         new_portfolio.map(s => {
           if(s.ticker === action.payload.ticker){
-            console.log(s.total_price)
-            console.log(action.payload)
-            // console.log(s.quantity)
             s.quantity += action.payload.quantity
-            console.log(s.quantity)
             s.total_price += action.payload.total_price
-            console.log(s.total_price)
             flag = true
           }})
         return {
@@ -110,30 +123,10 @@ export default (state = initialState, action) => {
       }else{
         alert('Not Enough Balance')
       }
-
-   
     }
-
-    default: 
-      return state
     
+    default: 
+      return state  
   }
 
 }
-
-// ** buystock **
-// if (action.payload.total_price <= state.remaining_balance){
-  //   let stockIndex = state.portfolio.findIndex(s => s.ticker === action.payload.ticker)
-  //   let new_portfolio = state.portfolio
-  //   if (stockIndex !== -1) {
-  //     new_portfolio[stockIndex].quantity += action.payload.quantity
-  //     new_portfolio[stockIndex].total_price += action.payload.total_price
-  //   }else{
-  //     new_portfolio.push(action.payload)
-  //   }
-
-
-  //   return { ...state, portfolio: new_portfolio}
-  // }else{
-  //   alert('Not Enough Balance')
-  // }

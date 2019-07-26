@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authorize, :only => [:update]
 
 
   def index 
@@ -21,36 +21,29 @@ class UsersController < ApplicationController
     render json: { user: UserSerializer.new(user) }, status: :ok
   end
 
-  # , portfolio: user.portfolios 
-  # def profile
-  #   render json: { user: UserSerializer.new(current_user) }, status: :accepted
-  # end
+ 
 
-  # def edit 
-  #   render json: {message: "You have edited successfully"}
-  # end
-
-  def update
-    @user = User.find(params[:id])
-    @user.update(user_params)
-    render json: {user: @user}
-
+  def edit 
+    render json: {message: "You have edited successfully"}
   end
 
-
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    @user = current_user
+    # params[:user][:password]= @user[:password] if params[:user][:password].blank? 
     if @user.update(user_params)
       render json: @user
     else
-      render json: @user.errors.full_messages 
+      render json: {errors: @user.errors.full_messages }
     end
   end
+
+
 
   private 
 
   def user_params 
-    params.require(:user).permit(:username, :password, :firstname, :lastname, :remaining_balance, :invested_balance,:email, :portfolios)
+    params.require(:user).permit(:username, :firstname, :password, :lastname, :remaining_balance, :invested_balance,:email)
   end
 
 end

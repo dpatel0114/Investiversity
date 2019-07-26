@@ -6,8 +6,15 @@ class PortfoliosController < ApplicationController
   end
 
   def my_portfolio
-    @portfolio = Portfolio.find_by(user_id: params[:id])
-    render json: {port_array: [@portfolio]}
+    @user = Portfolio.find_by(user_id:params[:id])
+    if @user != nil
+        @portfolio = Portfolio.where('user_id=?',params[:id]).select('ticker as ticker, min(price) as price ,sum(total_price) as total_price, sum(quantity) as quantity').group('ticker')
+        render json: {portfolio: @portfolio,user: @user.user}
+
+    else
+      render json: {portfolio: [],user: []}
+
+    end
   end
 
   def create 
@@ -18,6 +25,17 @@ class PortfoliosController < ApplicationController
       render json: {errors: @portfolio.errors.full_messages}, status: :unprocessable_entity
     end
 
+  end
+
+  def show 
+    portfolio = Portfolio.find(params[:id])
+    render json: { portfolio: PortfolioSerializer.new(portfolio) }, 
+    status: :ok 
+  end 
+
+  def showAllPortfolio
+    portfolio = Portfolio.where(user_id: params[:user_id])
+    render json: { portfolio: portfolio }, status: :ok
   end
 
   def update

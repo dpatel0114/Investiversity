@@ -1,22 +1,53 @@
-import React, { Component } from 'react'
-import {Button, Image} from 'react-bootstrap'
+import React, { Component } from 'react';
+import { Button, Carousel } from 'react-bootstrap'
+
+
+
 
 export class Welcome extends Component {
   render() {
     return (
-      <div style ={{position: "relative"}}>
-       
-          <div>
-                  <Button name='login' href='/login' style={{position:"absolute", top: "50%", left:"50%"}}> Login </Button>                   
-                  <Button name='signup' href='/signup' style={{position:"absolute", top: "50%", left:"30%"}}> Sign Up </Button> 
-                  <Image
-              src="https://amppob.com/wp-content/uploads/2018/11/investment-stock.jpg"
-              style={{height: '100%', width: '100%', margin: '0%'}} 
-              /> 
-      </div>
+    //  <div></div>
+      
+      <div className="home">
+
+        <Carousel>
+          <Carousel.Item>
+            <img className="d-block w-100"
+                  src="holder.js/800x400?text=First slide&bg=373940"
+                  alt="First slide"/>
+            <Carousel.Caption>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="holder.js/800x400?text=Second slide&bg=282c34"
+              alt="Third slide"/>
+
+            <Carousel.Caption>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+
+
+
+
+
+        <Button className="waves-effect waves-light btn-large" name='login' href='/login' style={{position:"absolute", top: "50%", left:"55%"}}> Login </Button>                   
+        <Button className="waves-effect waves-light btn-large" name='signup' href='/signup' style={{position:"absolute", top: "50%", left:"40%"}}> Sign Up </Button>   
        </div>
+
+
     )
   }
 }
 
 export default Welcome;
+
+
