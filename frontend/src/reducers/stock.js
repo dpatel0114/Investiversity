@@ -61,7 +61,7 @@ export default (state = initialState, action) => {
     case "GET_PORTFOLIO":{
     
       if(action.payload.portfolio.length===0){
-        return {...state,remaining_balance: 100,
+        return {...state,remaining_balance: 1000,
           invested_balance: 0}
       }else{
       return { ...state, portfolio: action.payload.portfolio,
@@ -79,8 +79,8 @@ export default (state = initialState, action) => {
           }})
       
       return { ...state, portfolio:new_portfolio,
-        remaining_balance: state.remaining_balance + action.payload.total_price,
-        invested_balance: state.invested_balance - action.payload.total_price,}
+        remaining_balance: state.remaining_balance - action.payload.total_price,
+        invested_balance: state.invested_balance + action.payload.total_price,}
     }
 
     case "PERSIST_DATA":{

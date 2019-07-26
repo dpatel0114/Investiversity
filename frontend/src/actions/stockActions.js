@@ -253,8 +253,8 @@ export const  sellStock = (e, eachStock,balance)=> dispatch=> {
 
 
   let user ={
-    remaining_balance: balance.remaining_balance + stock.total_price,
-    invested_balance: balance.invested_balance - stock.total_price
+    remaining_balance: balance.remaining_balance - stock.total_price,
+    invested_balance: balance.invested_balance + stock.total_price
   }
   
 

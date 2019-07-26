@@ -44,7 +44,7 @@ console.log(props.eachStock)
           <h6> Amount Invested: {props.eachStock.total_price} </h6>
           {/* <button onClick={() => props.dispatch({type: "SELL_STOCK"})} class="btn btn-primary"data-toggle="button"> SELL </button> */}
           <Form onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
-            <Form.Control type='number' step='1' name='quantity' min='1'/>
+            <Form.Control type='number' step='1' name='quantity' min='1' required="required"/>
           <Button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </Button>
           </Form>
         </Card.Body>
