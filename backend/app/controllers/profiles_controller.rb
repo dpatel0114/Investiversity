@@ -6,13 +6,13 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = current_user
-    @profile.update(profile_params)
-    render json: {profile: @profile}
+    # @user = current_user
+    current_user.update(profile_params)
+    render json: {user: current_user}
   end
 
   def profile_params
-    params.require(:profile).permit(:username, :password, :firstname, :lastname, :email)
+    params.require(:profile).permit(:username, :password, :firstname, :lastname, :email, :remaining_balance, :invested_balance)
 
   end
 

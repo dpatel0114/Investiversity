@@ -6,8 +6,15 @@ class PortfoliosController < ApplicationController
   end
 
   def my_portfolio
-    @portfolio = Portfolio.find_by(user_id: params[:id])
-    render json: {port_array: [@portfolio]}
+    @user = Portfolio.find_by(user_id:params[:id])
+    if @user != nil
+        @portfolio = Portfolio.where('user_id=?',params[:id]).select('ticker as ticker, min(price) as price ,sum(total_price) as total_price, sum(quantity) as quantity').group('ticker')
+        render json: {portfolio: @portfolio,user: @user.user}
+
+    else
+      render json: {portfolio: [],user: []}
+
+    end
   end
 
   def create 

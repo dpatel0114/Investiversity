@@ -18,7 +18,7 @@ class  PortfolioContainer extends Component {
   }
 
 componentDidMount(){
-  fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`)
+  fetch(`http://localhost:3000/portfolio/my_portfolio/${localStorage.getItem('uid')}`)
   .then(res=> res.json())
   .then(data => {
     console.log(data)
@@ -26,8 +26,8 @@ componentDidMount(){
     //   portfolio: data.user.portfolios
     // })
     this.props.dispatch({
-      type: 'UPDATE_BALANCE',
-      payload: data.user
+      type: 'GET_PORTFOLIO',
+      payload: data
     })
 
   })

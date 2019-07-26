@@ -67,20 +67,28 @@ export default (state = initialState, action) => {
       return { ...state, bestMatches: action.payload}
     }
     case "GET_PORTFOLIO":{
-      return { ...state, portfolio: action.portfolio }
+    
+      if(action.payload.portfolio.length===0){
+        return {...state,remaining_balance: 1000,
+          invested_balance: 0}
+      }else{
+      return { ...state, portfolio: action.payload.portfolio,
+         remaining_balance: action.payload.user.remaining_balance,
+        invested_balance: action.payload.user.invested_balance }
+      }
     }
     case "SELL_STOCK":{
 
       let new_portfolio = state.portfolio
         new_portfolio.map(s => {
           if(s.ticker === action.payload.ticker){
-            s.quantity -= action.payload.quantity
-            s.total_price -= action.payload.sell_price
+            s.quantity += action.payload.quantity
+            s.total_price += action.payload.total_price
           }})
       
       return { ...state, portfolio:new_portfolio,
-        remaining_balance: state.remaining_balance + action.payload.sell_price,
-        invested_balance: state.invested_balance - action.payload.sell_price,}
+        remaining_balance: state.remaining_balance - action.payload.total_price,
+        invested_balance: state.invested_balance + action.payload.total_price,}
     }
 
     case "PERSIST_DATA":{
