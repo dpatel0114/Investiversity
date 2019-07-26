@@ -22,15 +22,10 @@ class Allcontainer extends Component {
       this.state = { showPopup: false };  
       }  
       
-      //   togglePopup() {  
-      // this.setState({  
-      //      showPopup: !this.state.showPopup  
-      // })
-    // console.log(this.props)
+      
     render() {
-      // console.log(this.props)
     return (
-      <div>
+      <> 
        
         {/* <NavBar />  */}
        
@@ -38,29 +33,32 @@ class Allcontainer extends Component {
             {/* <NavBar/>  */}
             <Route path='/' component={NavBar}/> 
           
-            <Container>
+            
             <Switch>
-                  {this.props.logged || localStorage.getItem("token") !== null? 
+            <Container>
+                  {this.props.logged || localStorage.getItem("token") !== null
+                  ? 
                    <Route exact path='/dashboard' component={DashboardContainer}/>
                   :
+                  // null}
                    <Route exact path='/' component={Welcome} />}
-            
-           
-
+          
                   <Route exact path='/login' component={Login}/> 
                   <Route exact path='/profile' component={Profile}/>
 
                   {localStorage.getItem('token') !== null ? null :
-                   <Route exact path='/signup' component={SignUp}/>    }
+                   <Route exact path='/signup' component={SignUp}/>    
+                   }
+            </Container>
                   
  
             </Switch>
-            </Container>
+            
 
           </Router>
         
 
-      </div>
+      </>
     )
   }
 }

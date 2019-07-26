@@ -1,27 +1,11 @@
 import React from 'react';
-import { Container, Card, Form} from 'react-bootstrap';
+import { Container, Card, Form, Modal} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 // import Popover from './Popup';
 
 
 function StockCard(props) {
-
-
-// export default()=> (
-//     <Popup trigger={<button> Trigger </button>} position="right center">
-//       <div>
-//         Popup here
-//       </div>
-//     </Popup>
-//   )
-
-
-// handlePopup(e){
-// consolelog(e)
-
-// }
-
 
 function dispatchAndUpdate(e,eachStock){
     props.buyStock(e, eachStock)
@@ -111,30 +95,68 @@ function dispatchAndUpdate(e,eachStock){
 
 // }
 
+  const showModal= (e)=> {
+    console.log(e)
+
+  }
+
+
   return (
-    <Container>
-      <Card bg='light'  style={{width: '60%', margin:'5px'}}>
-        <Card.Body>
+    // <Container>
+    <div class="card small blue-grey darken-1">
+    {/* <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          </div> */}
+      {/* <Card bg='light'  style={{width: '150%', margin:'5px'}}> */}
+        {/* <Card.Body> */}
     
           <h5> Ticker: {props.eachStock['01. symbol']}</h5>
           <h6> Price: {props.eachStock['05. price']} </h6>
        
            <Form onSubmit={(e)=>dispatchAndUpdate(e,props.eachStock)}> <label> Quantity: </label>
            <input name="quantity" type="number" step="1" style={{width:'3rem'}} min='1'></input><br/>
-           {/* <Row> */}
+          
            <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}}> Buy </button>
 
-           <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}} 
-          //  onClick={e=> this.props.popUpBox(this.props)}
-           > Info </button>
-           {/* </Row> */}
+           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" 
+          onclick={(e) => props.showModal}>
+            Info
+          </button>
            </Form>
+           {/* <a class="waves-effect waves-light btn-large">Buy</a> */}
+          {/* wokring one !// */}
+
+          {/* <button class="btn btn-primary" data-toggle="button" style={{margin: '3px'}} onClick={e=> this.props.popUpBox(this.props)}> Info </button>  */}
+          
+
+          {/* <a class="waves-effect waves-light btn modal-trigger" href="#modal1" >Info</a> */}
+        
+          
+        
+
+          <Modal
+          // onHide={this.closeModal}
+          // show={true}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered>
+
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">Log
+            </Modal.Title>
+          </Modal.Header>
+          </Modal>
+           
+           {/* </Card.Body> */}
+
+        {/* </Card>
+      </Container> */}
+     
+      </div>
+          
            
             
             
-      </Card.Body>
-      </Card>
-      </Container>
      
   )
 }
