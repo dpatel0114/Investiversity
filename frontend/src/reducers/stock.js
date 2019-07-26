@@ -12,7 +12,9 @@ const initialState = {
   logged: false,
   bestMatches:[],
   portfolio: [], 
-  sell_stock: []
+  sell_stock: [],
+  showModal: false,
+  infoId: 0
 
 }
 
@@ -32,10 +34,16 @@ export default (state = initialState, action) => {
     // case "CHANGE_PASS":
     //   return { ...state, user: {...state.user, password: action.password}}
 
-    case "LOGOUT":{
+    case "LOGOUT":
       return {...state, logged: action.logged}
+
+    case "OPEN_MODAL": {
+      return {...state, showModal: action.showModal, infoId: action.infoId}
     }
-    
+
+    case "CLOSE_MODAL": {
+      return { ...state, showModal: false, infoId: 0 }
+    }
 
     case "LOGIN_ERROR":
       return { ...state, error: action.error}

@@ -36,8 +36,14 @@ console.log(props.eachStock)
 
   return (
 
-      <Card bg='light' style={{width:'60%', margin: '5px'}}>
-        <Card.Body>
+      // <Card bg='light' style={{width:'100%', margin: '5px'}}>
+      //   <Card.Body>
+        // <div class="card blue-grey darken-1">
+        <div class="card small blue-grey darken-1">
+
+        {/* <div class="card-content white-text">
+          <span class="card-title">Stock Bought</span>
+          </div> */}
           <h5> Ticker: {props.eachStock.ticker}</h5>
           <h6> Price: {props.eachStock.price} </h6>
           <h6> Quantity: {props.eachStock.quantity} </h6>
@@ -47,8 +53,10 @@ console.log(props.eachStock)
             <Form.Control type='number' step='1' name='quantity' min='1' required="required"/>
           <Button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </Button>
           </Form>
-        </Card.Body>
-     </Card>
+          </div>
+          // </div>
+    //     </Card.Body>
+    //  </Card>
 
      
   )
