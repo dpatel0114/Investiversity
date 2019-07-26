@@ -44,7 +44,7 @@ class NavBar extends Component{
 
           <Nav.Link href="/dashboard">Home</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
-          <Nav.Link href='/'> History</Nav.Link>
+          <Nav.Link href='/acchistory'> History</Nav.Link>
         {/* </Nav> */}
 
         {/* <a class="waves-effect waves-teal btn-flat" href='/profile'>Profile</a> */}

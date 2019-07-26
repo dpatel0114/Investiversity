@@ -27,6 +27,17 @@ class PortfoliosController < ApplicationController
 
   end
 
+  def show 
+    portfolio = Portfolio.find(params[:id])
+    render json: { portfolio: PortfolioSerializer.new(portfolio) }, 
+    status: :ok 
+  end 
+
+  def showAllPortfolio
+    portfolio = Portfolio.where(user_id: params[:user_id])
+    render json: { portfolio: portfolio }, status: :ok
+  end
+
   def update
     @portfolio = Portfolio.find(params[:id])
     @portfolio.update(portfolio_params)

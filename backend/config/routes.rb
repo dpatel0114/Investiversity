@@ -10,7 +10,7 @@ get '/profile/edit', to: "profiles#edit"
 post '/profile/update', to: "profiles#update"
 patch '/profile/update', to: "profiles#update"
 get '/profile/update', to: "profile#update"
-
+get '/portfolio/show_all', to: "portfolios#showAllPortfolio"
 
 get '/portfolio/my_portfolio/:id', to:"portfolios#my_portfolio"
 

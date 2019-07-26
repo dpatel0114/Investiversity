@@ -8,6 +8,7 @@ import { Container } from 'react-bootstrap';
 import DashboardContainer from './DashboardContainer';
 import Welcome from '../components/Welcome';
 import Profile from './Profile';
+import PortfolioHistory from '../components/PortfolioHistory'
 // import Popup from '../components/Popup'
 class Allcontainer extends Component {
  
@@ -35,7 +36,7 @@ class Allcontainer extends Component {
           
             
             <Switch>
-            <Container>
+
                   {this.props.logged || localStorage.getItem("token") !== null
                   ? 
                    <Route exact path='/dashboard' component={DashboardContainer}/>
@@ -49,8 +50,8 @@ class Allcontainer extends Component {
                   {localStorage.getItem('token') !== null ? null :
                    <Route exact path='/signup' component={SignUp}/>    
                    }
-            </Container>
-                  
+
+                  <Route exact path='/acchistory' component={PortfolioHistory}/>
  
             </Switch>
             

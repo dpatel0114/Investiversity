@@ -13,6 +13,9 @@ const all_symbols = ['MSFT']
 
 
 
+
+
+
 export const getStocks = () => dispatch => {
     
    all_symbols.map(symbl => 
@@ -48,17 +51,14 @@ export const handleChange = (e) => dispatch=>{
 //       </Popup>
 //     }
 
-// export const getPortfolio =()=> dispatch => {
-//   fetch(`http://localhost:3000/portfolio/user?id=${id}`)
-//   .then(res => res.json())
-//   .then(data =>   
-//     {       localStorage.setItem('my_portfolio',JSON.stringify(data.portfolio))
-
-//       // console.log(data)
-//       // dispatch({ type: 'sGET_PORTFOLIO',portfolio: data.portfolio })
-//     }
-//     )
-// }
+export const getPortfolio =()=> dispatch => {
+  fetch('http://localhost:3000/portfolio/show_all?user_id=1')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({ type: "PORT_HISTORY", data: data.portfolio })
+    })
+}
 
 
 // export const getUserWithId =()=> dispatch => {

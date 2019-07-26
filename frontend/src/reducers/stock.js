@@ -14,7 +14,8 @@ const initialState = {
   portfolio: [], 
   sell_stock: [],
   showModal: false,
-  infoId: 0
+  infoId: 0,
+  porthistory: []
 
 }
 
@@ -37,13 +38,16 @@ export default (state = initialState, action) => {
     case "LOGOUT":
       return {...state, logged: action.logged}
 
-    case "OPEN_MODAL": {
-      return {...state, showModal: action.showModal, infoId: action.infoId}
-    }
+    case "PORT_HISTORY":
+      return {...state, porthistory: action.data}
 
-    case "CLOSE_MODAL": {
-      return { ...state, showModal: false, infoId: 0 }
-    }
+    // case "OPEN_MODAL": {
+    //   return {...state, showModal: action.showModal, infoId: action.infoId}
+    // }
+
+    // case "CLOSE_MODAL": {
+    //   return { ...state, showModal: false, infoId: 0 }
+    // }
 
     case "LOGIN_ERROR":
       return { ...state, error: action.error}
