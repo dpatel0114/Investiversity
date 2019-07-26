@@ -9,7 +9,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 // import 'semantic-ui-css';
-import 'semantic-ui/dist/semsantic.min.css'
+// import 'semantic-ui/dist/semsantic.min.css'
 
 
 

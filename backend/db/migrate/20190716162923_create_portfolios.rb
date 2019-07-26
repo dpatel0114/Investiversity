@@ -1,7 +1,7 @@
 class CreatePortfolios < ActiveRecord::Migration[5.2]
   def change
     create_table :portfolios do |t|
-      t.integer :price 
+      t.float :price 
       t.string :ticker
       t.integer :quantity
       t.float :total_price

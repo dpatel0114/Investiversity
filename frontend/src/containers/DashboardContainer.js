@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import StockContainer from './StockContainer'
 import  PortfolioContainer from './PortfolioContainer'
 import BalanceContainer from './BalanceContainer';
@@ -25,12 +26,20 @@ export class DashboardContainer extends Component {
  
     return (
       <div>
-        
+      {/* <div>
+        <Form inline onSubmit={this.props.searchStock} class="left hide-on-med-and-down">
+          <FormControl name="search" type="text" placeholder="Search" className="mr-sm-2" style={{width:"150px"}}/>       
+          <Button variant="outline-light" type="submit">Search</Button>
+        </Form>
+      </div> */}
+
+      <div >
         <Row>
           <Col><StockContainer/></Col>
           <Col><PortfolioContainer/></Col>
           <Col><BalanceContainer/></Col>
         </Row>
+      </div>
       </div>
     )
   }

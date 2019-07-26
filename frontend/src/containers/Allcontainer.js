@@ -49,9 +49,12 @@ class Allcontainer extends Component {
 
                   {localStorage.getItem('token') !== null ? null :
                    <Route exact path='/signup' component={SignUp}/>    
-                   }
+                    }
 
-                  <Route exact path='/acchistory' component={PortfolioHistory}/>
+                {/* {this.props.logged || localStorage.getItem("token") !== null
+                ? */}
+                <Route exact path='/acchistory' component={PortfolioHistory}/>
+               {/* : null}  */}
  
             </Switch>
             

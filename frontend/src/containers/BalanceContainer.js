@@ -10,14 +10,14 @@ export class BalanceContainer extends Component {
         <Container>
       <Card bg='info' text='white' style={{width: '100%', height:'20%', margin:'5px'}}>
         <Card.Body>
-           <h5>Remaining Balance </h5> $ {this.props.stock.remaining_balance}
+           <h5>Remaining Balance </h5> $ {Math.round(this.props.stock.remaining_balance, 2)}
            
         </Card.Body>
       </Card>
      
-      <Card bg='success' text='white' style={{width: '100%%', height:'20%', margin:'5px'}}>
+      <Card bg='success' text='white' style={{width: '100%', height:'20%', margin:'5px'}}>
         <Card.Body>        
-            <h5>Invested Balance </h5> $ {this.props.stock.invested_balance}
+            <h5> Invested Balance </h5> $ {Math.round(this.props.stock.invested_balance, 2)}
             
         </Card.Body>
       </Card>
