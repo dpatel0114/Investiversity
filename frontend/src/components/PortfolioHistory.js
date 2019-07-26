@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Card } from 'react-bootstrap';
+import { Card, Table } from 'react-bootstrap';
 import { getPortfolio } from '../actions/stockActions';
 import { connect } from 'react-redux';
-import 'semantic-ui-css'
+// import 'semantic-ui-css'
 
 export class PortfolioHistory extends Component {
 
@@ -12,16 +12,15 @@ export class PortfolioHistory extends Component {
     this.props.getPortfolio()
   }
 
-  
   render() {
-    console.log(this.props)
+    console.log("histroty", this.props.user.firstname)
     return (
       <div>
-        
-        <table>
+        <h4> { this.props.user.firstname } History of Stocks </h4>
+        <Table>
             <thead>
               <tr style={{"background-color": "rgb(208, 171, 219)"}}>
-                <th>#</th>
+                {/* <th>#</th> */}
                 <th> Price </th>
                 <th> Quantity </th>
                 <th> Ticker </th>
@@ -35,8 +34,8 @@ export class PortfolioHistory extends Component {
             <tbody >
               {this.props.porthistory.map(p=> {
                 return(
-                  <tr class="positive" >
-                  <td>#</td>
+                  <tr class="positive">
+                  {/* <td>#</td> */}
                   <td>{p.price}</td>
                   <td>{p.quantity}</td>
                   <td>{p.ticker}</td>
@@ -49,7 +48,7 @@ export class PortfolioHistory extends Component {
               
             </tbody>
 
-          </table>
+          </Table>
           
                 
           {/* pink:      rgb(208, 171, 219)

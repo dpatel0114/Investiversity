@@ -14,14 +14,14 @@ function sellAndUpdate(e,eachStock,balance) {
   }
   
 }  
-console.log(props.eachStock)
+// console.log(props.eachStock)
 
 
   return (
 
-      <Card bg='light' style={{width:'100%', margin: '5px'}}>
+      <Card  border='dark' bg='light'style={{width:'50%', margin: '5px'}}>
        <Card.Body>
-          <h5> Ticker: {props.eachStock.ticker}</h5>
+          <h5>  {props.eachStock.ticker}   </h5>
           <h6> Price: {props.eachStock.price} </h6>
           <h6> Quantity: {props.eachStock.quantity} </h6>
           <h6> Amount Invested: {props.eachStock.total_price} </h6>

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_16_162923) do
   enable_extension "plpgsql"
 
   create_table "portfolios", force: :cascade do |t|
-    t.integer "price"
+    t.float "price"
     t.string "ticker"
     t.integer "quantity"
     t.float "total_price"
