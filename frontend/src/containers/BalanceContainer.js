@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Container, Card } from 'react-bootstrap';
 import { connect } from 'react-redux';
-
+import { Doughnut, Bar } from 'react-chartjs-2'
+import Chart from '../components/Chart'
 
 export class BalanceContainer extends Component {
   render() {
     return (
+
       <div>
         <div>
                 {/* <Card bg='info' text='white' style={{width: '100%', height:'20%', margin:'5px'}}> */}
@@ -31,7 +33,17 @@ export class BalanceContainer extends Component {
       </div>
       
       </div>
+
+<div className="card">
+            <div className="card-header text-center" >
+             Balance History 
+            </div>
+            <div className="card-body">
+                  <Chart/>
+        </div>
+        </div>
       </div>
+
     )
   }
 }

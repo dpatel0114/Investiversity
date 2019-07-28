@@ -18,6 +18,7 @@ function sellAndUpdate(e,eachStock,balance) {
 
 
   return (
+
 <div class="card text-white bg-secondary border-light col-md-6">
         <div class="card-body">
        {/* <Card  border='dark' bg='light'style={{width:'50%', margin: '5px'}}> */}
@@ -38,6 +39,7 @@ function sellAndUpdate(e,eachStock,balance) {
         {/* </Card> */}
         </div>
         </div>
+
 
      
   )

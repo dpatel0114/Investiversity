@@ -29,10 +29,12 @@ export class DashboardContainer extends Component {
     
 
       <div>
+
     <div class="alert alert-dismissible alert-success">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
     </div>
+
         <Row>
           <div class="col col-lg-5"><StockContainer/></div>
           <div class="col"><PortfolioContainer/></div>

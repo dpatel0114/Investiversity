@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Card, Form, Fade, Modal ,Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
+import posed from 'react-pose'
 // import Popover from './Popup';
 
 
@@ -21,6 +22,7 @@ function StockCard(props) {
 
 
 
+
     
       <div class="card text-white bg-secondary border-light" >
         <div class="card-body">
@@ -30,6 +32,7 @@ function StockCard(props) {
           <h6>  {props.eachStock['ticker']}  &nbsp; <i class="fas fa-info-circle float-right fa-lg" onClick={handleShow}></i>    </h6>
           <h6> <i class="fas fa-dollar-sign"></i>  {props.eachStock['close']} </h6>   
               
+
   
            <form class="form-inline" onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
 
@@ -41,16 +44,18 @@ function StockCard(props) {
            </form>
            
             
+
       </div>
       {/* </Card.Body> */}
       {/* </Card> */}
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{background: "rgb(169, 198, 205)", border: "double"}}>
         <Modal.Header closeButton>
 
           <Modal.Title>{props.eachStock['01. symbol']} Weekly Summary </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ border: "double"}}>
           <img style={{width:"40%", height:"20%"}}src="https://static.seekingalpha.com/uploads/2016/4/7/17225882-14600640903610125_origin.png"/>
+
           <h6>Price: {props.eachStock['05. price']}</h6>
           <h6>High Price: {props.eachStock['03. high']}</h6>
           <h6>Low Price: {props.eachStock['04. low']}</h6>
