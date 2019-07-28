@@ -31,7 +31,7 @@ export const getStocks = () => dispatch => {
 
 
 export const handleChange = (e) => dispatch=>{
-  // console.log(e.target.name)
+
   e.target.name ==='username'?
   dispatch(
     { type: 'CHANGE_USER', 'username': e.target.value}
@@ -43,13 +43,6 @@ export const handleChange = (e) => dispatch=>{
   
 }
 
-// **export const popup =()=> dispatch=> {
-//       <Popup trigger={<button> Trigger </button>} position="right center">
-//         <div>
-//           Popup here
-//         </div>
-//       </Popup>
-//     }
 
 export const getPortfolio =(e)=> dispatch => {
   // e.preventDefault()
@@ -76,7 +69,6 @@ export const getPortfolio =(e)=> dispatch => {
 export const handleSignUp=(e)=> dispatch => {
     
   e.preventDefault()
-  // console.log(e.target.firstname.value)
 
   let newUserObject ={
     firstname: e.target.firstname.value,
@@ -159,9 +151,6 @@ export const handleSignUp=(e)=> dispatch => {
       localStorage.setItem('invested_balance', data.user.invested_balance)
       
       dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
-      // debugger
-     
-
     }
   })
 
@@ -176,9 +165,9 @@ export const buyStock = (e, eachStock, balance)=> dispatch=> {
   let stock ={
     price: parseFloat(eachStock['05. price']),
     ticker: eachStock['01. symbol'],
-    quantity: parseFloat(e.target.quantity.value),
+    quantity: parseInt(e.target.quantity.value),
     total_price: parseFloat(eachStock['05. price'] * e.target.quantity.value),
-    user_id: parseFloat(localStorage.uid)
+    user_id: parseInt(localStorage.uid)
   }
 
 if(balance.remaining_balance < stock.total_price){
@@ -257,19 +246,16 @@ export const  sellStock = (e, eachStock,balance)=> dispatch=> {
   let stock ={
     price: parseFloat(eachStock.price),
     ticker: eachStock.ticker,
-    quantity: -parseFloat(e.target.quantity.value),
+    quantity: -parseInt(e.target.quantity.value),
     total_price: -parseFloat(eachStock.price * e.target.quantity.value),
-    user_id: parseFloat(localStorage.uid)
+    user_id: parseInt(localStorage.uid)
 
   }
-
 
   let user ={
     remaining_balance: balance.remaining_balance - stock.total_price,
     invested_balance: balance.invested_balance + stock.total_price
   }
-  
-
   
   fetch(`http://localhost:3000/portfolios`,{
     method: "POST",

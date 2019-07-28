@@ -9,7 +9,7 @@ import DashboardContainer from './DashboardContainer';
 import Welcome from '../components/Welcome';
 import Profile from './Profile';
 import PortfolioHistory from '../components/PortfolioHistory'
-// import Popup from '../components/Popup'
+import AppChart from '../components/Chart'
 class Allcontainer extends Component {
  
 //  componentDidMount(){
@@ -55,6 +55,8 @@ class Allcontainer extends Component {
                 ? */}
                 <Route exact path='/acchistory' component={PortfolioHistory}/>
                {/* : null}  */}
+
+               <Route exact path='/pie' component={<AppChart/>}/>
  
             </Switch>
             

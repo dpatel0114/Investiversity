@@ -33,6 +33,12 @@ export class DashboardContainer extends Component {
         </Form>
       </div> */}
 
+      {/* <div className="jumbotron text-center general">
+        <div className="container">
+            <h1 className="jumbotron-heading"> Explore Stocks </h1>
+            <p className="lead text-muted"> Select Below </p>
+        </div>
+      </div> */}
       <div >
         <Row>
           <Col><StockContainer/></Col>

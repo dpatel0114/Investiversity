@@ -7,8 +7,7 @@ import { connect } from 'react-redux';
 export class PortfolioHistory extends Component {
 
 
-  componentDidMount(){
-  
+  componentDidMount(){ 
     this.props.getPortfolio()
   }
 
