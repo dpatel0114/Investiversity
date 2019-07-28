@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './store';
-import 'materialize-css'; // It installs the JS asset only
-import 'materialize-css/dist/css/materialize.min.css';
+// import 'materialize-css'; // It installs the JS asset only
+// import 'materialize-css/dist/css/materialize.min.css';
+import './bootstrap.min.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+// import '@blueprintjs/icons/lib/css/blueprint-icons.css'
+// import '@blueprintjs/core/lib/css/blueprint.css'
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 // import 'semantic-ui-css';

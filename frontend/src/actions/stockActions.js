@@ -10,6 +10,7 @@ const id = localStorage.uid
 // const all_symbols = ['AAPL','MSFT','V',' GOOGL', 'AMZN']
 // const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
 const all_symbols = ['MSFT']
+const NEW_API= `https://api.intrinio.com/prices/exchange?identifier=USCOMP&price_date=2019-07-25&api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
 
 
 
@@ -19,11 +20,12 @@ const all_symbols = ['MSFT']
 export const getStocks = () => dispatch => {
     
    all_symbols.map(symbl => 
-    fetch(API)
+    // fetch(API)
     // fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`)
+    fetch(NEW_API)
     .then(res => res.json())
     .then(data => 
-      dispatch({ type: "GET_STOCKS", data: data })
+      dispatch({ type: "GET_STOCKS", data: data.data })
       )
     )
 }
@@ -31,7 +33,7 @@ export const getStocks = () => dispatch => {
 
 
 export const handleChange = (e) => dispatch=>{
-  // console.log(e.target.name)
+
   e.target.name ==='username'?
   dispatch(
     { type: 'CHANGE_USER', 'username': e.target.value}
@@ -43,13 +45,6 @@ export const handleChange = (e) => dispatch=>{
   
 }
 
-// **export const popup =()=> dispatch=> {
-//       <Popup trigger={<button> Trigger </button>} position="right center">
-//         <div>
-//           Popup here
-//         </div>
-//       </Popup>
-//     }
 
 export const getPortfolio =(e)=> dispatch => {
   // e.preventDefault()
@@ -76,7 +71,6 @@ export const getPortfolio =(e)=> dispatch => {
 export const handleSignUp=(e)=> dispatch => {
     
   e.preventDefault()
-  // console.log(e.target.firstname.value)
 
   let newUserObject ={
     firstname: e.target.firstname.value,
@@ -159,9 +153,6 @@ export const handleSignUp=(e)=> dispatch => {
       localStorage.setItem('invested_balance', data.user.invested_balance)
       
       dispatch({type:'LOGIN_SUCCESS', user: data.user, logged: true, portfolio: data.user.portfolios})
-      // debugger
-     
-
     }
   })
 
@@ -174,11 +165,13 @@ export const buyStock = (e, eachStock, balance)=> dispatch=> {
   // console.log(e.target)
   
   let stock ={
-    price: parseFloat(eachStock['05. price']),
-    ticker: eachStock['01. symbol'],
+
+    price: parseFloat(eachStock['close']),
+    ticker: eachStock['ticker'],
     quantity: parseFloat(e.target.quantity.value),
-    total_price: parseFloat(eachStock['05. price'] * e.target.quantity.value),
+    total_price: parseFloat(eachStock['close'] * e.target.quantity.value),
     user_id: parseFloat(localStorage.uid)
+
   }
 
 if(balance.remaining_balance < stock.total_price){
@@ -257,19 +250,16 @@ export const  sellStock = (e, eachStock,balance)=> dispatch=> {
   let stock ={
     price: parseFloat(eachStock.price),
     ticker: eachStock.ticker,
-    quantity: -parseFloat(e.target.quantity.value),
+    quantity: -parseInt(e.target.quantity.value),
     total_price: -parseFloat(eachStock.price * e.target.quantity.value),
-    user_id: parseFloat(localStorage.uid)
+    user_id: parseInt(localStorage.uid)
 
   }
-
 
   let user ={
     remaining_balance: balance.remaining_balance - stock.total_price,
     invested_balance: balance.invested_balance + stock.total_price
   }
-  
-
   
   fetch(`http://localhost:3000/portfolios`,{
     method: "POST",

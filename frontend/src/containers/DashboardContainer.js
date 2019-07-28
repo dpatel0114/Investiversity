@@ -25,22 +25,23 @@ export class DashboardContainer extends Component {
   // console.log(this.props)
  
     return (
-      <div>
-      {/* <div>
-        <Form inline onSubmit={this.props.searchStock} class="left hide-on-med-and-down">
-          <FormControl name="search" type="text" placeholder="Search" className="mr-sm-2" style={{width:"150px"}}/>       
-          <Button variant="outline-light" type="submit">Search</Button>
-        </Form>
-      </div> */}
 
-      <div >
+    
+
+      <div>
+
+    <div class="alert alert-dismissible alert-success">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
+    </div>
+
         <Row>
-          <Col><StockContainer/></Col>
-          <Col><PortfolioContainer/></Col>
-          <Col><BalanceContainer/></Col>
+          <div class="col col-lg-5"><StockContainer/></div>
+          <div class="col"><PortfolioContainer/></div>
+         <div class="col"> <BalanceContainer/> </div>
         </Row>
       </div>
-      </div>
+
     )
   }
 }

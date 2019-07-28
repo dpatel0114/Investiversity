@@ -7,8 +7,7 @@ import { connect } from 'react-redux';
 export class PortfolioHistory extends Component {
 
 
-  componentDidMount(){
-  
+  componentDidMount(){ 
     this.props.getPortfolio()
   }
 
@@ -17,9 +16,9 @@ export class PortfolioHistory extends Component {
     return (
       <div>
         <h4> { this.props.user.firstname } History of Stocks </h4>
-        <Table>
+        <table class="table table-hover">
             <thead>
-              <tr style={{"background-color": "rgb(208, 171, 219)"}}>
+              <tr>
                 {/* <th>#</th> */}
                 <th> Price </th>
                 <th> Quantity </th>
@@ -34,7 +33,7 @@ export class PortfolioHistory extends Component {
             <tbody >
               {this.props.porthistory.map(p=> {
                 return(
-                  <tr class="positive">
+                  <tr class={p.total_price < 0 ?  "table-danger": "table-success"}>
                   {/* <td>#</td> */}
                   <td>{p.price}</td>
                   <td>{p.quantity}</td>
@@ -48,7 +47,7 @@ export class PortfolioHistory extends Component {
               
             </tbody>
 
-          </Table>
+          </table>
           
                 
           {/* pink:      rgb(208, 171, 219)
