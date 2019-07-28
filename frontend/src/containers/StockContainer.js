@@ -52,14 +52,11 @@ class StockContainer extends Component {
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
 
-      this.state.isVisible && [
-        <div key="shade" className="shade" />,
-        <div key="modal" className="modal" />
-      ], 
-      <div>
-        <Box className="box" >
-          {this.props.stock.items.map(s=> <StockCard eachStock={s['Global Quote']}/>)} 
-          </Box> 
+      <div class="card-columns">
+        <div>
+          {this.props.stock.items.map(s=> <StockCard eachStock={s}/>)}   
+          </div>
+
       </div>
     )
   }

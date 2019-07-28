@@ -22,41 +22,40 @@ function StockCard(props) {
 
 
 
-    <>
 
+    
+      <div class="card text-white bg-secondary border-light" >
+        <div class="card-body">
+        {/* <Card.Body> */}
 
-    <div className="card col-md-7 text-center float-left">
-      {/* <Card border='dark' bg='light'  style={{width: '50%', margin:'5px'}}> */}
-        <Card.Body>
+    
+          <h6>  {props.eachStock['ticker']}  &nbsp; <i class="fas fa-info-circle float-right fa-lg" onClick={handleShow}></i>    </h6>
+          <h6> <i class="fas fa-dollar-sign"></i>  {props.eachStock['close']} </h6>   
+              
 
-          <div className="card-text ">
-            {props.eachStock['01. symbol']} <br/>
-          Price: {props.eachStock['05. price']} 
-          </div>
   
-           <Form onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}> <label style={{fontSize: '1rem'}}> Quantity: </label>
-           <Form.Control name="quantity" type="number" step="1" style={{width:'9rem'}} min='1' required="required"/>
+           <form class="form-inline" onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
+
+           <Form.Control name="quantity" type="number" step="1" style={{width:'5.5rem'}} min='1' required="required"
+           placeholder="Stocks"/> 
+           <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> <i class="fas fa-shopping-cart"></i> &nbsp;Buy </Button>
          
-           <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> Buy </Button>
-         
-           <Button  data-toggle="button" style={{margin: '3px'}} onClick={handleShow}> Info </Button>
-           </Form>
+           {/* <Button  data-toggle="button" style={{margin: '3px'}} onClick={handleShow}> Info </Button> */}
+           </form>
            
             
-            
-          </Card.Body>
+
       </div>
+      {/* </Card.Body> */}
       {/* </Card> */}
-
-         {/* out blue: "rgb(169, 198, 205)"
-         in green: "rgb(167, 209, 191)" */}
-
       <Modal show={show} onHide={handleClose} style={{background: "rgb(169, 198, 205)", border: "double"}}>
-        <Modal.Header closeButton >
-          <Modal.Title >{props.eachStock['01. symbol']} Weekly Summary </Modal.Title>
-        </Modal.Header >
+        <Modal.Header closeButton>
+
+          <Modal.Title>{props.eachStock['01. symbol']} Weekly Summary </Modal.Title>
+        </Modal.Header>
         <Modal.Body style={{ border: "double"}}>
-          {/* <img style={{width:"40%", height:"20%"}}src="https://static.seekingalpha.com/uploads/2016/4/7/17225882-14600640903610125_origin.png"/> */}
+          <img style={{width:"40%", height:"20%"}}src="https://static.seekingalpha.com/uploads/2016/4/7/17225882-14600640903610125_origin.png"/>
+
           <h6>Price: {props.eachStock['05. price']}</h6>
           <h6>High Price: {props.eachStock['03. high']}</h6>
           <h6>Low Price: {props.eachStock['04. low']}</h6>
@@ -71,9 +70,12 @@ function StockCard(props) {
           </Button>
         </Modal.Footer>
       </Modal>
+      </div>
+
+      
 
 
-    </>
+    
 
   )
 }

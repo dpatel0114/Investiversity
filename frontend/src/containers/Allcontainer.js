@@ -26,7 +26,7 @@ class Allcontainer extends Component {
       
     render() {
     return (
-      <> 
+      <div> 
        
         {/* <NavBar />  */}
        
@@ -64,7 +64,7 @@ class Allcontainer extends Component {
           </Router>
         
 
-      </>
+      </div>
     )
   }
 }

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@blueprintjs/core": "^3.17.1",
     "bootstrap": "^4.3.1",
     "bootstrap-material-design": "^4.1.1",
     "chart.js": "^2.8.0",
@@ -17,10 +18,10 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-spring": "^8.0.27",
     "reactjs-popup": "^1.4.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "semantic-ui": "^2.4.2",
     "semantic-ui-css": "^2.4.1"
   },
   "scripts": {
@@ -43,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0"
   }
 }

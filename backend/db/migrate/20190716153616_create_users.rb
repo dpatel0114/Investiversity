@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :lastname
       t.string :username
       t.string :email
-      t.float :remaining_balance, :default => 1000
+      t.float :remaining_balance, :default => 2000
       t.float :invested_balance, :default => 0
       t.string :password_digest
 
