@@ -34,9 +34,9 @@ export class DashboardContainer extends Component {
       Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
     </div>
         <Row>
-          <Col><StockContainer/></Col>
-          <Col><PortfolioContainer/></Col>
-          <Col><BalanceContainer/></Col>
+          <div class="col col-lg-5"><StockContainer/></div>
+          <div class="col"><PortfolioContainer/></div>
+         <div class="col"> <BalanceContainer/> </div>
         </Row>
       </div>
 

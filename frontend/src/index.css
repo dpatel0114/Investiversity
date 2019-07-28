@@ -17,3 +17,10 @@ background-size: cover;
 background-position: center;
 }
 /* https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZjVLtJDgMTOExfMHsTZuT4G5cAmaRT0N0vnoVbblrTTKkwSOb */
+.glyphicon{
+  position:relative;top:1px;display:inline-block;
+  font-family:'Glyphicons Halflings';
+  font-style:normal;font-weight:400;
+  line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+
+.glyphicon-info-sign:before{content:"\e086"}

@@ -26,7 +26,7 @@ class NavBar extends Component{
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="/dashboard"> <i class="fas fa-home"></i> &nbsp; Home <span class="sr-only">(current)</span></a>
             </li>
 
           {localStorage.token ?
@@ -47,7 +47,7 @@ class NavBar extends Component{
 
           {this.props.logged || localStorage.getItem("token") !== null ?
             <li class="nav-item">
-          <a class="nav-link" onClick={(e)=>this.props.handleLogout(e, this.props.history)}>Logout</a>
+          <a class="nav-link" onClick={(e)=>this.props.handleLogout(e, this.props.history)}> <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
           </li>
           :
           null}

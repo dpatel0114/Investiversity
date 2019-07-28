@@ -10,6 +10,7 @@ const id = localStorage.uid
 // const all_symbols = ['AAPL','MSFT','V',' GOOGL', 'AMZN']
 // const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
 const all_symbols = ['MSFT']
+const NEW_API= `https://api.intrinio.com/prices/exchange?identifier=USCOMP&price_date=2019-07-25&api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
 
 
 
@@ -19,11 +20,12 @@ const all_symbols = ['MSFT']
 export const getStocks = () => dispatch => {
     
    all_symbols.map(symbl => 
-    fetch(API)
+    // fetch(API)
     // fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`)
+    fetch(NEW_API)
     .then(res => res.json())
     .then(data => 
-      dispatch({ type: "GET_STOCKS", data: data })
+      dispatch({ type: "GET_STOCKS", data: data.data })
       )
     )
 }
@@ -174,10 +176,10 @@ export const buyStock = (e, eachStock, balance)=> dispatch=> {
   // console.log(e.target)
   
   let stock ={
-    price: parseFloat(eachStock['05. price']),
-    ticker: eachStock['01. symbol'],
+    price: parseFloat(eachStock['close']),
+    ticker: eachStock['ticker'],
     quantity: parseFloat(e.target.quantity.value),
-    total_price: parseFloat(eachStock['05. price'] * e.target.quantity.value),
+    total_price: parseFloat(eachStock['close'] * e.target.quantity.value),
     user_id: parseFloat(localStorage.uid)
   }
 
