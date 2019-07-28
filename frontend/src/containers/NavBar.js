@@ -16,63 +16,54 @@ class NavBar extends Component{
 
   render(){
   return (
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Investiversity</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+          {localStorage.token ?
+          <li class="nav-item">
+            <a class="nav-link" href="/acchistory">History</a>
+          </li>:
+          null}
+
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+
+          {localStorage.token ?
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">Profile</a>
+          </li>
+          :null}
+
+          {this.props.logged || localStorage.getItem("token") !== null ?
+            <li class="nav-item">
+          <a class="nav-link" onClick={(e)=>this.props.handleLogout(e, this.props.history)}>Logout</a>
+          </li>
+          :
+          null}
+      </ul>
+
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
+          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
         
-    <div >
-       <Navbar bg="dark" variant="light">
-
-          <Nav.Link href="/dashboard">Home</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
-          {/* <Nav.Link href='/acchistory'> History</Nav.Link> */}
-
-         
-          {localStorage.token ?
-            <Nav.Item style={{margin:"10px"}}>
-              {/* <Button> */}
-              <Link class="button" color= "black" to='/acchistory'>History</Link>
-              {/* </Button> */}
-            </Nav.Item>
-              :
-              null
-          } 
-
-
-          {localStorage.token ?
-            <Nav.Item style={{margin:"20px"}}>
-              {/* <Button> */}
-              {/* <a class="waves-effect waves-teal btn-flat" href='/profile'>Profile</a> */}
-              <Link class="button" color= "black"to='/profile'>Profile</Link>
-              {/* </Button> */}
-            </Nav.Item>
-              :
-              null
-          }
-
-
-        <Nav className="ml-auto">
-          <Nav.Item>
-          {
-            this.props.logged || localStorage.getItem("token") !== null ?
-           <Button style={{margin: '10px'}}name='logout' onClick={(e)=>this.props.handleLogout(e, this.props.history)}>Logout</Button>  :  null          
-          //  onSubmit={(e) => this.prsops.handleLogin(e,this.props.history)}
-          }
-          
-          </Nav.Item>
-        </Nav>
-
-        <Form className="mr-sm-2" inline onSubmit={this.props.searchStock}>
-          <FormControl name="search" type="text" placeholder="Search" className="mr-sm-2" style={{width:"150px"}}/>       
-          <Button variant="outline-light" type="submit"> Search </Button>
-          {/* <svg  id="i-search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-              <circle cx="14" cy="14" r="12" />
-              <path d="M23 23 L30 30"  />
-          </svg> */}
-        </Form>
-
-
-      </Navbar>
-    </div>
+      </div>
+    </nav>
+        
   )
-}}
+}
+}
 
 function mapStateToProps(state){
   return state.stock 

@@ -18,9 +18,9 @@ class StockContainer extends Component {
 
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
-      <div>
+      <ul >
           {this.props.stock.items.map(s=> <StockCard eachStock={s['Global Quote']}/>)}   
-      </div>
+      </ul>
     )
   }
 }

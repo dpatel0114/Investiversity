@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 // import { Container, Card, CardGroup, CardDeck } from 'react-bootstrap';
 // import StockCard from '../components/StockCard';
 
-import PortfolioCard from '../components/PortfolioCard';
-
-
+import PortfolioCard from '../components/PortfolioCard'
+import {Spring} from 'react-spring/renderprops'
 
 class  PortfolioContainer extends Component {
 
@@ -42,9 +41,12 @@ render(){
 
     // <CardDeck>
     <div>
-
-      {cards}
-
+      <Spring
+      from={{transform:'scale(0)'}}
+      to={{transform:'scale(1)'}}
+      >
+        {props =>  <div style={props}> {cards}</div>}
+    </Spring>
     </div>
 
 

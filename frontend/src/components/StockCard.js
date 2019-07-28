@@ -22,25 +22,29 @@ function StockCard(props) {
 
 
     <>
-      <Card border='dark' bg='light'  style={{width: '50%', margin:'5px'}}>
-        <Card.Body>
+      {/* <Card border='dark' bg='light'  style={{width: '50%', margin:'5px'}}> */}
+      <div class="card text-white bg-secondary border-light col-md-5" >
+        <div class="card-body">
+        {/* <Card.Body> */}
 
     
           <h5>  {props.eachStock['01. symbol']}</h5>
-          <h6> Price: {props.eachStock['05. price']} </h6>
+          <h6> $ {props.eachStock['05. price']} </h6>
   
-           <Form onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}> <label style={{fontSize: '1rem'}}> Quantity: </label>
-           <Form.Control name="quantity" type="number" step="1" style={{width:'9rem'}} min='1' required="required"/>
-         
+           <Form onSubmit={(e)=>props.buyStock(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
+
+           <Form.Control name="quantity" type="number" step="1" style={{width:'5.5rem'}} min='1' required="required"
+           placeholder="Stocks"/> 
            <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> Buy </Button>
          
            <Button  data-toggle="button" style={{margin: '3px'}} onClick={handleShow}> Info </Button>
            </Form>
            
             
-            
-      </Card.Body>
-      </Card>
+      </div>
+      {/* </Card.Body> */}
+      {/* </Card> */}
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

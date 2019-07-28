@@ -7,13 +7,13 @@ import Allcontainer from './containers/Allcontainer';
 
 function App() {
   return (
-    <>
+    <div class="dark-mode">
       <BrowserRouter>
          <Allcontainer />
           
       </BrowserRouter>
       
-    </>
+    </div>
   );
 }
 
