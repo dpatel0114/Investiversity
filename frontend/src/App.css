@@ -40,7 +40,7 @@
   color: white;
 }
 
-.btn-primary {
+/* .btn-primary {
   background-color: #06AED5;
   border-color: #06AED5;
 }
@@ -48,9 +48,9 @@
 .btn-primary:hover {
   background-color: #058CAA;
   border-color: #058CAA;
-}
+} */
 
-.jumbotron {
+/* .jumbotron {
   margin: 0;
 }
 
@@ -58,20 +58,20 @@
   background: linear-gradient(to right, rgba(240, 238, 237, 0.5), rgba(250, 248, 248, 0.5)), url('stock.jpg') no-repeat center center;
   background-size: cover;
   position: relative
-}
+} */
 
-.modal{
+/* .modal{
   background-color: #058CAA;
   border-color: #058CAA;
-}
+} */
 
 /* div.text-center {
   color: #fff;
 } */
 
-.text-muted {
+/* .text-muted {
   color: #fff!important;
-}
+} */
 
 
 
