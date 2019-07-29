@@ -15,7 +15,8 @@ const initialState = {
   sell_stock: [],
   // showModal: false,
   // infoId: 0,
-  porthistory: []
+  porthistory: [],
+  info: []
 
 }
 
@@ -28,7 +29,8 @@ export default (state = initialState, action) => {
         console.log('hey')
       return {...state}
     
-
+      case "GET_COM_INFO":
+      return {...state, info: action.data}
     // case "CHANGE_USER":
     //   return { ...state, user: {...state.user, username: action.username}}
 

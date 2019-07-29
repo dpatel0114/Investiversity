@@ -3,9 +3,10 @@
 
 
 const  snapshot = (obj)=> {
-  console.log(obj)
+  // console.log(obj)
   let data = {
     labels: ["Remaining Balance", "Invested Balance"],
+    fontstyle: 'bold', fontColor: 'white',
     datasets: [{
       data: [obj.remaining_balance, obj.invested_balance],
       backgroundColor: [
@@ -16,6 +17,7 @@ const  snapshot = (obj)=> {
       '#06AED5',
       '#FF6384'
       ]
+    
    }]
 }
 return data

@@ -8,7 +8,6 @@ import {Spring} from 'react-spring/renderprops'
 
 class  PortfolioContainer extends Component {
 
-
   constructor(props){
     super(props)
     this.state ={
@@ -20,7 +19,7 @@ componentDidMount(){
   fetch(`http://localhost:3000/portfolio/my_portfolio/${localStorage.getItem('uid')}`)
   .then(res=> res.json())
   .then(data => {
-    console.log(data)
+    // console.log(data)
     // this.setState({
     //   portfolio: data.user.portfolios
     // })
@@ -32,14 +31,11 @@ componentDidMount(){
   })
 }
 
-
 render(){
   const cards = this.props.portfolio ?
     this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
      : null
   return (
-
-    // <CardDeck>
     <div>
       <Spring
       from={{transform:'scale(0)'}}
@@ -48,8 +44,6 @@ render(){
         {props =>  <div style={props}> {cards}</div>}
     </Spring>
     </div>
-
-
   )
 }}
 
@@ -57,10 +51,6 @@ const  mapStateToProps = (state) => {
     return  state.stock 
 }
 
-
-// let connectorFunction = connect(mapStateToProps)
-// let connectedPortfolioContainer= connectorFunction(PortfolioContainer)
-
 // export default connectedPortfolioContainer
-export default connect(mapStateToProps)(PortfolioContainer)
+export default connect(mapStateToProps,)(PortfolioContainer)
 // export default PortfolioContainer

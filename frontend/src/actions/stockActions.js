@@ -2,10 +2,10 @@
 
 // import history from './history'
 // import {b} from 'react-router';
-// **import Popup from 'reactjs-popup'
+// **import Popup from 'reactjs-popup';
 // let symbl;
 // const real_api = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbl}&apikey=18BGJDXOZO2QLLIU`
-const API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo`
+// const API = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo`
 const id = localStorage.uid
 // const all_symbols = ['AAPL','MSFT','V',' GOOGL', 'AMZN']
 // const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
@@ -159,7 +159,7 @@ export const handleSignUp=(e)=> dispatch => {
 }
 
 
-// BUY STOCK
+//   STOCK
 export const buyStock = (e, eachStock, balance)=> dispatch=> {
   e.preventDefault()
   // console.log(e.target)
