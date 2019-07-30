@@ -34,11 +34,11 @@
   color: white;
 }
 
-.scroll{
-  height:650px;
+.scrollbar {
+  height:660px;
   overflow-y: scroll;
-  /* overflow-x: scroll; */
-
+  overflow-x: scroll;
+  /* width:10px; */
 }
 
 .table {
@@ -48,6 +48,11 @@
   align: center
 }
     
+.modal-header {
+  /* background-color: rgb(140, 212, 182); */
+  background-color: rgb(172, 209, 181);
+  color: black;
+}
 
 /* .btn-primary {
   background-color: #06AED5;

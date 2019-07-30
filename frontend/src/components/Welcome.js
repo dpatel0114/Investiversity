@@ -16,10 +16,10 @@ export class Welcome extends Component {
             <h1> Welcome to Investiversity! </h1>
             <p> Learn about Stocks from University of Investment. </p>
           <div class='row'>
-            <Link to='/login' className="btn btn-primary btn-lg">
+            <Link to='/login' className="btn btn-primary btn-lg btn-success" >
                 Login
             </Link>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            <Link to='/signup' className="btn btn-primary btn-lg">
+            <Link to='/signup' className="btn btn-primary btn-lg ">
                 Sign Up
             </Link> 
           </div>  

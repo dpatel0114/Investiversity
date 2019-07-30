@@ -68,7 +68,7 @@ class StockContainer extends Component {
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
 
-      <div class="scroll row">
+      <div class="scrollbar row">
 
         <table class="table table-striped ">
           <Trail

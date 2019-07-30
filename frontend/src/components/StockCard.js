@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Modal ,Button} from 'react-bootstrap';
+import { Form, Modal ,Button, Collapse, Fade} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 import { Line } from 'react-chartjs-2';
@@ -20,7 +20,7 @@ function StockCard(props) {
 
   const createNotification = (type,e) => {
     return () => {
-      console.log('hey')
+      // console.log('hey')
       switch (type) {
         case 'info':
           NotificationManager.info('Info message');
@@ -46,23 +46,19 @@ function StockCard(props) {
 
   }
 
-
   let obj= props.chartPrice
 
-  // let obj={
-  //   "remaining": 1
-  // }
-  // console.log("hey", props.eachStock)
-  const [show, setShow] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [show, setShow, showPop, setShowPop] = React.useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false)};
+  const handleShowPop =()=> setShowPop(true);
   const handleShow = ()=> {
     fetch(`https://api-v2.intrinio.com/companies/${props.eachStock.ticker}?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
     .then(res=> res.json())
     .then(data => 
     //  getCompany(data)
       props.getCompany(data)
-
     )
 
     fetch(`https://api-v2.intrinio.com/securities/${props.eachStock.ticker}/prices?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
@@ -76,25 +72,55 @@ function StockCard(props) {
 
   return (
     <>
-
             <td>{props.eachStock['ticker']}  </td> 
             <td> <i class="fas fa-dollar-sign"></i> {props.eachStock['close']}</td>
             <td>
               <form class="form-inline" onSubmit={(e)=>buyAndNotify(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
             
                 <Form.Control name="quantity" type="number" step="1" style={{width:'5.5rem'}} min='1' required="required"
-                placeholder="Stocks"/> &nbsp;&nbsp;&nbsp;&nbsp;
+                placeholder="Stocks"/> &nbsp;&nbsp;
             
-                <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> <i class="fas fa-shopping-cart"></i> &nbsp;&nbsp;Buy </Button>
-              
+                <Button  data-toggle="button" type="submit" style={{margin: '3px'}}> <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Buy</Button>
                 </form>
-
             </td>
 
+            <td> <i class="fas fa-info-circle float-left fa-lg offset-md-4"  onClick={handleShow}></i>
+            <Button 
+              onClick={() => setOpen(!open)}
+              aria-controls="example-collapse-text"
+              aria-expanded={open}
+              // data-toggle="collapse"
+              // data-target="#example-collapse-text"
+            > Detail </Button>
+            </td>
+        
+              <Collapse in={open}>
+                <div id="example-collapse-text ">
+                  <div className="card">
+            <div className="card-header" style={{fontSize:"1.4rem"}}>
+              Quaterly Summary
+            </div>
+            <div className="card-body text-center">
+             <LineChart/>
+            </div>
+         </div> 
+                {/* Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+          labore wes anderson cred nesciunt sapiente ea proident.  */}
+                </div>
+              </Collapse>
+          
+            {/* <td> */}
+               {/* <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Detail</button>&nbsp;  */}
+            {/* <i class="fas fa-info-circle float-left fa-lg offset-md-4"  onClick={handleShow}></i></td> */}
+            {/* onClick={handleShowPop} */}
+            {/* <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+              </div>
+            </div> */}
 
-            <td><i class="fas fa-info-circle float-left fa-lg offset-md-4"  onClick={handleShow}></i></td>
-
-    
+            
       <Modal className="modal fade" data-backdrop="static" focus='true' role="dialog" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Info About {props.eachStock.ticker} </Modal.Title>
@@ -103,20 +129,20 @@ function StockCard(props) {
           {/* <img style={{width:"40%", height:"20%"}}src="https://static.seekingalpha.com/uploads/2016/4/7/17225882-14600640903610125_origin.png"/> */}
       {/* {console.log("info:", props.info)} */}
 
-          <h6>Ticker: {props.info.ticker}</h6>
-          <h6>Company Name: {props.info.name}</h6>
-          <h6>CEO: {props.info.ceo}</h6>
-          <h6>State: {props.info.hq_state}</h6>
-          <h6>Country: {props.info.hq_country}</h6>
-          <h6>Price: {props.eachStock.close}</h6>
-           <h6>High Price: {props.eachStock.high}</h6>
-           <h6>Low Price: {props.eachStock.low}</h6>
-           <h6>Volume: {props.eachStock.volume}</h6>
-          <h6>Description: {props.info.short_description}</h6>
+          <h5><strong> Ticker:</strong> &nbsp;{props.info.ticker} </h5> 
+          <h5> <strong> Company Name:</strong> &nbsp;{props.info.name}</h5>
+          <h5><strong> CEO:</strong> &nbsp;{props.info.ceo} </h5>
+          <h5><strong> State: </strong> &nbsp;{props.info.hq_state} </h5>
+          <h5><strong> Country:</strong> &nbsp;{props.info.hq_country} </h5>
+          <h5><strong> Price:</strong> &nbsp;{props.eachStock.close}</h5>
+           <h5><strong> High Price:</strong>  &nbsp;{props.eachStock.high}</h5>
+           <h5><strong> Low Price:</strong> &nbsp;{props.eachStock.low}</h5>
+           <h5><strong> Volume:</strong>  &nbsp;{props.eachStock.volume}</h5>
+          <h5><strong> Description:</strong> &nbsp; {props.info.short_description}</h5>
           
 
            <div className="card">
-            <div className="card-header">
+            <div className="card-header" style={{fontSize:"1.4rem"}}>
               Quaterly Summary
             </div>
             <div className="card-body text-center">
@@ -127,6 +153,8 @@ function StockCard(props) {
 
         </Modal.Body>
       </Modal>
+
+      
 </>
   )
 }

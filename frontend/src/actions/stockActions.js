@@ -221,11 +221,12 @@ if(balance.remaining_balance < stock.total_price){
 
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
+  console.log(e.target)
   e.preventDefault()
   history.push('/')
   localStorage.clear()
   
-  console.log(history.push)
+  // console.log(history.push)
    dispatch({
     type: 'LOGOUT',
     logged: false

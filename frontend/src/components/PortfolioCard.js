@@ -21,30 +21,23 @@ function sellAndUpdate(e,eachStock,balance) {
 // console.log(props.eachStock)
 
   return (
-
-<div class="card text-white bg-secondary border-light ">
-        <div class="card-body">
-       {/* <Card  border='dark' bg='light'style={{width:'50%', margin: '5px'}}> */}
-        {/* <Card.Body> */}
-          <h5>  {props.eachStock.ticker} &nbsp; &nbsp; <i class="fas fa-dollar-sign"></i> {props.eachStock.price} </h5>
-          <h6>
-           Stocks: {props.eachStock.quantity} &nbsp; &nbsp;
-           Total: {parseFloat(props.eachStock.total_price).toFixed(2)} </h6>
+      <div>
+     <td> {props.eachStock.ticker} </td>
+         <td><i class="fas fa-dollar-sign"></i> {props.eachStock.price} </td>
+          
+          <td>
+           Stocks: {props.eachStock.quantity}</td>
+         <td>  Total: {parseFloat(props.eachStock.total_price).toFixed(2)}   
           <form  class="form-inline" onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
            <div>
-            <input class="form-control mr-sm-2 col-md-6" type='number' 
+            <input class="form-control mr-sm-2 col-md-4" type='number' 
             step='1' name='quantity' min='1' required="required" placeholder="Stocks"/>
           <button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </button>
           </div>
-          </form>
-        
-       {/* </Card.Body> */}
-        {/* </Card> */}
-        </div>
-        </div>
+          </form> 
+          </td>
 
-
-     
+     </div>
   )
 
 }
@@ -53,3 +46,28 @@ export const mapStateToProps=(state)=>{
   return state.stock
 }
 export default connect(mapStateToProps,{sellStock})(PortfolioCard);
+
+
+      
+
+//       <div class="card text-white bg-secondary border-light ">
+//         <div class="card-body">
+//        {/* <Card  border='dark' bg='light'style={{width:'50%', margin: '5px'}}> */}
+//         {/* <Card.Body> */}
+//           <h5>  {props.eachStock.ticker} &nbsp; &nbsp; <i class="fas fa-dollar-sign"></i> {props.eachStock.price} &nbsp; &nbsp; </h5>
+//           {/* <h6> */}
+//            <h5>Stocks: {props.eachStock.quantity} &nbsp; &nbsp; 
+//            Total: {parseFloat(props.eachStock.total_price).toFixed(2)}  </h5>
+//            {/* </h6> */}
+//           <form  class="form-inline" onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
+//            <div>
+//             <input class="form-control mr-sm-2 col-md-6" type='number' 
+//             step='1' name='quantity' min='1' required="required" placeholder="Stocks"/>
+//           <button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </button>
+//           </div>
+//           </form> 
+        
+//        {/* </Card.Body> */}
+//         {/* </Card> */}
+//         </div>
+// </div>

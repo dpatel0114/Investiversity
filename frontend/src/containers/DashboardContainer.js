@@ -19,25 +19,27 @@ export class DashboardContainer extends Component {
   render() {
 
   //   if (localStorage.token !== null){
-  //     this.props.persistData()
+  //     this.props.persistData()port
   // }
 
   // console.log(this.props)
  
     return (
 
-    <div>
+    <>
+
       <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {/* <button type="button" class="close" data-dismiss="alert">&times;</button> */}
         Hi! {this.props.firstname}, Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
       </div>
 
-          <div class='row' style={{margin: '10px'}}>
-            <div class="col col-lg-4" style={{"margin-right":"3%"}}><StockContainer/></div>
-            <div class="col" style={{"margin-right":"3%"}}><PortfolioContainer/></div>
-          <div class="col"> <BalanceContainer/> </div>
-          </div>
-    </div>
+      <div class='row' style={{margin: '5px'}}>
+        <div class="col col-lg-4" style={{"margin-right":"2%"}}><StockContainer/></div>
+        <div class="col " style={{"margin-right":"2%"}}><PortfolioContainer/></div>
+        <div class="col"> <BalanceContainer/> </div>
+      </div>
+
+    </>
 
     )
   }

@@ -6,13 +6,16 @@ import { connect } from 'react-redux';
 
 export class PortfolioHistory extends Component {
 
+  constructor(props){
+    super(props)
+  }
 
   componentDidMount(){ 
     this.props.getPortfolio()
   }
 
   render() {
-    console.log("histroty", this.props.user.firstname)
+    console.log('hey', this.props)
     return (
       <div> &nbsp;
         <h4 align="center"> { this.props.user.firstname } History of Stocks </h4><br/>

@@ -20,7 +20,35 @@ import {connect} from 'react-redux'
                 maintainAspectRatio: true,
                 responsive: true,
                 cutoutPercentage: 60,
-                animateScale: true
+                animation:{
+                  animateScale: true,
+                  animateRotate: true 
+                },
+                // tooltips: {
+                //   callbacks: {
+                //     label: function(tooltipItem, data) {
+                //       var dataset = data.datasets[tooltipItem.datasetIndex];
+                //       var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                //         return previousValue + currentValue;
+                //       }); var currentValue = dataset.data[tooltipItem.index];
+                //       var percentage = Math.floor(((currentValue/total) * 100)+0.5);         
+                //       return percentage + "%";}}}
+
+                tooltips: {
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      var dataset = data.datasets[tooltipItem.datasetIndex];
+                      var meta = dataset._meta[Object.keys(dataset._meta)[0]];
+                      var total = parseFloat(meta.total).toFixed(2);
+                      var currentValue = dataset.data[tooltipItem.index];
+                      var percentage = parseFloat((currentValue/total*100).toFixed(1));
+                      return currentValue + ' (' + percentage + '%)';
+                    },
+                    title: function(tooltipItem, data) {
+                      return data.labels[tooltipItem[0].index];
+                    }
+                  }
+                }
               }}
             legend={{
               display: true,
@@ -29,7 +57,7 @@ import {connect} from 'react-redux'
               reverse: false,
               
               labels: {
-                fontColor: 'white'
+                fontColor: 'dark'
               }
             }}
              />

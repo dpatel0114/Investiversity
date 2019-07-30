@@ -70,23 +70,23 @@ console.log(this.state)
     // console.log("Profile: ", this.props.user.firstname)
     return (
       <div>
-     
+     &nbsp; &nbsp;
     
-      {/* <div className="card col-md-8">
-            <h5 className="card-header">Profile</h5>
+      <div className=" card container col-md-6">
+            <h5 className="card-header"> <i class="fas fa-user"></i>&nbsp; Profile</h5>
             <div className="card-body text-left">
              <h5 className="card-title"></h5>
-             <p className="card-text"> <strong>Firstname: {this.props.user.firstname}</strong> </p>
-             <p className="card-text"> <strong>Lastname: {this.props.user.lastname}</strong> </p>
-             <p className="card-text"> <strong>username: {this.props.user.username}</strong></p>
-             <p className="card-text"> <strong>Email: {this.props.user.email}</strong> </p>
+             <p className="card-text"> Firstname: &nbsp; &nbsp; {this.state.editUser.firstname} </p>
+             <p className="card-text"> Lastname: &nbsp; &nbsp; {this.state.editUser.lastname} </p>
+             <p className="card-text"> username: &nbsp; &nbsp; {this.state.editUser.username}</p>
+             <p className="card-text"> Email: &nbsp; &nbsp; {this.state.editUser.email} </p>
             
            </div>
-         </div> */}
+         </div>&nbsp; &nbsp;&nbsp; &nbsp;
 
 
        {/* <Container> */}
-        <div class="container col-md-5">
+        <div class="container col-md-6">
           <Form onSubmit={this.updateProfile} >
 
                   <Form.Label>First Name:</Form.Label>
@@ -104,7 +104,7 @@ console.log(this.state)
                   // onChange={this.handleChange}
                     name="lastname"
                     placeholder='Lastname'
-                    defaultValue={this.props.user.lastname} 
+                    defaultValue={this.state.editUser.lastname} 
                     />
 
                   <Form.Label>Username:</Form.Label>
@@ -113,7 +113,7 @@ console.log(this.state)
                   onChange={(e) => this.handleChange}
                     name="username"
                     placeholder="username" 
-                    defaultValue={this.props.user.username}
+                    defaultValue={this.state.editUser.username}
                     />
 
 
@@ -133,7 +133,7 @@ console.log(this.state)
                   // onChange={this.handleChange}
                     name="email"
                     placeholder="Email" 
-                    defaultValue={this.props.user.email}
+                    defaultValue={this.state.editUser.email}
                     /> <br/>
 
 
@@ -143,9 +143,7 @@ console.log(this.state)
 
               </Form>           
             
-            {/* <button onClick={this.handleEditClick} class="ui primary button">Edit Profile</button> */}
-            
-             {/* </Container> */}
+      
             </div>
       </div>
     )
