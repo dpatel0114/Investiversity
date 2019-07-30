@@ -9,13 +9,7 @@ import { connect } from 'react-redux';
 export class Profile extends Component {
 
 
-// componentDidMount(){
-//     fetch(`http://localhost:3000/users/${localStorage.uid}`)
-//     .then(res => res.json())
-//     .then(data => 
-//         // console.log(data)
-//        {} )
-//   }
+
 
 constructor(props){
   super(props)
@@ -24,6 +18,18 @@ constructor(props){
 
     }
    }
+}
+
+
+componentDidMount(){
+  fetch(`http://localhost:3000/users/${localStorage.uid}`)
+  .then(res => res.json())
+  .then(data => 
+{this.setState({editUser: data.user})
+console.log(this.state)
+}
+
+      )
 }
 
   handleChange = (e) => {
@@ -88,7 +94,7 @@ constructor(props){
                   onChange={(e) => this.handleChange}
                     name="firstname"
                     placeholder='Firstname'
-                    defaultValue={this.props.user.firstname}
+                    defaultValue={this.state.editUser.firstname}
                     />
                     
                   <Form.Label>Last Name:</Form.Label>

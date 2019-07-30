@@ -29,7 +29,7 @@ export class DashboardContainer extends Component {
     <div>
       <div class="alert alert-dismissible alert-success">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
+        Hi! {this.props.firstname}, Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
       </div>
 
           <div class='row' style={{margin: '10px'}}>
@@ -43,9 +43,9 @@ export class DashboardContainer extends Component {
   }
 }
 
-// const  mapStateToProps = (state) => {
-//   return state.stock
-// }
+const  mapStateToProps = (state) => {
+  return state.stock
+}
 
-export default connect()(DashboardContainer)
+export default connect(mapStateToProps)(DashboardContainer)
 // export default connect()(DashboardContainer)

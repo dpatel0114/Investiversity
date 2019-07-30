@@ -7,6 +7,7 @@ import StockCard from '../components/StockCard';
 import posed from 'react-pose'
 import {Trail, Keyframes,Spring} from 'react-spring/renderprops'
 import {animated} from 'react-spring'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 // const API = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=MSFT&apikey=demo'
 
@@ -55,6 +56,10 @@ class StockContainer extends Component {
 
   }
 
+  
+
+
+
   render() {
     const { isVisible, show } = this.state;
     const stockCards = this.props.stock.items.map(s=> <StockCard eachStock={s}/>)
@@ -64,6 +69,7 @@ class StockContainer extends Component {
     return (
 
       <div class="scroll row">
+
         <table class="table table-striped ">
           <Trail
 

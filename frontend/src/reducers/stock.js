@@ -2,6 +2,7 @@
 
 const initialState = {
   items: [],
+  firstname:'',
   user: {
     username:'',
     email: ''
@@ -83,7 +84,9 @@ export default (state = initialState, action) => {
       }else{
       return { ...state, portfolio: action.payload.portfolio,
          remaining_balance: action.payload.user.remaining_balance,
-        invested_balance: action.payload.user.invested_balance }
+        invested_balance: action.payload.user.invested_balance ,
+        firstname: action.payload.user.firstname
+      }
       }
     }
     case "SELL_STOCK":{

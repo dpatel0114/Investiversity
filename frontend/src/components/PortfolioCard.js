@@ -10,8 +10,12 @@ function PortfolioCard(props) {
 function sellAndUpdate(e,eachStock,balance) {
   if(e.target.quantity.value <= eachStock.quantity &&  eachStock.quantity > 0 ){
     props.sellStock(e, eachStock, balance)
-   
+    let remainingStock = eachStock.quantity - e.target.quantity.value
+    if (remainingStock ===0){
+      e.target.parentElement.remove()
+    }
   }
+  e.target.reset()
   
 }  
 // console.log(props.eachStock)

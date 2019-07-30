@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import Chart from '../components/Chart';
-import { Bar } from 'react-chartjs-2';
-import  {monthlySnap}  from '../chartFunctions'
 
 export class BalanceContainer extends Component {
   
   render() {
-    let obj={
-      "remaining": this.props.chartPrice
-    }
+    let obj= this.props.chartPrice
+
     return (
      
     <div>
@@ -26,22 +23,6 @@ export class BalanceContainer extends Component {
               </div>
             </div>
        </div>
-
-       <div className="card">
-            <div className="card-header">
-              Monthly details 
-            </div>
-            <div className="card-body text-center">
-              <Bar
-                data={monthlySnap(obj)}
-                width={100}
-                height={100}
-                options={{
-                  maintainAspectRatio: false
-                }}
-              />
-            </div>
-         </div>
 
         <div class="card col-md-10" >
             <div class="card-header text-center" >
@@ -65,4 +46,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(BalanceContainer)
+
  

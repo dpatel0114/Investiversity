@@ -33,7 +33,7 @@ componentDidMount(){
 
 render(){
   const cards = this.props.portfolio ?
-    this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
+    this.props.portfolio.map(s => s.quantity ? <PortfolioCard eachStock={s}/> : null)
      : null
 
   

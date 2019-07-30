@@ -97,8 +97,6 @@ export const handleSignUp=(e)=> dispatch => {
       }
       else {
 
-        // dispatch({ type: 'SIGNUP_ERROR', error:'no'})
-
         localStorage.setItem('token', data.token)
         // browserHistory.push('/login')
         // this.props.history.push('/login')
@@ -121,11 +119,6 @@ export const handleSignUp=(e)=> dispatch => {
 
  export const  handleLogin =(e, user,history) => dispatch=> {
   e.preventDefault()
-
-  // console.log("User info: ", user)
-
-  // let userObject = {username: e.target.username.value, 
-  //                   password: e.target.password.value}
 
   fetch('http://localhost:3000/login', {
     method: 'POST',
