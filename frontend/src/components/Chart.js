@@ -19,7 +19,8 @@ import {connect} from 'react-redux'
               options={{
                 maintainAspectRatio: true,
                 responsive: true,
-                cutoutPercentage: 60
+                cutoutPercentage: 60,
+                animateScale: true
               }}
             legend={{
               display: true,

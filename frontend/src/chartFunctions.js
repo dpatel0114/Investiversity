@@ -24,6 +24,24 @@ return data
 
 }
 
+const monthlySnap=(obj)=> {
+
+  let data = {
+    // labels: "reamining balance",
+    datasets: [{
+      label: "Revenue",
+      backgroundColor: "#06AED5",
+      data: [1,2]
+    }, {
+       label: "Expenses",
+       backgroundColor: "#FF6384",
+       data: [4,3]
+    }]
+  }
+  return data
+
+}
 
 
-export {snapshot}
+
+export {snapshot, monthlySnap}

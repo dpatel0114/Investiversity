@@ -16,10 +16,9 @@ function sellAndUpdate(e,eachStock,balance) {
 }  
 // console.log(props.eachStock)
 
-
   return (
 
-<div class="card text-white bg-secondary border-light col-md-8">
+<div class="card text-white bg-secondary border-light ">
         <div class="card-body">
        {/* <Card  border='dark' bg='light'style={{width:'50%', margin: '5px'}}> */}
         {/* <Card.Body> */}

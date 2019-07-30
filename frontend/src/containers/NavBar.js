@@ -17,8 +17,8 @@ class NavBar extends Component{
   render(){
   return (
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Investiversity</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{height:'70px', fontSize:"1.2rem"}}>
+    <a class="navbar-brand" href="/" style={{fontSize:"1.7rem"}}> Investiversity</a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

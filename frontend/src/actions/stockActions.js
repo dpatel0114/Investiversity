@@ -229,7 +229,7 @@ if(balance.remaining_balance < stock.total_price){
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
   e.preventDefault()
-  
+  history.push('/')
   localStorage.clear()
   
   console.log(history.push)
@@ -238,7 +238,7 @@ export const handleLogout=(e, history)=> dispatch=>{
     logged: false
   })
 
-  history.push('/')
+  
   
 
 }
@@ -255,7 +255,7 @@ export const  sellStock = (e, eachStock,balance)=> dispatch=> {
     user_id: parseInt(localStorage.uid)
 
   }
-
+  
   let user ={
     remaining_balance: balance.remaining_balance - stock.total_price,
     invested_balance: balance.invested_balance + stock.total_price

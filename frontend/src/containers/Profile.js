@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 export class Profile extends Component {
 
 
-  // componentDidMount(){
-  //   fetch(`http://localhost:3000/users/${localStorage.uid}`)
-  //   .then(res => res.json())
-  //   .then(data => 
-  //       // console.log(data)
-  //      {} )
-  // }
+// componentDidMount(){
+//     fetch(`http://localhost:3000/users/${localStorage.uid}`)
+//     .then(res => res.json())
+//     .then(data => 
+//         // console.log(data)
+//        {} )
+//   }
 
 constructor(props){
   super(props)
@@ -33,14 +33,12 @@ constructor(props){
     })
   }
 
-// *** updating profile****
- //! profile 
 
   updateProfile(e){
       e.preventDefault()
       let newUser = {
         firstname: e.target.firstname.value,
-        lastename: e.target.lastname.value,
+        lastname: e.target.lastname.value,
         password: e.target.password.value,
         email: e.target.email.value,
         username: e.target.username.value
@@ -65,9 +63,25 @@ constructor(props){
   render() {
     // console.log("Profile: ", this.props.user.firstname)
     return (
-      <Container>
+      <div>
+     
+    
+      {/* <div className="card col-md-8">
+            <h5 className="card-header">Profile</h5>
+            <div className="card-body text-left">
+             <h5 className="card-title"></h5>
+             <p className="card-text"> <strong>Firstname: {this.props.user.firstname}</strong> </p>
+             <p className="card-text"> <strong>Lastname: {this.props.user.lastname}</strong> </p>
+             <p className="card-text"> <strong>username: {this.props.user.username}</strong></p>
+             <p className="card-text"> <strong>Email: {this.props.user.email}</strong> </p>
+            
+           </div>
+         </div> */}
 
-          <Form onSubmit={this.updateProfile}>
+
+       {/* <Container> */}
+        <div class="container col-md-5">
+          <Form onSubmit={this.updateProfile} >
 
                   <Form.Label>First Name:</Form.Label>
                   <Form.Control 
@@ -114,7 +128,7 @@ constructor(props){
                     name="email"
                     placeholder="Email" 
                     defaultValue={this.props.user.email}
-                    />
+                    /> <br/>
 
 
                 <Button variant="primary" type="submit" >
@@ -124,8 +138,10 @@ constructor(props){
               </Form>           
             
             {/* <button onClick={this.handleEditClick} class="ui primary button">Edit Profile</button> */}
-
-      </Container>
+            
+             {/* </Container> */}
+            </div>
+      </div>
     )
   }
 }

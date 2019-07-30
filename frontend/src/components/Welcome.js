@@ -14,14 +14,15 @@ export class Welcome extends Component {
        
           <header className="App-header">
             <h1> Welcome to Investiversity! </h1>
-            <p> Learn, Invest and Get some from this University of Investment. </p>
-            
-            <Link to='/login' className="btn btn-primary">
+            <p> Learn about Stocks from University of Investment. </p>
+          <div class='row'>
+            <Link to='/login' className="btn btn-primary btn-lg">
                 Login
-            </Link>
-            <Link to='/signup' className="btn btn-primary">
+            </Link>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+            <Link to='/signup' className="btn btn-primary btn-lg">
                 Sign Up
-            </Link>   
+            </Link> 
+          </div>  
           </header>
 
        </div>

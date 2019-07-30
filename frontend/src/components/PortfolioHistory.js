@@ -14,51 +14,36 @@ export class PortfolioHistory extends Component {
   render() {
     console.log("histroty", this.props.user.firstname)
     return (
-      <div>
-        <h4> { this.props.user.firstname } History of Stocks </h4>
-        <table class="table table-hover">
-            <thead>
+      <div> &nbsp;
+        <h4 align="center"> { this.props.user.firstname } History of Stocks </h4><br/>
+        <div align="center">
+        <table class="table table-striped table-bordered table-hover col-md-10 text-dark" style={{ border: "double"}}>
+            <thead class="thead-dark border-bottom" >
               <tr>
                 {/* <th>#</th> */}
                 <th> Price </th>
                 <th> Quantity </th>
                 <th> Ticker </th>
                 <th> Total Price </th>
-                <th> Created At </th>
-                
-
+                <th> Buy date </th>
               </tr>
             </thead>
 
             <tbody >
               {this.props.porthistory.map(p=> {
                 return(
-                  <tr class={p.total_price < 0 ?  "table-danger": "table-success"}>
+                  <tr class= {p.total_price < 0 ?  "table-danger": "table-success"}>
                   {/* <td>#</td> */}
                   <td>{p.price}</td>
                   <td>{p.quantity}</td>
                   <td>{p.ticker}</td>
                   <td>{p.total_price}</td>
                   <td>{p.created_at}</td>
-                </tr>)})}
-
-
-                
-              
+                </tr>)})}      
             </tbody>
 
           </table>
-          
-                
-          {/* pink:      rgb(208, 171, 219)
-                green: rgb(167, 215, 54)
-
-                orange:  rgb(215, 193, 54)
-                
-                rgb(222, 213, 132) */}
-        
-
-
+          </div>
       </div>
     )
   }
