@@ -26,29 +26,26 @@ export class DashboardContainer extends Component {
  
     return (
 
-    
-
-      <div>
-
-    <div class="alert alert-dismissible alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
-    </div>
-
-        <Row>
-          <div class="col col-lg-5"><StockContainer/></div>
-          <div class="col"><PortfolioContainer/></div>
-         <div class="col"> <BalanceContainer/> </div>
-        </Row>
+    <div>
+      <div class="alert alert-dismissible alert-success">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        Hi! {this.props.firstname}, Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
       </div>
+
+          <div class='row' style={{margin: '10px'}}>
+            <div class="col col-lg-4" style={{"margin-right":"3%"}}><StockContainer/></div>
+            <div class="col" style={{"margin-right":"3%"}}><PortfolioContainer/></div>
+          <div class="col"> <BalanceContainer/> </div>
+          </div>
+    </div>
 
     )
   }
 }
 
-// const  mapStateToProps = (state) => {
-//   return state.stock
-// }
+const  mapStateToProps = (state) => {
+  return state.stock
+}
 
-export default connect()(DashboardContainer)
+export default connect(mapStateToProps)(DashboardContainer)
 // export default connect()(DashboardContainer)

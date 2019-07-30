@@ -33,16 +33,20 @@ componentDidMount(){
 
 render(){
   const cards = this.props.portfolio ?
-    this.props.portfolio.map(s => <PortfolioCard eachStock={s}/> )
+    this.props.portfolio.map(s => s.quantity ? <PortfolioCard eachStock={s}/> : null)
      : null
+
+  
   return (
-    <div>
+    <div class="card-columns scroll row scrollbar-success">
+      {/* <div > */}
       <Spring
       from={{transform:'scale(0)'}}
       to={{transform:'scale(1)'}}
       >
         {props =>  <div style={props}> {cards}</div>}
     </Spring>
+    {/* </div> */}
     </div>
   )
 }}

@@ -2,6 +2,7 @@
 
 const initialState = {
   items: [],
+  firstname:'',
   user: {
     username:'',
     email: ''
@@ -13,10 +14,9 @@ const initialState = {
   bestMatches:[],
   portfolio: [], 
   sell_stock: [],
-  // showModal: false,
-  // infoId: 0,
   porthistory: [],
-  info: []
+  info: [],
+  chartPrice: []
 
 }
 
@@ -31,6 +31,10 @@ export default (state = initialState, action) => {
     
       case "GET_COM_INFO":
       return {...state, info: action.data}
+
+      case "GET_CHART_PRICE":{
+        return {...state, chartPrice: action.data}
+      }
     // case "CHANGE_USER":
     //   return { ...state, user: {...state.user, username: action.username}}
 
@@ -80,7 +84,9 @@ export default (state = initialState, action) => {
       }else{
       return { ...state, portfolio: action.payload.portfolio,
          remaining_balance: action.payload.user.remaining_balance,
-        invested_balance: action.payload.user.invested_balance }
+        invested_balance: action.payload.user.invested_balance ,
+        firstname: action.payload.user.firstname
+      }
       }
     }
     case "SELL_STOCK":{

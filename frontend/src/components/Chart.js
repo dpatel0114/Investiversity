@@ -1,6 +1,6 @@
 import React from 'react'
-import { Doughnut } from 'react-chartjs-2'
-import  {snapshot}  from '../chartFunctions'
+import { Doughnut, Line } from 'react-chartjs-2'
+import  {snapshot, monthlySnap}  from '../chartFunctions'
 import {connect} from 'react-redux'
 
 
@@ -19,7 +19,8 @@ import {connect} from 'react-redux'
               options={{
                 maintainAspectRatio: true,
                 responsive: true,
-                cutoutPercentage: 60
+                cutoutPercentage: 60,
+                animateScale: true
               }}
             legend={{
               display: true,
@@ -36,8 +37,13 @@ import {connect} from 'react-redux'
   )
 }
 
+
+
 const mapStateToProps =(state)=>{
   return state.stock
 }
 
 export default connect(mapStateToProps)(Chart);
+
+
+

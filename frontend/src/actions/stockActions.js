@@ -97,8 +97,6 @@ export const handleSignUp=(e)=> dispatch => {
       }
       else {
 
-        // dispatch({ type: 'SIGNUP_ERROR', error:'no'})
-
         localStorage.setItem('token', data.token)
         // browserHistory.push('/login')
         // this.props.history.push('/login')
@@ -121,11 +119,6 @@ export const handleSignUp=(e)=> dispatch => {
 
  export const  handleLogin =(e, user,history) => dispatch=> {
   e.preventDefault()
-
-  // console.log("User info: ", user)
-
-  // let userObject = {username: e.target.username.value, 
-  //                   password: e.target.password.value}
 
   fetch('http://localhost:3000/login', {
     method: 'POST',
@@ -229,7 +222,7 @@ if(balance.remaining_balance < stock.total_price){
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
   e.preventDefault()
-  
+  history.push('/')
   localStorage.clear()
   
   console.log(history.push)
@@ -238,7 +231,7 @@ export const handleLogout=(e, history)=> dispatch=>{
     logged: false
   })
 
-  history.push('/')
+  
   
 
 }
@@ -255,7 +248,7 @@ export const  sellStock = (e, eachStock,balance)=> dispatch=> {
     user_id: parseInt(localStorage.uid)
 
   }
-
+  
   let user ={
     remaining_balance: balance.remaining_balance - stock.total_price,
     invested_balance: balance.invested_balance + stock.total_price

@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Chart from '../components/Chart'
+import Chart from '../components/Chart';
 
 export class BalanceContainer extends Component {
+  
   render() {
-    return (
+    let obj= this.props.chartPrice
 
+    return (
+     
     <div>
         <div>
             <div class="card text-white bg-primary mb-3 col-md-10 border-light text-center">
@@ -29,6 +32,8 @@ export class BalanceContainer extends Component {
                   <Chart/>
             </div>
         </div>
+
+        
     </div>
 
     )
@@ -41,4 +46,5 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(BalanceContainer)
+
  
