@@ -41,6 +41,12 @@
   /* width:10px; */
 }
 
+/* .scroll{
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+} */
+
 .table {
   text-align: center;
   float: none;

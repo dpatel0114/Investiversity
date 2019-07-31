@@ -1,5 +1,4 @@
 import React from 'react';
-import {  Card, Button , Form} from 'react-bootstrap';
 import {sellStock} from '../actions/stockActions'
 import {connect} from 'react-redux'
 

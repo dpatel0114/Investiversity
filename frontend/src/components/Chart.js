@@ -1,6 +1,6 @@
 import React from 'react'
-import { Doughnut, Line } from 'react-chartjs-2'
-import  {snapshot, monthlySnap}  from '../chartFunctions'
+import { Doughnut } from 'react-chartjs-2'
+import  { snapshot }  from '../chartFunctions'
 import {connect} from 'react-redux'
 
 
@@ -19,7 +19,7 @@ import {connect} from 'react-redux'
               options={{
                 maintainAspectRatio: true,
                 responsive: false,
-                cutoutPercentage: 60,
+                cutoutPercentage: 50,
                 animation:{
                   animateScale: true,
                   animateRotate: true 
@@ -55,6 +55,7 @@ import {connect} from 'react-redux'
               position: 'top',
               fullWidth: true,
               reverse: false,
+              text: 'center',
               
               labels: {
                 fontColor: 'dark'

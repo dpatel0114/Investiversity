@@ -10,6 +10,7 @@ import Welcome from '../components/Welcome';
 import Profile from './Profile';
 import PortfolioHistory from '../components/PortfolioHistory'
 import AppChart from '../components/Chart'
+import About from '../components/About'
 class Allcontainer extends Component {
  
 //  componentDidMount(){
@@ -33,8 +34,9 @@ class Allcontainer extends Component {
           <Router>
             {/* <NavBar/>  */}
             <Route path='/' component={NavBar}/> 
-          
-            
+
+          <Route exact path='/about' component={About}/>
+
             <Switch>
 
                   {this.props.logged || localStorage.getItem("token") !== null
@@ -57,6 +59,7 @@ class Allcontainer extends Component {
                {/* : null}  */}
 
                <Route exact path='/pie' component={<AppChart/>}/>
+
  
             </Switch>
             

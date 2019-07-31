@@ -10,7 +10,7 @@ const initialState = {
   remaining_balance: '',
   invested_balance:'',
   error:'',
-  logged: false,
+  logged: '',
   bestMatches:[],
   portfolio: [], 
   sell_stock: [],
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     //   return { ...state, user: {...state.user, password: action.password}}
 
     case "LOGOUT":
-      return {...state, logged: action.logged}
+      return {...state, logged: false}
 
     case "PORT_HISTORY":
       return {...state, porthistory: action.data}
@@ -89,6 +89,7 @@ export default (state = initialState, action) => {
       }
       }
     }
+    
     case "SELL_STOCK":{
 
       let new_portfolio = state.portfolio

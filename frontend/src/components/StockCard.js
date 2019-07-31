@@ -1,22 +1,14 @@
 import React from 'react';
-import { Form, Modal ,Button, Collapse, Fade} from 'react-bootstrap';
+import { Form, Modal ,Button, Collapse } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
-import { Line } from 'react-chartjs-2';
-import  {monthlySnap}  from '../chartFunctions'
 import LineChart from '../components/LineChart'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-
-
-
-
-import posed from 'react-pose'
+// import posed from 'react-pose'
 // import Popover from './Popup';
 // const COM_API = `https://api-v2.intrinio.com/companies/${props.eachStock.ticker}&api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
 function StockCard(props) {
 
-
- 
 
   const createNotification = (type,e) => {
     return () => {
@@ -109,7 +101,7 @@ function StockCard(props) {
             </div> */}
 
             
-      <Modal className="modal fade" data-backdrop="static" focus='true' role="dialog" show={show} onHide={handleClose}>
+      <Modal className="modal fade right" data-backdrop="static" focus='true' role="dialog" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Info About {props.eachStock.ticker} </Modal.Title>
         </Modal.Header>
@@ -123,9 +115,10 @@ function StockCard(props) {
           <h5><strong> State: </strong> &nbsp;{props.info.hq_state} </h5>
           <h5><strong> Country:</strong> &nbsp;{props.info.hq_country} </h5>
           <h5><strong> Price:</strong> &nbsp;{props.eachStock.close}</h5>
-           <h5><strong> High Price:</strong>  &nbsp;{props.eachStock.high}</h5>
-           <h5><strong> Low Price:</strong> &nbsp;{props.eachStock.low}</h5>
-           <h5><strong> Volume:</strong>  &nbsp;{props.eachStock.volume}</h5>
+          <h5><strong> High Price:</strong>  &nbsp;{props.eachStock.high}</h5>
+          <h5><strong> Low Price:</strong> &nbsp;{props.eachStock.low}</h5>
+          <h5><strong> Volume:</strong>  &nbsp;{props.eachStock.volume}</h5>
+
           {/* <h5><strong> Description:</strong> &nbsp; {props.info.short_description}</h5> */}
           
 

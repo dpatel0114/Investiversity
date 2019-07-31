@@ -96,11 +96,12 @@ class StockContainer extends Component {
                 </animated.div>))}
 
             </KeyframesList>
+           
 
 
 
           </table>
-
+                                           
       </div>
     )
   }
