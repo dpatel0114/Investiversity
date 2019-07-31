@@ -87,13 +87,13 @@ class StockContainer extends Component {
                 keys={stockCards.map((_, i) => i)} config={{ tension: 200, friction: 20 }} state={show}
                 >
                 {stockCards.map((item, i) => ({ x, ...props }) => (
-                                  <animated.div
-                                    style={{
-                                      transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
-                                      ...props
-                                    }}>
-                                      {item}
-                </animated.div>))}
+                          <animated.div
+                            style={{
+                              transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+                              ...props
+                            }}>
+                              {item}
+                        </animated.div>))}
 
             </KeyframesList>
            

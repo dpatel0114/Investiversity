@@ -16,7 +16,8 @@ class NavBar extends Component{
   return (
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" style={{height:'70px', fontSize:"1.1rem"}}>
-    <a class="navbar-brand" href="/dashboard" style={{fontSize:"2.0rem"}}> Investiversity</a> 
+      <img src="../logo.jpg" style={{ height: '30px', width: '30px' }}/>
+    <a class="navbar-brand" href="/dashboard" style={{fontSize:"2.0rem"}}>Investiversity</a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

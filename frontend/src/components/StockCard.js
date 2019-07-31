@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {buyStock} from '../actions/stockActions';
 import LineChart from '../components/LineChart'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+// import MyNotification from './MyNotification';
+
 // import posed from 'react-pose'
 // import Popover from './Popup';
 // const COM_API = `https://api-v2.intrinio.com/companies/${props.eachStock.ticker}&api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
@@ -32,10 +34,10 @@ function StockCard(props) {
     };
   };
 
+
   const buyAndNotify=(e,eachStock, balance)=>{
     props.buyStock(e,eachStock,balance)
      createNotification('Bought',e)
-
   }
 
   let obj= props.chartPrice
@@ -56,9 +58,7 @@ function StockCard(props) {
     fetch(`https://api-v2.intrinio.com/securities/${props.eachStock.ticker}/prices?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
     .then(res => res.json())
     .then(data => 
-
       props.getPrice(data.stock_prices))
-
     setShow(true)
   };
 
@@ -78,6 +78,8 @@ function StockCard(props) {
             </td>
 
             <td> <i class="fas fa-info-circle fa-lg offset-md-4"  onClick={handleShow}></i>&nbsp;&nbsp;</td>
+
+           {/* <MyNotification /> */}
             {/* <td>
             <Button 
               onClick={() => setOpen(!open)}
@@ -150,7 +152,6 @@ function StockCard(props) {
           labore wes anderson cred nesciunt sapiente ea proident.  */}
                 </div>
               </Collapse>
-      
 </>
   )
 }

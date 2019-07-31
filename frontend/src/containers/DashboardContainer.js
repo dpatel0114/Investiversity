@@ -24,9 +24,9 @@ export class DashboardContainer extends Component {
       
       
       <div class='row' style={{margin: '5px'}}>
-        <div class="border col col-lg-4" style={{"margin-right":"1%"}}> <h3 class="card-header text-center" style={{"margin":"3%", }}> Stocks </h3><StockContainer/></div>
+        <div class="border col " style={{"margin-right":"1%"}}> <h3 class="card-header text-center" style={{"margin":"3%", }}> Stocks </h3><StockContainer/></div>
 
-        <div class="border col" style={{"margin-right":"1%"}}> <h3 class="card-header text-center" style={{"margin":"3%"}}> Portfolio </h3><PortfolioContainer/></div>
+        <div class="border col " style={{"margin-right":"1%"}}> <h3 class="card-header text-center" style={{"margin":"3%"}}> Portfolio </h3><PortfolioContainer/></div>
         <div class="border col text-center">
           
         <Spring

@@ -37,8 +37,8 @@ componentDidMount(){
     })
   }
 
-
-  updateProfile(e){
+   
+  updateProfile=(e)=>{
       e.preventDefault()
       let newUser = {
         firstname: e.target.firstname.value,
@@ -48,17 +48,19 @@ componentDidMount(){
         username: e.target.username.value
       }
 
-    fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`, { 
-      method: 'PATCH', 
-      body: JSON.stringify({user: newUser}),
-      headers: {
-        'Access-Token': localStorage.getItem('token'),
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
-    .then(data => {console.log(data)
-                }
-    )
+      fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`, { 
+        method: 'PATCH', 
+        body: JSON.stringify({user: newUser}),
+        headers: {
+          'Access-Token': localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(data => {console.log(data) 
+      this.setState({ editUser: data }) 
+    
+    }
+      )
   }
 
 
