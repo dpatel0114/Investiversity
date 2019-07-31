@@ -141,6 +141,7 @@ export const handleSignUp=(e)=> dispatch => {
       localStorage.setItem('logged',true)
       localStorage.setItem('token', data.token)
       localStorage.setItem('uid', data.user.id)
+      localStorage.setItem('firstname', data.user.firstname)
       localStorage.setItem('portfolio',JSON.stringify(data.user.portfolios))
       localStorage.setItem('reamining_balance', data.user.remaining_balance)
       localStorage.setItem('invested_balance', data.user.invested_balance)
@@ -221,11 +222,12 @@ if(balance.remaining_balance < stock.total_price){
 
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
+  console.log(e.target)
   e.preventDefault()
   history.push('/')
   localStorage.clear()
   
-  console.log(history.push)
+  // console.log(history.push)
    dispatch({
     type: 'LOGOUT',
     logged: false

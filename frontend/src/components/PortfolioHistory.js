@@ -6,16 +6,23 @@ import { connect } from 'react-redux';
 
 export class PortfolioHistory extends Component {
 
+  constructor(props){
+    super(props)
+    this.state={
+      u:{ }
+    }
+  }
 
   componentDidMount(){ 
     this.props.getPortfolio()
+
   }
 
   render() {
-    console.log("histroty", this.props.user.firstname)
+    console.log('hey', this.props)
     return (
       <div> &nbsp;
-        <h4 align="center"> { this.props.user.firstname } History of Stocks </h4><br/>
+        <h4 align="center"> { localStorage.firstname }'s Stock's History </h4><br/>
         <div align="center">
         <table class="table table-striped table-bordered table-hover col-md-10" style={{ border: "double"}}>
             <thead class="thead-dark border-bottom" >

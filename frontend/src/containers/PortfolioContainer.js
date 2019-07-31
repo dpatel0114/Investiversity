@@ -38,7 +38,8 @@ render(){
 
   
   return (
-    <div class="card-columns scroll row scrollbar-success">
+    <div class=" scrollbar row">
+      <table class="table table-striped">
       {/* <div > */}
       <Spring
       from={{transform:'scale(0)'}}
@@ -47,6 +48,7 @@ render(){
         {props =>  <div style={props}> {cards}</div>}
     </Spring>
     {/* </div> */}
+    </table>
     </div>
   )
 }}

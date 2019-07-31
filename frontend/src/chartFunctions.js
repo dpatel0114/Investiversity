@@ -10,12 +10,18 @@ const  snapshot = (obj)=> {
     datasets: [{
       data: [obj.remaining_balance, obj.invested_balance],
       backgroundColor: [
-      '#06AED5',
-      '#FF6384'
+      '#FF6384',
+      "#6DBD60"
+      // "#3EB058",
+      // '#06AED5',
+      
       ],
       hoverBackgroundColor: [
-      '#06AED5',
-      '#FF6384'
+      '#FAC2C6',
+      "#D4EDDA"
+      // "#3EB058",
+      // '#06AED5',
+      
       ]
     
    }]
@@ -23,6 +29,7 @@ const  snapshot = (obj)=> {
 return data
 
 }
+
 
 const monthlySnap=(obj)=> {
   // console.log(obj)
@@ -35,7 +42,7 @@ const monthlySnap=(obj)=> {
     labels: stockDates,
     datasets: [{
       data : stockPrices,
-      label: 'My First dataset',
+      label: 'Stock Price',
       fill: true,
       lineTension: 0.1,
       backgroundColor: 'rgba(75,192,192,0.4)',
@@ -51,7 +58,7 @@ const monthlySnap=(obj)=> {
       pointHitRadius: 10,
     }]
   }
-  console.log(data)
+  // console.log(data)
 
   return data
 

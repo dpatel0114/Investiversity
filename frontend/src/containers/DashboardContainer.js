@@ -8,6 +8,8 @@ import { Row, Col } from 'react-bootstrap';
 // import SearchContainer from './SearchContainer'
 import { connect } from 'react-redux';
 // import {persistData} from '../actions/stockActions'
+import {Spring} from 'react-spring/renderprops'
+
 
 
 
@@ -19,25 +21,39 @@ export class DashboardContainer extends Component {
   render() {
 
   //   if (localStorage.token !== null){
-  //     this.props.persistData()
+  //     this.props.persistData()port
   // }
 
   // console.log(this.props)
  
     return (
 
-    <div>
+    <>
+
       <div class="alert alert-dismissible alert-success">
-        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {/* <button type="button" class="close" data-dismiss="alert">&times;</button> */}
         Hi! {this.props.firstname}, Welcome to <strong>Investiversity! </strong>  Learn more about investment Here.
       </div>
+      
+      
+      <div class='row' style={{margin: '5px'}}>
+        <div class="border col col-lg-4" style={{"margin-right":"2%"}}> <h3 class="card-header text-center" style={{"margin":"3%", }}> Stocks </h3><StockContainer/></div>
 
-          <div class='row' style={{margin: '10px'}}>
-            <div class="col col-lg-4" style={{"margin-right":"3%"}}><StockContainer/></div>
-            <div class="col" style={{"margin-right":"3%"}}><PortfolioContainer/></div>
-          <div class="col"> <BalanceContainer/> </div>
+        <div class="border col " style={{"margin-right":"2%"}}> <h3 class="card-header text-center" style={{"margin":"3%"}}> Portfolio </h3><PortfolioContainer/></div>
+        <div class="border col text-center">
+          
+        <Spring
+            from={{transform:'scale(0)'}}
+            to={{transform:'scale(1)'}}
+            >
+              {props =>  <div  style={props}> <h3 class="card-header text-center" style={{"margin":"3%"}}> Account </h3><BalanceContainer/></div>}
+        </Spring>
+          
+          
           </div>
-    </div>
+      </div>
+    
+    </>
 
     )
   }

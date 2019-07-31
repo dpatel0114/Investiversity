@@ -17,8 +17,8 @@ class NavBar extends Component{
   render(){
   return (
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{height:'70px', fontSize:"1.2rem"}}>
-    <a class="navbar-brand" href="/" style={{fontSize:"1.7rem"}}> Investiversity</a> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style={{height:'70px', fontSize:"1.1rem"}}>
+    <a class="navbar-brand" href="/dashboard" style={{fontSize:"2.0rem"}}> Investiversity</a> 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,28 +26,28 @@ class NavBar extends Component{
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/dashboard"> <i class="fas fa-home"></i> &nbsp; Home <span class="sr-only">(current)</span></a>
-            </li>
+              <a class="nav-link" href="/dashboard"> <i class="fas fa-home"></i>&nbsp;Home <span class="sr-only">(current)</span></a>
+            </li> 
 
           {localStorage.token ?
           <li class="nav-item">
             <a class="nav-link" href="/acchistory">History</a>
           </li>:
-          null}
+          null}&nbsp; 
 
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
-          </li>
+          </li> &nbsp;
 
           {localStorage.token ?
           <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
+            <a class="nav-link" href="/profile"> <i class="fas fa-user"></i>&nbsp;Profile</a>
           </li>
-          :null}
+          :null} &nbsp;
 
           {this.props.logged || localStorage.getItem("token") !== null ?
             <li class="nav-item">
-          <a class="nav-link" onClick={(e)=>this.props.handleLogout(e, this.props.history)}> <i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
+          <a class="nav-link" onClick={(e)=>this.props.handleLogout(e, this.props.history)}> <i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a>
           </li>
           :
           null}

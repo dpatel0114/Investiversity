@@ -68,7 +68,7 @@ class StockContainer extends Component {
     // const result = this.props.items.map(s=> <StockCard eachStock={s}/>)
     return (
 
-      <div class="scroll row">
+      <div class="scrollbar row">
 
         <table class="table table-striped ">
           <Trail
@@ -80,20 +80,25 @@ class StockContainer extends Component {
             {item => props => <tr style={props}> {item} </tr>}
 
           </Trail>
-      {/* <KeyframesList
-      native 
-      keys={stockCards.map((_, i) => i)} config={{ tension: 200, friction: 20 }} state={show}
-      >
-      {stockCards.map((item, i) => ({ x, ...props }) => (
-                        <animated.div
-                          style={{
-                            transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
-                            ...props
-                          }}>
-                            {item}
-      </animated.div>))}
 
-  </KeyframesList> */}
+
+            <KeyframesList
+                native 
+                keys={stockCards.map((_, i) => i)} config={{ tension: 200, friction: 20 }} state={show}
+                >
+                {stockCards.map((item, i) => ({ x, ...props }) => (
+                                  <animated.div
+                                    style={{
+                                      transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+                                      ...props
+                                    }}>
+                                      {item}
+                </animated.div>))}
+
+            </KeyframesList>
+
+
+
           </table>
 
       </div>

@@ -21,12 +21,12 @@ function LineChart(props) {
               }}
             legend={{
               display: true,
-              position: 'top',
+              position: 'bottom',
               fullWidth: true,
               reverse: false,
               
               labels: {
-                fontColor: 'white'
+                fontColor: 'black'
               }
 
             }}
