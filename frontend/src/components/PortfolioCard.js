@@ -22,12 +22,13 @@ function sellAndUpdate(e,eachStock,balance) {
 
   return (
       <div>
-     <td> {props.eachStock.ticker} </td>
+     <td> Ticker {props.eachStock.ticker} </td>
          <td><i class="fas fa-dollar-sign"></i> {props.eachStock.price} </td>
           
           <td>
-           Stocks: {props.eachStock.quantity}</td>
-         <td>  Total: {parseFloat(props.eachStock.total_price).toFixed(2)}   
+           Stocks {props.eachStock.quantity}</td>
+         <td>  Total {parseFloat(props.eachStock.total_price).toFixed(2)} </td> 
+         <td> 
           <form  class="form-inline" onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
            <div>
             <input class="form-control mr-sm-2 col-md-4" type='number' 

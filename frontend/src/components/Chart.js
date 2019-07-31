@@ -18,7 +18,7 @@ import {connect} from 'react-redux'
               data={snapshot(obj)}
               options={{
                 maintainAspectRatio: true,
-                responsive: true,
+                responsive: false,
                 cutoutPercentage: 60,
                 animation:{
                   animateScale: true,

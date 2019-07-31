@@ -72,6 +72,7 @@ function StockCard(props) {
 
   return (
     <>
+
             <td>{props.eachStock['ticker']}  </td> 
             <td> <i class="fas fa-dollar-sign"></i> {props.eachStock['close']}</td>
             <td>
@@ -84,31 +85,18 @@ function StockCard(props) {
                 </form>
             </td>
 
-            <td> <i class="fas fa-info-circle float-left fa-lg offset-md-4"  onClick={handleShow}></i>
+            <td> <i class="fas fa-info-circle fa-lg offset-md-4"  onClick={handleShow}></i>&nbsp;&nbsp;</td>
+            {/* <td>
             <Button 
               onClick={() => setOpen(!open)}
               aria-controls="example-collapse-text"
               aria-expanded={open}
               // data-toggle="collapse"
               // data-target="#example-collapse-text"
-            > Detail </Button>
+            > <i class="fas fa-chevron-circle-down"></i> </Button>
             </td>
-        
-              <Collapse in={open}>
-                <div id="example-collapse-text ">
-                  <div className="card">
-            <div className="card-header" style={{fontSize:"1.4rem"}}>
-              Quaterly Summary
-            </div>
-            <div className="card-body text-center">
-             <LineChart/>
-            </div>
-         </div> 
-                {/* Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-          labore wes anderson cred nesciunt sapiente ea proident.  */}
-                </div>
-              </Collapse>
+         */}
+             
           
             {/* <td> */}
                {/* <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Detail</button>&nbsp;  */}
@@ -138,7 +126,7 @@ function StockCard(props) {
            <h5><strong> High Price:</strong>  &nbsp;{props.eachStock.high}</h5>
            <h5><strong> Low Price:</strong> &nbsp;{props.eachStock.low}</h5>
            <h5><strong> Volume:</strong>  &nbsp;{props.eachStock.volume}</h5>
-          <h5><strong> Description:</strong> &nbsp; {props.info.short_description}</h5>
+          {/* <h5><strong> Description:</strong> &nbsp; {props.info.short_description}</h5> */}
           
 
            <div className="card">
@@ -154,6 +142,21 @@ function StockCard(props) {
         </Modal.Body>
       </Modal>
 
+<Collapse in={open}>
+                <div id="example-collapse-text ">
+                  <div className="card">
+            <div className="card-header" style={{fontSize:"1rem"}}>
+              Quaterly Summary
+            </div>
+            <div className="card-body text-center">
+             <LineChart/>
+            </div>
+         </div> 
+                {/* Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+          labore wes anderson cred nesciunt sapiente ea proident.  */}
+                </div>
+              </Collapse>
       
 </>
   )

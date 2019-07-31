@@ -70,9 +70,9 @@ console.log(this.state)
     // console.log("Profile: ", this.props.user.firstname)
     return (
       <div>
-     &nbsp; &nbsp;
+     
     
-      <div className=" card container col-md-6">
+      <div className=" card container col-md-5" style={{"margin-top":"2%"}}>
             <h5 className="card-header"> <i class="fas fa-user"></i>&nbsp; Profile</h5>
             <div className="card-body text-left">
              <h5 className="card-title"></h5>
@@ -82,11 +82,11 @@ console.log(this.state)
              <p className="card-text"> Email: &nbsp; &nbsp; {this.state.editUser.email} </p>
             
            </div>
-         </div>&nbsp; &nbsp;&nbsp; &nbsp;
+         </div>
 
 
        {/* <Container> */}
-        <div class="container col-md-6">
+        <div class="container col-md-5" style={{"margin-top":"2%"}}>
           <Form onSubmit={this.updateProfile} >
 
                   <Form.Label>First Name:</Form.Label>
@@ -104,8 +104,7 @@ console.log(this.state)
                   // onChange={this.handleChange}
                     name="lastname"
                     placeholder='Lastname'
-                    defaultValue={this.state.editUser.lastname} 
-                    />
+                    defaultValue={this.state.editUser.lastname} />
 
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
@@ -113,10 +112,7 @@ console.log(this.state)
                   onChange={(e) => this.handleChange}
                     name="username"
                     placeholder="username" 
-                    defaultValue={this.state.editUser.username}
-                    />
-
-
+                    defaultValue={this.state.editUser.username} />
 
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
@@ -124,8 +120,6 @@ console.log(this.state)
                   // onChange={this.handleChange}
                     name="password"
                     placeholder="password" />
-
-
 
                   <Form.Label>Email</Form.Label>
                   <Form.Control

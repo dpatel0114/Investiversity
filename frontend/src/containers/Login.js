@@ -32,7 +32,7 @@ class Login extends Component {
                   <Form.Control
                     name="username"  
                     placeholder="username"
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange} className="shadow"/>
                 </Form.Group>
 
                 <Form.Group>
@@ -40,7 +40,7 @@ class Login extends Component {
                   <Form.Control
                     onChange={this.handleChange}
                     name="password"
-                    placeholder="password" />
+                    placeholder="password" className="shadow"/>
                 </Form.Group>
 
                 <Button  variant="primary" type="submit" >
