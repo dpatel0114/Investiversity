@@ -22,7 +22,8 @@ const  snapshot = (obj)=> {
       // "#3EB058",
       // '#06AED5',
       
-      ]
+      ],
+      borderAlign: 'center'
     
    }]
 }

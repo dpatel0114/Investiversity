@@ -168,10 +168,10 @@ export const buyStock = (e, eachStock, balance)=> dispatch=> {
 
   }
 
-if(balance.remaining_balance < stock.total_price){
-  alert('Not Enough Balance')
-  return 
-}
+  if(balance.remaining_balance < stock.total_price){
+    alert('Not Enough Balance')
+    return 
+  }
 
   let user ={
     remaining_balance: balance.remaining_balance - stock.total_price,
@@ -222,19 +222,15 @@ if(balance.remaining_balance < stock.total_price){
 
 // logout
 export const handleLogout=(e, history)=> dispatch=>{
-  console.log(e.target)
+  // console.log(e.target)
   e.preventDefault()
-  history.push('/')
   localStorage.clear()
-  
   // console.log(history.push)
    dispatch({
     type: 'LOGOUT',
     logged: false
   })
-
-  
-  
+  history.push('/')
 
 }
 

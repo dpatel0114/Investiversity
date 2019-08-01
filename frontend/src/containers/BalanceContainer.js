@@ -24,12 +24,11 @@ export class BalanceContainer extends Component {
                   </div>
                 </div>
 
-
-                <div class="card" style={{width:"435px", height:"400px",margin:"3%"}} >
+                <div class="card" style={{width:"400px", height:"400px",margin:"3%"}} >
                   <div class="card-header " >
                       Balance History 
                   </div>
-                  <div class="card-body text-center" style={{"margin":"3%"}}>
+                  <div class="card-body" >
 
                         <Chart/>
                   </div>

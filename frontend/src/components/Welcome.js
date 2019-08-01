@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Carousel, Container } from 'react-bootstrap';
+// import { Button, Carousel, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 
 
@@ -10,8 +10,9 @@ export class Welcome extends Component {
   render() {
     return (
 
-      <div>
-       
+      <>
+       {window.location.pathname === '/'?
+       <div>
           <header className="App-header">
             <h1> Welcome to Investiversity! </h1>
             <p > Learn about Stocks from University of Investment. </p>
@@ -24,8 +25,12 @@ export class Welcome extends Component {
             </Link> 
           </div>  
           </header>
+          </div>
+          : 
+          null}
+          
 
-       </div>
+       </>
 
 
 

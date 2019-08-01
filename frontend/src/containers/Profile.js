@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Form, Button } from 'react-bootstrap';
+import {  Form, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom'
 // import { mapStateToProps } from '../components/PortfolioCard';
 import { connect } from 'react-redux';
@@ -11,26 +11,24 @@ export class Profile extends Component {
 
 
 
-constructor(props){
-  super(props)
-  this.state = {
-    editUser: {
+  constructor(props){
+    super(props)
+    this.state = {
+      editUser: {
 
+      }
     }
-   }
-}
+  }
 
 
 componentDidMount(){
   fetch(`http://localhost:3000/users/${localStorage.uid}`)
   .then(res => res.json())
   .then(data => 
-{this.setState({editUser: data.user})
-console.log(this.state)
-}
-
-      )
-}
+      {this.setState({editUser: data.user})
+      console.log(this.state)
+      }
+    )}
 
   handleChange = (e) => {
     this.setState({
@@ -39,8 +37,8 @@ console.log(this.state)
     })
   }
 
-
-  updateProfile(e){
+   
+  updateProfile=(e)=>{
       e.preventDefault()
       let newUser = {
         firstname: e.target.firstname.value,
@@ -50,20 +48,20 @@ console.log(this.state)
         username: e.target.username.value
       }
 
-
-    // console.log(e.target.firstname.value)
-
-    fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`, { 
-      method: 'PATCH', 
-      body: JSON.stringify({user: newUser}),
-      headers: {
-        'Access-Token': localStorage.getItem('token'),
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
-    .then(data => console.log(data))
+      fetch(`http://localhost:3000/users/${localStorage.getItem('uid')}`, { 
+        method: 'PATCH', 
+        body: JSON.stringify({user: newUser}),
+        headers: {
+          'Access-Token': localStorage.getItem('token'),
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json())
+      .then(data => {console.log(data) 
+      this.setState({ editUser: data }) 
+    
+    }
+      )
   }
-
 
 
   render() {
@@ -71,11 +69,10 @@ console.log(this.state)
     return (
       <div>
      
-    
-      <div className=" card container col-md-5" style={{"margin-top":"2%"}}>
-            <h5 className="card-header"> <i class="fas fa-user"></i>&nbsp; Profile</h5>
+      <h4 class="text-center" style={{"margin-top":"1%"}}>  Welcome {this.state.editUser.firstname} !</h4>
+      <div className=" card container col-md-5 shadow" style={{"margin-top":"2%"}}>
+            <h5 className="card-header shadow"> <i class="fas fa-user"></i>&nbsp; Profile</h5>
             <div className="card-body text-left">
-             <h5 className="card-title"></h5>
              <p className="card-text"> Firstname: &nbsp; &nbsp; {this.state.editUser.firstname} </p>
              <p className="card-text"> Lastname: &nbsp; &nbsp; {this.state.editUser.lastname} </p>
              <p className="card-text"> username: &nbsp; &nbsp; {this.state.editUser.username}</p>
@@ -85,7 +82,6 @@ console.log(this.state)
          </div>
 
 
-       {/* <Container> */}
         <div class="container col-md-5" style={{"margin-top":"2%"}}>
           <Form onSubmit={this.updateProfile} >
 
@@ -95,16 +91,18 @@ console.log(this.state)
                     name="firstname"
                     placeholder='Firstname'
                     defaultValue={this.state.editUser.firstname}
+                    className="shadow"
                     />
                     
-                  <Form.Label>Last Name:</Form.Label>
+                  <Form.Label>Last Name:</Form.Label> 
 
                   <Form.Control
                    onChange={(e) => this.handleChange}
                   // onChange={this.handleChange}
                     name="lastname"
                     placeholder='Lastname'
-                    defaultValue={this.state.editUser.lastname} />
+                    defaultValue={this.state.editUser.lastname}
+                    className="shadow" />
 
                   <Form.Label>Username:</Form.Label>
                   <Form.Control
@@ -112,14 +110,16 @@ console.log(this.state)
                   onChange={(e) => this.handleChange}
                     name="username"
                     placeholder="username" 
-                    defaultValue={this.state.editUser.username} />
+                    defaultValue={this.state.editUser.username} 
+                    className="shadow"/>
 
                   <Form.Label>Password:</Form.Label>
                   <Form.Control
                   onChange={(e) => this.handleChange}
                   // onChange={this.handleChange}
                     name="password"
-                    placeholder="password" />
+                    placeholder="password" 
+                    className="shadow"/>
 
                   <Form.Label>Email</Form.Label>
                   <Form.Control
@@ -128,6 +128,7 @@ console.log(this.state)
                     name="email"
                     placeholder="Email" 
                     defaultValue={this.state.editUser.email}
+                    className="shadow"
                     /> <br/>
 
 
