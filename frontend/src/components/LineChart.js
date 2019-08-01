@@ -17,23 +17,39 @@ function LineChart(props) {
                 maintainAspectRatio: true,
                 responsive: true,
                 cutoutPercentage: 60,
-                animateScale: true
+                animateScale: true,
+                scales:{
+                  xAxes:[{
+                    ticks:{
+                      fontColor:"white"
+                    }
+                  }],
+                  yAxes:[{
+                    ticks:{
+                      fontColor:"white"
+                    }
+                  }]
+                }
               }}
             legend={{
               display: true,
-              position: 'bottom',
+              position: 'top',
               fullWidth: true,
-              reverse: false,
-              
+              reverse: false, 
               labels: {
-                fontColor: 'black'
+                fontColor: 'white'
+              },
+              stockPrices: {
+                fontColor: 'white'
+              },
+              stockDates:{
+                fontColor:'white'
               }
-
             }}
             scales={{
               yAxes: [{
                   ticks: {
-                      fontColor: "white",
+                      fontColor: 'white',
                       fontSize: 18,
                       stepSize: 1,
                       beginAtZero: true
@@ -41,7 +57,7 @@ function LineChart(props) {
               }],
               xAxes: [{
                   ticks: {
-                      fontColor: "white",
+                      fontColor: 'white',
                       fontSize: 14,
                       stepSize: 1,
                       beginAtZero: true

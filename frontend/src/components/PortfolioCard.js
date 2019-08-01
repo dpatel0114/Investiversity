@@ -20,24 +20,26 @@ function sellAndUpdate(e,eachStock,balance) {
 // console.log(props.eachStock)
 
   return (
-      <div>
-     <td> Ticker {props.eachStock.ticker} </td>
+    
+      <div class=" text-center">
+     <td> Ticker:  &nbsp;&nbsp;{props.eachStock.ticker} </td>
          <td><i class="fas fa-dollar-sign"></i> {props.eachStock.price} </td>
           
           <td>
-           Stocks {props.eachStock.quantity}</td>
-         <td>  Total {parseFloat(props.eachStock.total_price).toFixed(2)} </td> 
+           Stocks: &nbsp;&nbsp; {props.eachStock.quantity}</td>
+         <td>  Total: &nbsp;&nbsp; {parseFloat(props.eachStock.total_price).toFixed(2)} </td> 
          <td> 
           <form  class="form-inline" onSubmit={(e) => sellAndUpdate(e,props.eachStock, {"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>
            <div>
             <input class="form-control mr-sm-2 col-md-4" type='number' 
-            step='1' name='quantity' min='1' required="required" placeholder="Stocks"/>
+            step='1' name='quantity' min='1' required="required" placeholder="Stocks"/> &nbsp;&nbsp;
           <button  class="btn btn-primary"data-toggle="button" type="submit" style={{margin: '5px'}}> SELL </button>
           </div>
           </form> 
           </td>
 
      </div>
+     
   )
 
 }

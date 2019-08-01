@@ -41,8 +41,9 @@ const monthlySnap=(obj)=> {
 
   let data = {
     labels: stockDates,
+  
     datasets: [{
-      data : stockPrices,
+      data : stockPrices, 
       label: 'Stock Price',
       fill: true,
       lineTension: 0.1,
@@ -57,9 +58,9 @@ const monthlySnap=(obj)=> {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
+      border: 'doubled'
     }]
   }
-  // console.log(data)
 
   return data
 

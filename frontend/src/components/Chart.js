@@ -11,7 +11,6 @@ import {connect} from 'react-redux'
 // console.log(snapshot)
 
   return (
-          
             <Doughnut
               width={300}
               height={300}
@@ -58,14 +57,12 @@ import {connect} from 'react-redux'
               text: 'center',
               
               labels: {
-                fontColor: 'dark'
+                fontColor: 'white'
               }
             }}
              />
-
   )
 }
-
 
 
 const mapStateToProps =(state)=>{

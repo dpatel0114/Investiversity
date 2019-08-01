@@ -69,7 +69,7 @@ componentDidMount(){
     return (
       <div>
      
-      <h4 class="text-center" style={{"margin-top":"1%"}}>  Welcome {this.state.editUser.firstname} !</h4>
+      <h3 class="text-center text-white" style={{"margin-top":"1%"}}>  Welcome {this.state.editUser.firstname} !</h3>
       <div className=" card container col-md-5 shadow" style={{"margin-top":"2%"}}>
             <h5 className="card-header shadow"> <i class="fas fa-user"></i>&nbsp; Profile</h5>
             <div className="card-body text-left">

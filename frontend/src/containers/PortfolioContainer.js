@@ -39,7 +39,7 @@ render(){
   
   return (
     <div class=" scrollbar row">
-      <table class="table table-striped">
+      <table class="table table-striped ">
       {/* <div > */}
       <Spring
       from={{transform:'scale(0)'}}
