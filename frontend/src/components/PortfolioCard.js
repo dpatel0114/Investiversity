@@ -22,7 +22,7 @@ function sellAndUpdate(e,eachStock,balance) {
   return (
     
       <div class=" text-center">
-     <td> Ticker:  &nbsp;&nbsp;{props.eachStock.ticker} </td>
+     <td> Ticker:  &nbsp;&nbsp;{props.eachStock.ticker} </td> 
          <td><i class="fas fa-dollar-sign"></i> {props.eachStock.price} </td>
           
           <td>

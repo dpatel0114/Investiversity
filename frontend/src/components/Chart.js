@@ -19,6 +19,7 @@ import {connect} from 'react-redux'
                 maintainAspectRatio: true,
                 responsive: false,
                 cutoutPercentage: 50,
+              
                 animation:{
                   animateScale: true,
                   animateRotate: true 

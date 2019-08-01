@@ -11,6 +11,7 @@ const  snapshot = (obj)=> {
       data: [obj.remaining_balance, obj.invested_balance],
       backgroundColor: [
       '#FF6384',
+      // '#DF691A',
       "#6DBD60"
       // "#3EB058",
       // '#06AED5',
