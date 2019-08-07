@@ -13,14 +13,14 @@ export class Welcome extends Component {
       <>
        {window.location.pathname === '/'?
        <div>
-          <header className="App-header">
+          <header className="App-header" >
             <h1> Welcome to Investiversity! </h1>
             <p > Learn about Stocks from University of Investment. </p>
           <div class='row'>
-            <Link to='/login' className="btn btn-primary btn-lg btn-success" >
+            <Link to='/login' className="btn btn-primary btn-lg btn-primary" >
                 Login
             </Link>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-            <Link to='/signup' className="btn btn-primary btn-lg btn-success">
+            <Link to='/signup' className="btn btn-primary btn-lg btn-primary">
                 Sign Up
             </Link> 
           </div>  

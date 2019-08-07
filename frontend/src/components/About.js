@@ -1,14 +1,13 @@
-
 import React, { Component } from 'react'
 
 export class About extends Component {
   render() {
     return (
-      <div>
-         <div className=" card container col-md-5 shadow" style={{"margin-top":"2%"}}>
-            <h5 className="card-header shadow text-center " ><img src=""/> About Investment University  </h5>
-            <div className="card-body text-left">
-             {/* <h5 className="card-title"> </h5> */}
+     
+      <div class="about text-primary "> 
+         <div class=" card container shadow bg-white" style={{"margin-top":"7.0rem", 'fontSize': '1.2rem', width:"900px"}}>
+            <h5 class="card-header shadow text-center" style={{'fontSize': '1.5rem'}}> About Investment University  </h5>
+            <div class="card-body text-left " >
 
           <p>  Investing - A word that can strike fear into the heart. A subject with broad and potentially confusing scope of choices, it can be wild.    </p>
 
@@ -26,12 +25,11 @@ export class About extends Component {
                comapny's stocks you bought or sold with price, quantity, date and time.                                                                    </p>
 
           {/* <p>  There is search button on the top in the navbar but the funactionality is not working yet.             </p> */}
-          
-
 
            </div>
          </div>
       </div>
+    
     )
   }
 }

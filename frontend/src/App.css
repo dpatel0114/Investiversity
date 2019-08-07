@@ -54,12 +54,16 @@
   border-radius: 5px;
   align: center
 }
+
+.chart {
+  background-color: 'white';
+}
     
-.modal-header {
-  /* background-color: rgb(140, 212, 182); */
+/* .modal-header {
+  background-color: rgb(140, 212, 182);
   background-color: rgb(172, 209, 181);
   color: black;
-}
+} */
 
 /* .btn-primary {
   background-color: #06AED5;
