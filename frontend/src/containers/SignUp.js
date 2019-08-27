@@ -71,7 +71,9 @@ class SignUp extends Component {
 
                 <Button variant="primary" type="submit" >
                   Sign Up 
-                </Button>
+                </Button> &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                <Button  href="/login"> &nbsp;Login</Button>
 
               </Form>
             </Col>

@@ -45,7 +45,10 @@ class Login extends Component {
 
                 <Button  variant="primary" type="submit" >
                   Login
-                </Button>
+                </Button> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                 <Button  href="/signup"> &nbsp;Sign Up</Button>
+          
           
               </Form>
 
