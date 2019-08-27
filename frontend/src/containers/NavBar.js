@@ -15,16 +15,22 @@ class NavBar extends Component{
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" style={{height:'70px', fontSize:"1.1rem"}}>
       {/* <img src="../../public/logo2.png" style={{ height: '30px', width: '30px' }}></img> */}
-    <a class="navbar-brand" href="/dashboard" style={{fontSize:"2.0rem"}}>Investiversity</a> 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    {localStorage.token ? 
+    
+    <a class="navbar-brand" href="/dashboard" style={{fontSize:"2.0rem"}}>Investiversity</a>  :     
+    <a class="navbar-brand" href="/" style={{fontSize:"2.0rem"}}>Investiversity</a> 
+
+      // <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+      //   <span class="navbar-toggler-icon"></span>
+      // </button>
+      }
 
       <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
+          {localStorage.token ? 
             <li class="nav-item active">
               <a class="nav-link" href="/dashboard"> <i class="fas fa-home"></i>&nbsp;Home <span class="sr-only">(current)</span></a>
-            </li> 
+          </li> : null}
 
           {localStorage.token ?
           <li class="nav-item active">

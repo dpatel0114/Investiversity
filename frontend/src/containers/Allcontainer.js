@@ -53,6 +53,7 @@ class Allcontainer extends Component {
                    <Route exact path='/signup' component={SignUp}/>    
                     }
 
+                  
                 {/* {this.props.logged || localStorage.getItem("token") !== null
                 ? */}
                 <Route exact path='/acchistory' component={PortfolioHistory}/>
