@@ -48,14 +48,14 @@ function StockCard(props) {
   const handleClose = () => {setShow(false)};
   const handleShowPop =()=> setShowPop(true);
   const handleShow = ()=> {
-    fetch(`https://api-v2.intrinio.com/companies/${props.eachStock.ticker}?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
+    fetch(`https://api-v2.intrinio.com/companies/${props.eachStock.security.ticker}?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
     .then(res=> res.json())
     .then(data => 
     //  getCompany(data)
       props.getCompany(data)
     )
 
-    fetch(`https://api-v2.intrinio.com/securities/${props.eachStock.ticker}/prices?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
+    fetch(`https://api-v2.intrinio.com/securities/${props.eachStock.security.ticker}/prices?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`)
     .then(res => res.json())
     .then(data => 
       props.getPrice(data.stock_prices))
@@ -65,7 +65,7 @@ function StockCard(props) {
   return (
     <>
 
-            <td>{props.eachStock['ticker']}  </td> 
+            <td>{props.eachStock.security['ticker']}  </td> 
             <td> <i class="fas fa-dollar-sign"></i> {props.eachStock['close']}</td>
             <td>
               <form class="form-inline" onSubmit={(e)=>buyAndNotify(e,props.eachStock,{"remaining_balance":props.remaining_balance,"invested_balance":props.invested_balance})}>

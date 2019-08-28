@@ -10,9 +10,12 @@ const id = localStorage.uid
 // const all_symbols = ['AAPL','MSFT','V',' GOOGL', 'AMZN']
 // const all_symbols = ['AAPL','MSFT','V','GOOGL', 'AMZN']
 const all_symbols = ['MSFT']
-const NEW_API= `https://api.intrinio.com/prices/exchange?identifier=USCOMP&price_date=2019-07-25&api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
+// const NEW_API= `https://api.intrinio.com/prices/exchange?identifier=USCOMP&price_date=2019-07-25&api_key=OjZjM2IwOTIxMTEyMWVjZTQzNDVkM2Y5NmM0NjcyMTc2`
+const NEW_API= `https://api-v2.intrinio.com/stock_exchanges/USCOMP/prices?api_key=OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx`
 
+// OjFlMjFhNTEzNGI1MWY1MzNiZGRjNjgyNjNjNjFiZmEx
 
+// OjZjM2IwOTIxMTEyMWVjZTQzNDVkM2Y5NmM0NjcyMTc2
 
 
 
@@ -25,7 +28,7 @@ export const getStocks = () => dispatch => {
     fetch(NEW_API)
     .then(res => res.json())
     .then(data => 
-      dispatch({ type: "GET_STOCKS", data: data.data })
+      dispatch({ type: "GET_STOCKS", data: data.stock_prices })
       )
     )
 }
@@ -161,7 +164,7 @@ export const buyStock = (e, eachStock, balance)=> dispatch=> {
   let stock ={
 
     price: parseFloat(eachStock['close']),
-    ticker: eachStock['ticker'],
+    ticker: eachStock.security['ticker'],
     quantity: parseFloat(e.target.quantity.value),
     total_price: parseFloat(eachStock['close'] * e.target.quantity.value),
     user_id: parseFloat(localStorage.uid)
